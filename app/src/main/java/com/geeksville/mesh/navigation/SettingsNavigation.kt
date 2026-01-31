@@ -492,8 +492,8 @@ enum class ModuleRoute(
     companion object {
         fun filterExcludedFrom(metadata: DeviceMetadata?): List<ModuleRoute> = entries.filter {
             when (metadata) {
-                null -> true // Include all routes if metadata is null
-                else -> metadata.excludedModules and it.bitfield == 0
+                null -> it != MQTT // Include all routes if metadata is null, except MQTT
+                else -> it != MQTT && metadata.excludedModules and it.bitfield == 0
             }
         }
     }

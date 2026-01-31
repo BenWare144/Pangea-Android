@@ -69,7 +69,7 @@ fun RadioConfigItemList(
 
     LaunchedEffect(excludedModulesUnlocked) {
         if (excludedModulesUnlocked) {
-            modules = ModuleRoute.entries
+            modules = ModuleRoute.entries.filterNot { it == ModuleRoute.MQTT }
         } else {
             modules = ModuleRoute.filterExcludedFrom(state.metadata)
         }
