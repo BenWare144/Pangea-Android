@@ -1,0 +1,49 @@
+From 84093d43d53118c847de9c7da5e17b3c27f10f75 Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sat, 31 Jan 2026 15:45:34 -0800
+Subject: [PATCH 01/16] fix(01-01): remove empty tinted variant from Chirpy
+ icon set
+
+- Remove tinted entry with no filename from AppIcon_Chirpy.appiconset
+- Images array now declares only light and dark variants (both with PNGs)
+- iOS falls back to light variant for tinted appearance automatically
+---
+ .../AppIcon_Chirpy.appiconset/Contents.json   | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 Pangea/Assets.xcassets/AppIcon_Chirpy.appiconset/Contents.json
+
+diff --git a/Pangea/Assets.xcassets/AppIcon_Chirpy.appiconset/Contents.json b/Pangea/Assets.xcassets/AppIcon_Chirpy.appiconset/Contents.json
+new file mode 100644
+index 00000000..1a14ccc4
+--- /dev/null
++++ b/Pangea/Assets.xcassets/AppIcon_Chirpy.appiconset/Contents.json
+@@ -0,0 +1,26 @@
++{
++  "images" : [
++    {
++      "filename" : "AppIcon_Chirpy.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "size" : "1024x1024"
++    },
++    {
++      "appearances" : [
++        {
++          "appearance" : "luminosity",
++          "value" : "dark"
++        }
++      ],
++      "filename" : "AppIcon_Chirpy_Dark.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "size" : "1024x1024"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+-- 
+2.50.1.windows.1
+

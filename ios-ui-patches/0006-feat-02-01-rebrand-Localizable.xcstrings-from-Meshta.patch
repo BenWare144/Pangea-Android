@@ -1,0 +1,938 @@
+From d2f04af253739085b8f03f56a813bab9a2cdc0ec Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sat, 31 Jan 2026 18:32:56 -0800
+Subject: [PATCH 06/16] feat(02-01): rebrand Localizable.xcstrings from
+ Meshtastic to Pangea
+
+- 19 keys renamed from Meshtastic to Pangea equivalents
+- 80 translation values updated across 11 locales
+- meshtastic.org URLs replaced with pangea.org (1 key, 8 values)
+- 9 Serbian Cyrillic transliterations replaced with Latin Pangea
+- Idempotency verified (--check exits 0, byte-identical on re-run)
+---
+ Localizable.xcstrings | 280 ++++++++++++++++++------------------------
+ 1 file changed, 119 insertions(+), 161 deletions(-)
+
+diff --git a/Localizable.xcstrings b/Localizable.xcstrings
+index 33be032d..0ba57ba3 100644
+--- a/Localizable.xcstrings
++++ b/Localizable.xcstrings
+@@ -1927,18 +1927,18 @@
+         }
+       }
+     },
+-    "A Meshtastic QR code contains the LoRa config and channel values needed for radios to communicate. You can share a complete channel configuration using the Replace Channels option, if you choose Add Channels your shared channels will be added to the channels on the receiving radio." : {
++    "A Pangea QR code contains the LoRa config and channel values needed for radios to communicate. You can share a complete channel configuration using the Replace Channels option, if you choose Add Channels your shared channels will be added to the channels on the receiving radio." : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "In a Meshtastic LoRa Mesh there are up to 8 channels. The first one is the Primary channel where most activity happens and is required. If you don't share your primary channel your first shared channel becomes the primary channel on the other network. It talks on its primary and your secondary channel. A channel with the name 'admin' controls nodes remotely. Other channels are for private groups, each with its own key."
++            "value" : "In a Pangea LoRa Mesh there are up to 8 channels. The first one is the Primary channel where most activity happens and is required. If you don't share your primary channel your first shared channel becomes the primary channel on the other network. It talks on its primary and your secondary channel. A channel with the name 'admin' controls nodes remotely. Other channels are for private groups, each with its own key."
+           }
+         },
+         "fr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Un code QR Meshtastic contient la configuration LoRa et les valeurs de canal nécessaires pour communiquer. La plupart des activités du maillage ont lieu sur le canal principal requis. Si vous ne partagez pas votre canal principal, votre premier canal partagé devient le canal principal de l’autre réseau. Les autres canaux sont pour les groupes privés, chacun avec sa propre clé."
++            "value" : "Un code QR Pangea contient la configuration LoRa et les valeurs de canal nécessaires pour communiquer. La plupart des activités du maillage ont lieu sur le canal principal requis. Si vous ne partagez pas votre canal principal, votre premier canal partagé devient le canal principal de l’autre réseau. Les autres canaux sont pour les groupes privés, chacun avec sa propre clé."
+           }
+         },
+         "he" : {
+@@ -1950,43 +1950,43 @@
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Un codice QR Meshtastic contiene la configurazione LoRa e i valori dei canali necessari alle radio per comunicare. È possibile condividere una configurazione completa dei canali utilizzando l'opzione Sostituisci canali; se si sceglie Aggiungi canali, i canali condivisi verranno aggiunti ai canali della radio ricevente."
++            "value" : "Un codice QR Pangea contiene la configurazione LoRa e i valori dei canali necessari alle radio per comunicare. È possibile condividere una configurazione completa dei canali utilizzando l'opzione Sostituisci canali; se si sceglie Aggiungi canali, i canali condivisi verranno aggiunti ai canali della radio ricevente."
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "MeshtasticのQRコードには、無線機が通信するために必要なLoRa設定とチャンネル値が含まれています。「チャンネルを置換」オプションを使用して完全なチャンネル設定を共有できます。「チャンネルを追加」を選択した場合、共有チャンネルは受信側無線機のチャンネルに追加されます。"
++            "value" : "PangeaのQRコードには、無線機が通信するために必要なLoRa設定とチャンネル値が含まれています。「チャンネルを置換」オプションを使用して完全なチャンネル設定を共有できます。「チャンネルを追加」を選択した場合、共有チャンネルは受信側無線機のチャンネルに追加されます。"
+           }
+         },
+         "pl" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "In a Meshtastic LoRa Mesh there are up to 8 channels. The first one is the Primary channel where most activity happens and is required. If you don't share your primary channel your first shared channel becomes the primary channel on the other network. It talks on its primary and your secondary channel. A channel with the name 'admin' controls nodes remotely. Other channels are for private groups, each with its own key."
++            "value" : "In a Pangea LoRa Mesh there are up to 8 channels. The first one is the Primary channel where most activity happens and is required. If you don't share your primary channel your first shared channel becomes the primary channel on the other network. It talks on its primary and your secondary channel. A channel with the name 'admin' controls nodes remotely. Other channels are for private groups, each with its own key."
+           }
+         },
+         "se" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "En Meshtastic QR-kod innehåller LoRa-konfigurationen och kanalvärden som behövs för kommunikation. De flesta aktiviteter i mesh-nätverket sker på den obligatoriska primärkanalen. Om du inte delar din primärkanal blir din första delade kanal primärkanalen på det andra nätverket. Andra kanaler är för privata grupper, varje med sin egen nyckel."
++            "value" : "En Pangea QR-kod innehåller LoRa-konfigurationen och kanalvärden som behövs för kommunikation. De flesta aktiviteter i mesh-nätverket sker på den obligatoriska primärkanalen. Om du inte delar din primärkanal blir din första delade kanal primärkanalen på det andra nätverket. Andra kanaler är för privata grupper, varje med sin egen nyckel."
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "QR код за Мештастик садржи LoRA конфигурацију и вредности канала које су потребне радијима за комуникацију. Можете поделити потпуну конфигурацију канала користећи опцију „Замени канале“, а ако изаберете „Додај канале“, ваши делени канали ће бити додати каналима на примајућем радију."
++            "value" : "QR код за Pangea садржи LoRA конфигурацију и вредности канала које су потребне радијима за комуникацију. Можете поделити потпуну конфигурацију канала користећи опцију „Замени канале“, а ако изаберете „Додај канале“, ваши делени канали ће бити додати каналима на примајућем радију."
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "在 Meshtastic 网络中最多有 8 个频道。第一个频道是主频道，大多数活动都发生在这里，也是必需的。如果您不共享主频道，您的第一个共享频道就会成为其他网络的主频道。它会在其主频道和您的辅助频道上对话。名称为 admin 的频道可远程控制节点。其他频道用于私人群组，每个群组都有自己的密钥。"
++            "value" : "在 Pangea 网络中最多有 8 个频道。第一个频道是主频道，大多数活动都发生在这里，也是必需的。如果您不共享主频道，您的第一个共享频道就会成为其他网络的主频道。它会在其主频道和您的辅助频道上对话。名称为 admin 的频道可远程控制节点。其他频道用于私人群组，每个群组都有自己的密钥。"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic QR Code 包含 LoRa 設定與頻道資訊。選擇「取代頻道」可分享完整設定，「新增頻道」則會將分享的頻道新增到接收設備中。"
++            "value" : "Pangea QR Code 包含 LoRa 設定與頻道資訊。選擇「取代頻道」可分享完整設定，「新增頻道」則會將分享的頻道新增到接收設備中。"
+           }
+         }
+       }
+@@ -2059,7 +2059,7 @@
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Über Meshtastic"
++            "value" : "Über Pangea"
+           }
+         },
+         "it" : {
+@@ -2088,36 +2088,36 @@
+         }
+       }
+     },
+-    "About Meshtastic" : {
++    "About Pangea" : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Über Meshtastic"
++            "value" : "Über Pangea"
+           }
+         },
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Informazioni su Meshtastic"
++            "value" : "Informazioni su Pangea"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtasticについて"
++            "value" : "Pangeaについて"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "О Мештастику"
++            "value" : "О Pangeaу"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "關於Meshtastic"
++            "value" : "關於Pangea"
+           }
+         }
+       }
+@@ -2542,30 +2542,30 @@
+         }
+       }
+     },
+-    "Add Meshtastic Node %@ as a contact" : {
++    "Add Pangea Node %@ as a contact" : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Aggiungi nodo Meshtastic %@ ai contatti"
++            "value" : "Aggiungi nodo Pangea %@ ai contatti"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtasticノード%@を連絡先に追加"
++            "value" : "Pangeaノード%@を連絡先に追加"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Додај Meshtastic чвор %@ као контакт"
++            "value" : "Додај Pangea чвор %@ као контакт"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "將 Meshtastic 節點 %@ 新增為聯絡人"
++            "value" : "將 Pangea 節點 %@ 新增為聯絡人"
+           }
+         }
+       }
+@@ -5136,12 +5136,8 @@
+         }
+       }
+     },
+-    "Bearing: %@" : {
+-
+-    },
+-    "Bearing: N/A" : {
+-
+-    },
++    "Bearing: %@" : {},
++    "Bearing: N/A" : {},
+     "Biking" : {
+       "localizations" : {
+         "de" : {
+@@ -5504,9 +5500,7 @@
+         }
+       }
+     },
+-    "Broadcast Device Metrics" : {
+-
+-    },
++    "Broadcast Device Metrics" : {},
+     "Broadcast Interval" : {
+       "localizations" : {
+         "it" : {
+@@ -8092,9 +8086,7 @@
+         }
+       }
+     },
+-    "Compass" : {
+-
+-    },
++    "Compass" : {},
+     "Config" : {
+       "localizations" : {
+         "it" : {
+@@ -10950,9 +10942,7 @@
+         }
+       }
+     },
+-    "Device Options" : {
+-
+-    },
++    "Device Options" : {},
+     "Device Role" : {
+       "localizations" : {
+         "it" : {
+@@ -11883,18 +11873,18 @@
+         }
+       }
+     },
+-    "Display the distance between your phone and other Meshtastic nodes with positions." : {
++    "Display the distance between your phone and other Pangea nodes with positions." : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Darstellung der Entfernung zwischen deinem Handy und anderen Meshtastic-Knoten mit Positionsangabe."
++            "value" : "Darstellung der Entfernung zwischen deinem Handy und anderen Pangea-Knoten mit Positionsangabe."
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Прикажи растојање између свог телефона и других Meshtastic чворова са позицијама."
++            "value" : "Прикажи растојање између свог телефона и других Pangea чворова са позицијама."
+           }
+         }
+       }
+@@ -12005,9 +11995,7 @@
+         }
+       }
+     },
+-    "Distance: %@" : {
+-
+-    },
++    "Distance: %@" : {},
+     "Documentation" : {
+       "localizations" : {
+         "de" : {
+@@ -12634,9 +12622,7 @@
+         }
+       }
+     },
+-    "Enable broadcasting device metrics to the mesh network. When disabled, metrics are only sent to connected clients." : {
+-
+-    },
++    "Enable broadcasting device metrics to the mesh network. When disabled, metrics are only sent to connected clients." : {},
+     "Enable broadcasting packets via UDP over the local network." : {
+       "localizations" : {
+         "it" : {
+@@ -13342,9 +13328,7 @@
+         }
+       }
+     },
+-    "Environment Metrics Enabled" : {
+-
+-    },
++    "Environment Metrics Enabled" : {},
+     "Environment Metrics Log" : {
+       "localizations" : {
+         "it" : {
+@@ -13379,9 +13363,7 @@
+         }
+       }
+     },
+-    "Environment Sensor Options" : {
+-
+-    },
++    "Environment Sensor Options" : {},
+     "Erase all app data?" : {
+       "localizations" : {
+         "de" : {
+@@ -18942,9 +18924,7 @@
+       "comment" : "A label displayed next to the last seen device text in the `DeviceConnectRow`.",
+       "isCommentAutoGenerated" : true
+     },
+-    "Last seen device: %@" : {
+-
+-    },
++    "Last seen device: %@" : {},
+     "Latitude" : {
+       "localizations" : {
+         "de" : {
+@@ -20465,9 +20445,7 @@
+         }
+       }
+     },
+-    "Manual Connections" : {
+-
+-    },
++    "Manual Connections" : {},
+     "Map Data" : {
+       "localizations" : {
+         "sr" : {
+@@ -20942,93 +20920,91 @@
+         }
+       }
+     },
+-    "Meshtastic" : {
++    "Pangea" : {
+       "localizations" : {
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Мештастик"
++            "value" : "Pangea"
+           }
+         }
+       }
+     },
+-    "Meshtastic does not collect any personal information. We do anonymously collect usage and crash data to improve the app. You can opt out under app settings." : {
+-
+-    },
+-    "Meshtastic Node %@ has shared channels with you" : {
++    "Pangea does not collect any personal information. We do anonymously collect usage and crash data to improve the app. You can opt out under app settings." : {},
++    "Pangea Node %@ has shared channels with you" : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic Knoten %@ hat Kanäle mit dir geteilt"
++            "value" : "Pangea Knoten %@ hat Kanäle mit dir geteilt"
+           }
+         },
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Il Nodo Meshtastic %@ ha condiviso i canali con voi"
++            "value" : "Il Nodo Pangea %@ ha condiviso i canali con voi"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtasticノード %@ があなたとチャンネルを共有しました"
++            "value" : "Pangeaノード %@ があなたとチャンネルを共有しました"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic чвор %@ је поделио канале са вама."
++            "value" : "Pangea чвор %@ је поделио канале са вама."
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic 節點 %@ 向您分享頻道資訊"
++            "value" : "Pangea 節點 %@ 向您分享頻道資訊"
+           }
+         }
+       }
+     },
+-    "Meshtastic uses your phone's location to enable a number of features. You can update your location permissions at any time from settings." : {
++    "Pangea uses your phone's location to enable a number of features. You can update your location permissions at any time from settings." : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic verwendet den Standort deines Handys, um eine Reihe von Funktionen zu ermöglichen. Du kannst deine Standortberechtigungen jederzeit in den Einstellungen aktualisieren."
++            "value" : "Pangea verwendet den Standort deines Handys, um eine Reihe von Funktionen zu ermöglichen. Du kannst deine Standortberechtigungen jederzeit in den Einstellungen aktualisieren."
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Мештастик користи локацију твог телефона за разне функције. Дозволе за локацију можеш променити у подешавањима кад год пожелиш."
++            "value" : "Pangea користи локацију твог телефона за разне функције. Дозволе за локацију можеш променити у подешавањима кад год пожелиш."
+           }
+         }
+       }
+     },
+-    "Meshtastic® Copyright Meshtastic LLC" : {
++    "Pangea® Copyright Pangea LLC" : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic® Copyright Meshtastic LLC"
++            "value" : "Pangea® Copyright Pangea LLC"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic® Copyright Meshtastic LLC"
++            "value" : "Pangea® Copyright Pangea LLC"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic® Ауторска права Meshtastic LLC"
++            "value" : "Pangea® Ауторска права Pangea LLC"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic® Copyright Meshtastic LLC"
++            "value" : "Pangea® Copyright Pangea LLC"
+           }
+         }
+       }
+@@ -21798,42 +21774,42 @@
+         }
+       }
+     },
+-    "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://meshtastic.org/docs/configuration/tips/)" : {
++    "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://pangea.org/docs/configuration/tips/)" : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Die meisten Daten in deinem Mesh werden über den primären Kanal gesendet. Du kannst sekundäre Kanäle einrichten, um zusätzliche Nachrichtengruppen zu erstellen, die durch ihren eigenen Schlüssel gesichert sind. [Tipps zur Kanalkonfiguration](https://meshtastic.org/docs/configuration/radio/channels/)"
++            "value" : "Die meisten Daten in deinem Mesh werden über den primären Kanal gesendet. Du kannst sekundäre Kanäle einrichten, um zusätzliche Nachrichtengruppen zu erstellen, die durch ihren eigenen Schlüssel gesichert sind. [Tipps zur Kanalkonfiguration](https://pangea.org/docs/configuration/radio/channels/)"
+           }
+         },
+         "fr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "La pluspart des données de votre maillage sont envoyées sur le canal principal. Vous pouvez définir des canaux secondaires pour créer des groupes de messagerie additionnelle sécurisés avec leur propre clé. [Conseils de configuration du canal](https://meshtastic.org/docs/configuration/tips/)"
++            "value" : "La pluspart des données de votre maillage sont envoyées sur le canal principal. Vous pouvez définir des canaux secondaires pour créer des groupes de messagerie additionnelle sécurisés avec leur propre clé. [Conseils de configuration du canal](https://pangea.org/docs/configuration/tips/)"
+           }
+         },
+         "he" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://meshtastic.org/docs/configuration/radio/channels/)"
++            "value" : "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://pangea.org/docs/configuration/radio/channels/)"
+           }
+         },
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "La maggior parte dei dati sulla rete viene inviata attraverso il canale principale. È possibile impostare canali secondari per creare gruppi di messaggistica aggiuntivi protetti da una propria chiave. [Suggerimenti per la configurazione del canale](https://meshtastic.org/docs/configuration/tips/)"
++            "value" : "La maggior parte dei dati sulla rete viene inviata attraverso il canale principale. È possibile impostare canali secondari per creare gruppi di messaggistica aggiuntivi protetti da una propria chiave. [Suggerimenti per la configurazione del canale](https://pangea.org/docs/configuration/tips/)"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "メッシュ上のほとんどのデータはプライマリチャンネル経由で送信されます。セカンダリチャンネルを設定して、独自のキーで保護された追加のメッセージグループを作成できます。[チャンネル設定のヒント](https://meshtastic.org/docs/configuration/tips/)"
++            "value" : "メッシュ上のほとんどのデータはプライマリチャンネル経由で送信されます。セカンダリチャンネルを設定して、独自のキーで保護された追加のメッセージグループを作成できます。[チャンネル設定のヒント](https://pangea.org/docs/configuration/tips/)"
+           }
+         },
+         "pl" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://meshtastic.org/docs/configuration/radio/channels/)"
++            "value" : "Most data on your mesh is sent over the primary channel. You can set up secondary channels to create additional messaging groups secured by their own key. [Channel config tips](https://pangea.org/docs/configuration/radio/channels/)"
+           }
+         },
+         "se" : {
+@@ -21845,13 +21821,13 @@
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Већина података на вашој мрежи шаље се преко примарног канала. Можете подесити секундарне канале како бисте креирали додатне групе за размену порука, које су обезбеђене сопственим кључем. [Савети за конфигурацију канала](https://meshtastic.org/docs/configuration/tips/)"
++            "value" : "Већина података на вашој мрежи шаље се преко примарног канала. Можете подесити секундарне канале како бисте креирали додатне групе за размену порука, које су обезбеђене сопственим кључем. [Савети за конфигурацију канала](https://pangea.org/docs/configuration/tips/)"
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Mesh 网格上的大部分数据都通过主频道发送。您可以设置辅助频道以创建由其自身密钥保护的消息组。[频道配置提示](https://meshtastic.org/docs/configuration/tips/)"
++            "value" : "Mesh 网格上的大部分数据都通过主频道发送。您可以设置辅助频道以创建由其自身密钥保护的消息组。[频道配置提示](https://pangea.org/docs/configuration/tips/)"
+           }
+         },
+         "zh-Hant-TW" : {
+@@ -22261,9 +22237,7 @@
+         }
+       }
+     },
+-    "Nag Timeout" : {
+-
+-    },
++    "Nag Timeout" : {},
+     "Name" : {
+       "localizations" : {
+         "de" : {
+@@ -24780,9 +24754,7 @@
+         }
+       }
+     },
+-    "Open Compass" : {
+-
+-    },
++    "Open Compass" : {},
+     "Open Settings" : {
+       "localizations" : {
+         "de" : {
+@@ -26125,24 +26097,24 @@
+         }
+       }
+     },
+-    "Please be advised that because the map report is not encrypted, your data may be stored and displayed permanently by third parties. Meshtastic does not assume responsibility for any such storage, display or disclosure of this data." : {
++    "Please be advised that because the map report is not encrypted, your data may be stored and displayed permanently by third parties. Pangea does not assume responsibility for any such storage, display or disclosure of this data." : {
+       "localizations" : {
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "マップレポートは暗号化されていないため、あなたのデータが第三者によって永続的に保存・表示される可能性があることをご承知ください。Meshtasticは、このようなデータの保存、表示、開示について一切の責任を負いません。"
++            "value" : "マップレポートは暗号化されていないため、あなたのデータが第三者によって永続的に保存・表示される可能性があることをご承知ください。Pangeaは、このようなデータの保存、表示、開示について一切の責任を負いません。"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Имајте на уму да, пошто извештај о мапи није шифрован, ваши подаци могу бити трајно сачувани и приказани од стране трећих лица. Meshtastic не преузима одговорност за такво чување, приказивање или откривање ових података."
++            "value" : "Имајте на уму да, пошто извештај о мапи није шифрован, ваши подаци могу бити трајно сачувани и приказани од стране трећих лица. Pangea не преузима одговорност за такво чување, приказивање или откривање ових података."
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "請注意，由於地圖報告內容未經加密，您的資料可能會被第三方永久儲存、展示或公開揭露。Meshtastic 對於任何此類資料的儲存、展示或揭露行為，不承擔任何責任。"
++            "value" : "請注意，由於地圖報告內容未經加密，您的資料可能會被第三方永久儲存、展示或公開揭露。Pangea 對於任何此類資料的儲存、展示或揭露行為，不承擔任何責任。"
+           }
+         }
+       }
+@@ -27100,9 +27072,7 @@
+         }
+       }
+     },
+-    "Power Sensor Options" : {
+-
+-    },
++    "Power Sensor Options" : {},
+     "Powered" : {
+       "localizations" : {
+         "de" : {
+@@ -28562,9 +28532,7 @@
+         }
+       }
+     },
+-    "Received Ack: %@" : {
+-
+-    },
++    "Received Ack: %@" : {},
+     "Recipient Ack" : {
+       "extractionState" : "stale",
+       "localizations" : {
+@@ -28630,9 +28598,7 @@
+         }
+       }
+     },
+-    "Recipient Ack: %@" : {
+-
+-    },
++    "Recipient Ack: %@" : {},
+     "Recording route" : {
+       "localizations" : {
+         "de" : {
+@@ -31565,9 +31531,7 @@
+         }
+       }
+     },
+-    "Select a Node" : {
+-
+-    },
++    "Select a Node" : {},
+     "Select a node from the drop down to manage connected or remote devices." : {
+       "localizations" : {
+         "ja" : {
+@@ -31846,18 +31810,18 @@
+         }
+       }
+     },
+-    "Send a message to a certain meshtastic channel" : {
++    "Send a message to a certain pangea channel" : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Inviare un messaggio a un certo canale meshtastic"
++            "value" : "Inviare un messaggio a un certo canale pangea"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "特定のMeshtasticチャンネルにメッセージを送信"
++            "value" : "特定のPangeaチャンネルにメッセージを送信"
+           }
+         },
+         "sr" : {
+@@ -31869,17 +31833,17 @@
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "向特定 Meshtastic 頻道發送訊息"
++            "value" : "向特定 Pangea 頻道發送訊息"
+           }
+         }
+       }
+     },
+-    "Send a message to a certain meshtastic node" : {
++    "Send a message to a certain pangea node" : {
+       "localizations" : {
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Пошаљи поруку одређеном Мештастик чвору."
++            "value" : "Пошаљи поруку одређеном Pangea чвору."
+           }
+         }
+       }
+@@ -33640,18 +33604,18 @@
+         }
+       }
+     },
+-    "Sharing Meshtastic Channels" : {
++    "Sharing Pangea Channels" : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic Kanäle teilen"
++            "value" : "Pangea Kanäle teilen"
+           }
+         },
+         "fr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Partage des canaux Meshtastic"
++            "value" : "Partage des canaux Pangea"
+           }
+         },
+         "he" : {
+@@ -33663,43 +33627,43 @@
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Condividere i canali Meshtastic"
++            "value" : "Condividere i canali Pangea"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtasticチャンネル共有"
++            "value" : "Pangeaチャンネル共有"
+           }
+         },
+         "pl" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Sharing Meshtastic Channels"
++            "value" : "Sharing Pangea Channels"
+           }
+         },
+         "se" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Dela Meshtastic-kanaler"
++            "value" : "Dela Pangea-kanaler"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Дељење Мештастик канала"
++            "value" : "Дељење Pangea канала"
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "共享 Meshtastic 频道"
++            "value" : "共享 Pangea 频道"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "分享 Meshtastic 頻道"
++            "value" : "分享 Pangea 頻道"
+           }
+         }
+       }
+@@ -35498,52 +35462,52 @@
+         }
+       }
+     },
+-    "Takes a Meshtastic channel URL and saves the channel settings." : {
++    "Takes a Pangea channel URL and saves the channel settings." : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Prende l'URL di un canale Meshtastic e salva le impostazioni del canale."
++            "value" : "Prende l'URL di un canale Pangea e salva le impostazioni del canale."
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "MeshtasticチャンネルURLを取得し、チャンネル設定を保存します。"
++            "value" : "PangeaチャンネルURLを取得し、チャンネル設定を保存します。"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Узима URL канала Meshtastic и чува подешавања канала."
++            "value" : "Узима URL канала Pangea и чува подешавања канала."
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "輸入一個 Meshtastic 頻道網址，並儲存該頻道的設定。"
++            "value" : "輸入一個 Pangea 頻道網址，並儲存該頻道的設定。"
+           }
+         }
+       }
+     },
+-    "Takes a Meshtastic contact URL and saves it to the nodes database" : {
++    "Takes a Pangea contact URL and saves it to the nodes database" : {
+       "localizations" : {
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic連絡先URLを取得し、ノードデータベースに保存します"
++            "value" : "Pangea連絡先URLを取得し、ノードデータベースに保存します"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Прима Meshtastic контакт URL и чува га у базу података чворова"
++            "value" : "Прима Pangea контакт URL и чува га у базу података чворова"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "將 Meshtastic 聯絡人的網址儲存到節點資料庫中。"
++            "value" : "將 Pangea 聯絡人的網址儲存到節點資料庫中。"
+           }
+         }
+       }
+@@ -36349,36 +36313,36 @@
+         }
+       }
+     },
+-    "The Meshtastic Apple apps support firmware version %@ and above." : {
++    "The Pangea Apple apps support firmware version %@ and above." : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Le applicazioni Meshtastic Apple supportano la versione firmware %@ e successive."
++            "value" : "Le applicazioni Pangea Apple supportano la versione firmware %@ e successive."
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic Appleアプリはファームウェアバージョン %@ 以上をサポートしています。"
++            "value" : "Pangea Appleアプリはファームウェアバージョン %@ 以上をサポートしています。"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Мештастик апликације за Епл уређаје подржавају верзију фирмвера %@ и новије."
++            "value" : "Pangea апликације за Епл уређаје подржавају верзију фирмвера %@ и новије."
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic Apple 应用程序支持 %@ 及以上版本的固件。"
++            "value" : "Pangea Apple 应用程序支持 %@ 及以上版本的固件。"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic 的 Apple 應用程式支援 %@ 版本及以上的韌體。"
++            "value" : "Pangea 的 Apple 應用程式支援 %@ 版本及以上的韌體。"
+           }
+         }
+       }
+@@ -40228,9 +40192,7 @@
+         }
+       }
+     },
+-    "User Privacy" : {
+-
+-    },
++    "User Privacy" : {},
+     "User Uploaded" : {
+       "comment" : "Data source label for user uploaded files",
+       "localizations" : {
+@@ -41092,9 +41054,7 @@
+         }
+       }
+     },
+-    "Waypoints" : {
+-
+-    },
++    "Waypoints" : {},
+     "Weather Conditions" : {
+       "localizations" : {
+         "de" : {
+@@ -41281,42 +41241,42 @@
+         }
+       }
+     },
+-    "What is Meshtastic?" : {
++    "What is Pangea?" : {
+       "localizations" : {
+         "de" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Was ist Meshtastic?"
++            "value" : "Was ist Pangea?"
+           }
+         },
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Che cos'è Meshtastic?"
++            "value" : "Che cos'è Pangea?"
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtasticとは？"
++            "value" : "Pangeaとは？"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Шта је Мештастик?"
++            "value" : "Шта је Pangea?"
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Meshtastic 是什么?"
++            "value" : "Pangea 是什么?"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "什麼是 Meshtastic？"
++            "value" : "什麼是 Pangea？"
+           }
+         }
+       }
+@@ -41942,36 +41902,36 @@
+         }
+       }
+     },
+-    "You can also update your Meshtastic device over bluetooth using the Nordic DFU app." : {
++    "You can also update your Pangea device over bluetooth using the Nordic DFU app." : {
+       "localizations" : {
+         "it" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "È anche possibile aggiornare il dispositivo Meshtastic tramite bluetooth utilizzando l'applicazione Nordic DFU."
++            "value" : "È anche possibile aggiornare il dispositivo Pangea tramite bluetooth utilizzando l'applicazione Nordic DFU."
+           }
+         },
+         "ja" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Nordic DFUアプリを使用してBluetoothでMeshtasticデバイスを更新することもできます。"
++            "value" : "Nordic DFUアプリを使用してBluetoothでPangeaデバイスを更新することもできます。"
+           }
+         },
+         "sr" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Такође можете ажурирати свој Мештастик уређај преко блутута користећи Nordic DFU апликацију."
++            "value" : "Такође можете ажурирати свој Pangea уређај преко блутута користећи Nordic DFU апликацију."
+           }
+         },
+         "zh-Hans" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "您还可以使用 Nordic DFU 应用程序通过蓝牙更新 Meshtastic 设备。"
++            "value" : "您还可以使用 Nordic DFU 应用程序通过蓝牙更新 Pangea 设备。"
+           }
+         },
+         "zh-Hant-TW" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "您亦可透過藍牙，使用 Nordic DFU 應用程式來更新您的 Meshtastic 裝置。"
++            "value" : "您亦可透過藍牙，使用 Nordic DFU 應用程式來更新您的 Pangea 裝置。"
+           }
+         }
+       }
+@@ -42226,9 +42186,7 @@
+         }
+       }
+     },
+-    "Your public key is generated from your private key and sent to other nodes on the mesh so they can compute a shared secret key with you." : {
+-
+-    },
++    "Your public key is generated from your private key and sent to other nodes on the mesh so they can compute a shared secret key with you." : {},
+     "Your region has a %lld%% duty cycle. MQTT is not advised when you are duty cycle restricted, the extra traffic will quickly overwhelm your LoRa mesh." : {
+       "localizations" : {
+         "it" : {
+-- 
+2.50.1.windows.1
+

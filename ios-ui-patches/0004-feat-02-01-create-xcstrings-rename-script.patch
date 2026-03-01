@@ -1,0 +1,237 @@
+From 8a4f66ddd27522cc857ac77ff997492e357210f9 Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sat, 31 Jan 2026 18:32:02 -0800
+Subject: [PATCH 04/16] feat(02-01): create xcstrings rename script
+
+- Renames all 19 Meshtastic keys to Pangea equivalents
+- Updates translation values across all 11 locales
+- Replaces meshtastic.org URLs with pangea.org
+- Replaces Serbian Cyrillic transliteration with Latin Pangea
+- Supports --check (CI gate) and --dry-run modes
+- Idempotent: safe to run multiple times
+- Documents upstream merge workflow in docstring
+---
+ scripts/rename_xcstrings.py | 211 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 211 insertions(+)
+ create mode 100644 scripts/rename_xcstrings.py
+
+diff --git a/scripts/rename_xcstrings.py b/scripts/rename_xcstrings.py
+new file mode 100644
+index 00000000..ed60676a
+--- /dev/null
++++ b/scripts/rename_xcstrings.py
+@@ -0,0 +1,211 @@
++#!/usr/bin/env python3
++"""
++Rename Meshtastic brand references in Localizable.xcstrings to Pangea equivalents.
++
++This script reads an Xcode .xcstrings JSON file and:
++  - Renames all keys containing "Meshtastic"/"meshtastic" to "Pangea"/"pangea"
++  - Updates all translation values across every locale
++  - Replaces meshtastic.org URLs with pangea.org
++  - Replaces Serbian Cyrillic transliteration with Latin "Pangea"
++
++Idempotent: Running the script multiple times produces identical output.
++
++Upstream merge workflow:
++  1. Accept upstream's xcstrings during merge:
++       git checkout --theirs Localizable.xcstrings
++  2. Re-run this script to restore all Pangea renames:
++       python3 scripts/rename_xcstrings.py Localizable.xcstrings
++
++Usage:
++  # Apply renames in-place:
++  python3 scripts/rename_xcstrings.py Localizable.xcstrings
++
++  # Check what would change (CI gate, exit 0 = clean, exit 1 = changes needed):
++  python3 scripts/rename_xcstrings.py --check Localizable.xcstrings
++
++  # Preview transformed output without writing:
++  python3 scripts/rename_xcstrings.py --dry-run Localizable.xcstrings
++"""
++
++import argparse
++import copy
++import json
++import sys
++
++
++def rename_brand(text: str) -> str:
++    """Replace Meshtastic brand references with Pangea equivalents.
++
++    Order matters:
++      1. Capitalized brand name
++      2. Domain (meshtastic.org -> pangea.org) BEFORE lowercase to avoid double-replace
++      3. Lowercase brand name
++      4. Serbian Cyrillic transliteration
++    """
++    text = text.replace("Meshtastic", "Pangea")
++    text = text.replace("meshtastic.org", "pangea.org")
++    text = text.replace("meshtastic", "pangea")
++    text = text.replace("\u041c\u0435\u0448\u0442\u0430\u0441\u0442\u0438\u043a", "Pangea")
++    return text
++
++
++def process_string_unit(loc_data: dict) -> None:
++    """Apply rename_brand to a stringUnit value if present."""
++    string_unit = loc_data.get("stringUnit")
++    if string_unit and "value" in string_unit:
++        string_unit["value"] = rename_brand(string_unit["value"])
++
++
++def process_substitutions(loc_data: dict) -> None:
++    """Apply rename_brand recursively to substitution stringUnit values."""
++    substitutions = loc_data.get("substitutions")
++    if not substitutions:
++        return
++    for _sub_name, sub_val in substitutions.items():
++        arg_num = sub_val.get("argNum")
++        if arg_num is not None:
++            # substitutions can have nested stringUnit in formatSpecifier
++            format_spec = sub_val.get("formatSpecifier")
++            if format_spec and "stringUnit" in format_spec:
++                su = format_spec["stringUnit"]
++                if "value" in su:
++                    su["value"] = rename_brand(su["value"])
++        # Also check for direct stringUnit in substitution
++        if "stringUnit" in sub_val:
++            su = sub_val["stringUnit"]
++            if "value" in su:
++                su["value"] = rename_brand(su["value"])
++
++
++def process_xcstrings(data: dict) -> dict:
++    """Rename all Meshtastic references in xcstrings data.
++
++    Iterates keys in insertion order to preserve Xcode key ordering.
++    Handles the collision case where a new key already exists (empty Xcode placeholder).
++    """
++    old_strings = data["strings"]
++    new_strings = {}
++
++    for key in list(old_strings.keys()):
++        new_key = rename_brand(key)
++        entry = copy.deepcopy(old_strings[key])
++
++        # Process translation values in each locale
++        localizations = entry.get("localizations", {})
++        for _locale, loc_data in localizations.items():
++            process_string_unit(loc_data)
++            process_substitutions(loc_data)
++
++        # Collision handling: if new_key already exists in old_strings as an empty
++        # placeholder (Xcode auto-added), the renamed entry with translations wins.
++        # If the key didn't change, just place it normally.
++        new_strings[new_key] = entry
++
++    data["strings"] = new_strings
++    return data
++
++
++def format_json(data: dict) -> str:
++    """Format xcstrings JSON to match Xcode conventions."""
++    return json.dumps(data, indent=2, ensure_ascii=False, separators=(",", " : ")) + "\n"
++
++
++def diff_report(original: dict, transformed: dict) -> tuple:
++    """Generate a report of what changed between original and transformed.
++
++    Returns (report_lines, has_changes).
++    """
++    old_keys = set(original["strings"].keys())
++    new_keys = set(transformed["strings"].keys())
++
++    renamed_keys = []
++    old_key_list = list(original["strings"].keys())
++    new_key_list = list(transformed["strings"].keys())
++    for old_k, new_k in zip(old_key_list, new_key_list):
++        if old_k != new_k:
++            renamed_keys.append((old_k, new_k))
++
++    # Count changed translation values
++    value_changes = 0
++    for key in original["strings"]:
++        new_key = rename_brand(key)
++        old_locs = original["strings"][key].get("localizations", {})
++        new_locs = transformed["strings"].get(new_key, {}).get("localizations", {})
++        for locale in old_locs:
++            old_val = old_locs[locale].get("stringUnit", {}).get("value", "")
++            new_val = new_locs.get(locale, {}).get("stringUnit", {}).get("value", "")
++            if old_val != new_val:
++                value_changes += 1
++
++    lines = []
++    has_changes = bool(renamed_keys) or value_changes > 0
++
++    if not has_changes:
++        lines.append("No changes needed -- file is already up to date.")
++        return lines, False
++
++    lines.append(f"Keys to rename: {len(renamed_keys)}")
++    for old_k, new_k in renamed_keys:
++        old_display = old_k if len(old_k) <= 60 else old_k[:57] + "..."
++        new_display = new_k if len(new_k) <= 60 else new_k[:57] + "..."
++        lines.append(f"  {old_display}")
++        lines.append(f"    -> {new_display}")
++    lines.append(f"Translation values to update: {value_changes}")
++
++    return lines, True
++
++
++def main():
++    parser = argparse.ArgumentParser(
++        description="Rename Meshtastic references to Pangea in xcstrings files."
++    )
++    parser.add_argument(
++        "path",
++        nargs="?",
++        default="Localizable.xcstrings",
++        help="Path to the xcstrings file (default: Localizable.xcstrings)",
++    )
++    parser.add_argument(
++        "--check",
++        action="store_true",
++        help="Report what would change. Exit 0 if clean, exit 1 if changes needed.",
++    )
++    parser.add_argument(
++        "--dry-run",
++        action="store_true",
++        help="Print transformed JSON to stdout instead of writing to file.",
++    )
++    args = parser.parse_args()
++
++    with open(args.path, "r", encoding="utf-8") as f:
++        data = json.load(f)
++
++    transformed = process_xcstrings(copy.deepcopy(data))
++
++    if args.check:
++        report_lines, has_changes = diff_report(data, transformed)
++        for line in report_lines:
++            print(line)
++        sys.exit(1 if has_changes else 0)
++
++    output = format_json(transformed)
++
++    if args.dry_run:
++        sys.stdout.write(output)
++        sys.exit(0)
++
++    with open(args.path, "w", encoding="utf-8") as f:
++        f.write(output)
++
++    # Brief summary to stderr
++    report_lines, has_changes = diff_report(data, transformed)
++    if has_changes:
++        for line in report_lines:
++            print(line, file=sys.stderr)
++        print("Written to:", args.path, file=sys.stderr)
++    else:
++        print("No changes needed.", file=sys.stderr)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.50.1.windows.1
+
