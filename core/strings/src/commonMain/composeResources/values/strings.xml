@@ -16,7 +16,7 @@
   -->
 
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
 
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="fr_HT" translatable="false">Kreyòl ayisyen</string>
@@ -29,7 +29,7 @@
 
     <string name="default_mqtt_address" translatable="false">mqtt.meshtastic.org</string>
 
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filter</string>
     <string name="desc_node_filter_clear">clear node filter</string>
     <string name="node_filter_title">Filter by</string>
@@ -192,7 +192,7 @@
     <string name="qr_code">QR code</string>
     <string name="unknown_username">Unknown Username</string>
     <string name="send">Send</string>
-    <string name="warning_not_paired">You haven't yet paired a Meshtastic compatible radio with this phone. Please pair a device and set your username.\n\nThis open-source application is in development, if you find problems please post on our forum: https://github.com/orgs/meshtastic/discussions.\n\nFor more information see our web page - www.meshtastic.org.</string>
+    <string name="warning_not_paired">You haven't yet paired a Pangea compatible radio with this phone. Please pair a device and set your username.\n\nThis open-source application is in development, if you find problems please post on our forum: https://github.com/orgs/meshtastic/discussions.\n\nFor more information see our web page - www.meshtastic.org.</string>
     <string name="you">You</string>
     <string name="analytics_okay">Allow analytics and crash reporting.</string>
     <string name="accept">Accept</string>
@@ -200,7 +200,7 @@
     <string name="discard_changes">Discard</string>
     <string name="save_changes">Save</string>
     <string name="new_channel_rcvd">New Channel URL received</string>
-    <string name="permission_missing">Meshtastic needs location permissions enabled to find new devices via Bluetooth. You can disable when not in use.</string>
+    <string name="permission_missing">Pangea needs location permissions enabled to find new devices via Bluetooth. You can disable when not in use.</string>
     <string name="report_bug">Report Bug</string>
     <string name="report_a_bug">Report a bug</string>
     <string name="report_bug_text">Are you sure you want to report a bug? After reporting, please post in https://github.com/orgs/meshtastic/discussions so we can match up the report with what you found.</string>
@@ -334,7 +334,7 @@
     <string name="bluetooth_disabled">Bluetooth is disabled. Please enable it in your device settings.</string>
     <string name="open_settings">Open settings</string>
     <string name="firmware_version">Firmware version: %1$s</string>
-    <string name="permission_missing_31">Meshtastic needs "Nearby devices" permissions enabled to find and connect to devices via Bluetooth. You can disable when not in use.</string>
+    <string name="permission_missing_31">Pangea needs "Nearby devices" permissions enabled to find and connect to devices via Bluetooth. You can disable when not in use.</string>
     <string name="direct_message">Direct Message</string>
     <string name="nodedb_reset">NodeDB reset</string>
     <string name="delivery_confirmed">Delivery confirmed</string>
@@ -414,7 +414,7 @@
     <string name="meshtastic_new_nodes_notifications">New node notifications</string>
     <string name="more_details">More details</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signal-to-Noise Ratio, a measure used in communications to quantify the level of a desired signal to the level of background noise. In Meshtastic and other wireless systems, a higher SNR indicates a clearer signal that can enhance the reliability and quality of data transmission.</string>
+    <string name="snr_definition">Signal-to-Noise Ratio, a measure used in communications to quantify the level of a desired signal to the level of background noise. In Pangea and other wireless systems, a higher SNR indicates a clearer signal that can enhance the reliability and quality of data transmission.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Received Signal Strength Indicator, a measurement used to determine the power level being received by the antenna. A higher RSSI value generally indicates a stronger and more stable connection.</string>
     <string name="iaq_definition">(Indoor Air Quality) relative scale IAQ value as measured by Bosch BME680. Value Range 0–500.</string>
@@ -741,7 +741,7 @@
     <string name="short_name">Short Name</string>
     <string name="hardware_model">Hardware model</string>
     <string name="licensed_amateur_radio">Licensed amateur radio (HAM)</string>
-    <string name="licensed_amateur_radio_text">Enabling this option disables encryption and is not compatible with the default Meshtastic network.</string>
+    <string name="licensed_amateur_radio_text">Enabling this option disables encryption and is not compatible with the default Pangea network.</string>
     <string name="dew_point">Dew Point</string>
     <string name="pressure">Pressure</string>
     <string name="gas_resistance">Gas Resistance</string>
@@ -851,7 +851,7 @@
     <string name="no_network_devices">No Network devices found.</string>
     <string name="no_usb_devices">No USB Serial devices found.</string>
     <string name="scroll_to_bottom">Scroll to bottom</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Security Status</string>
     <string name="security_icon_secure">Secure</string>
     <string name="security_icon_badge_warning_description">Warning Badge</string>
@@ -916,7 +916,7 @@
     <string name="installed_firmware_version">Currently Installed</string>
     <string name="latest_stable_firmware">Latest stable</string>
     <string name="latest_alpha_firmware">Latest alpha</string>
-    <string name="supported_by_community">Supported by Meshtastic Community</string>
+    <string name="supported_by_community">Supported by Pangea Community</string>
     <string name="firmware_edition">Firmware Edition</string>
     <string name="recent_network_devices">Recent Network Devices</string>
     <string name="discovered_network_devices">Discovered Network Devices</string>
@@ -940,11 +940,11 @@
     <string name="critical_alerts_description">Select packets sent as critical will ignore the msg switch and Do Not Disturb settings in the OS notification center.</string>
     <string name="configure_notification_permissions">Configure notification permissions</string>
     <string name="phone_location">Phone Location</string>
-    <string name="phone_location_description">Meshtastic uses your phone's location to enable a number of features. You can update your location permissions at any time from settings.</string>
+    <string name="phone_location_description">Pangea uses your phone's location to enable a number of features. You can update your location permissions at any time from settings.</string>
     <string name="share_location">Share Location</string>
     <string name="share_location_description">Use your phone GPS to send locations to your node to instead of using a hardware GPS on your node.</string>
     <string name="distance_measurements">Distance Measurements</string>
-    <string name="distance_measurements_description">Display the distance between your phone and other Meshtastic nodes with positions.</string>
+    <string name="distance_measurements_description">Display the distance between your phone and other Pangea nodes with positions.</string>
     <string name="distance_filters">Distance Filters</string>
     <string name="distance_filters_description">Filter the node list and mesh map based on proximity to your phone.</string>
     <string name="mesh_map_location">Mesh Map Location</string>
@@ -958,7 +958,7 @@
         permission. Please enable this in the notification settings.
     </string>
     <string name="configure_critical_alerts">Configure Critical Alerts</string>
-    <string name="notification_permissions_description">Meshtastic uses notifications to keep you updated on new messages and other important events. You can update your notification permissions at any time from settings.</string>
+    <string name="notification_permissions_description">Pangea uses notifications to keep you updated on new messages and other important events. You can update your notification permissions at any time from settings.</string>
     <string name="next">Next</string>
     <string name="grant_permissions">Grant Permissions</string>
     <string name="nodes_queued_for_deletion">%1$d nodes queued for deletion:</string>
@@ -1183,9 +1183,9 @@
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Configure Bluetooth Permissions</string>
     <string name="connect_to_radio">Connect to Radio</string>
-    <string name="connect_to_radio_description">Scan for and connect to your Meshtastic mesh radio device.</string>
+    <string name="connect_to_radio_description">Scan for and connect to your Pangea mesh radio device.</string>
     <string name="bluetooth_feature_discovery">Discovery</string>
-    <string name="bluetooth_feature_discovery_description">Find and identify Meshtastic devices near you.</string>
+    <string name="bluetooth_feature_discovery_description">Find and identify Pangea devices near you.</string>
     <string name="bluetooth_feature_config">Configuration</string>
     <string name="bluetooth_feature_config_description">Wirelessly manage your device settings and channels.</string>
 
