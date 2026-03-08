@@ -120,6 +120,12 @@ constructor(
     val appVersionName
         get() = buildConfigProvider.versionName
 
+    val expertModeEnabled: StateFlow<Boolean> = uiPreferencesDataSource.expertModeEnabled
+
+    fun setExpertModeEnabled(enabled: Boolean) {
+        uiPreferencesDataSource.setExpertModeEnabled(enabled)
+    }
+
     val isOtaCapable: StateFlow<Boolean> =
         combine(ourNodeInfo, serviceRepository.connectionState) { node, connectionState -> Pair(node, connectionState) }
             .flatMapLatest { (node, connectionState) ->

@@ -45,22 +45,42 @@ import org.meshtastic.core.strings.user
 import org.meshtastic.proto.AdminMessage
 import org.meshtastic.proto.DeviceMetadata
 
-enum class ConfigRoute(val title: StringResource, val route: Route, val icon: ImageVector?, val type: Int = 0) {
+enum class ConfigRoute(
+    val title: StringResource,
+    val route: Route,
+    val icon: ImageVector?,
+    val type: Int = 0,
+    val expertOnly: Boolean = false,
+) {
     USER(Res.string.user, SettingsRoutes.User, Icons.Default.Person, 0),
     CHANNELS(Res.string.channels, SettingsRoutes.ChannelConfig, Icons.AutoMirrored.Default.List, 0),
-    DEVICE(Res.string.device, SettingsRoutes.Device, Icons.Default.Router, AdminMessage.ConfigType.DEVICE_CONFIG.value),
+    DEVICE(
+        Res.string.device,
+        SettingsRoutes.Device,
+        Icons.Default.Router,
+        AdminMessage.ConfigType.DEVICE_CONFIG.value,
+        expertOnly = true,
+    ),
     POSITION(
         Res.string.position,
         SettingsRoutes.Position,
         Icons.Default.LocationOn,
         AdminMessage.ConfigType.POSITION_CONFIG.value,
+        expertOnly = true,
     ),
-    POWER(Res.string.power, SettingsRoutes.Power, Icons.Default.Power, AdminMessage.ConfigType.POWER_CONFIG.value),
+    POWER(
+        Res.string.power,
+        SettingsRoutes.Power,
+        Icons.Default.Power,
+        AdminMessage.ConfigType.POWER_CONFIG.value,
+        expertOnly = true,
+    ),
     NETWORK(
         Res.string.network,
         SettingsRoutes.Network,
         Icons.Default.Wifi,
         AdminMessage.ConfigType.NETWORK_CONFIG.value,
+        expertOnly = true,
     ),
     DISPLAY(
         Res.string.display,
@@ -68,19 +88,21 @@ enum class ConfigRoute(val title: StringResource, val route: Route, val icon: Im
         Icons.Default.DisplaySettings,
         AdminMessage.ConfigType.DISPLAY_CONFIG.value,
     ),
-    LORA(Res.string.lora, SettingsRoutes.LoRa, Icons.Default.CellTower, AdminMessage.ConfigType.LORA_CONFIG.value),
+    LORA(
+        Res.string.lora,
+        SettingsRoutes.LoRa,
+        Icons.Default.CellTower,
+        AdminMessage.ConfigType.LORA_CONFIG.value,
+        expertOnly = true,
+    ),
     BLUETOOTH(
         Res.string.bluetooth,
         SettingsRoutes.Bluetooth,
         Icons.Default.Bluetooth,
         AdminMessage.ConfigType.BLUETOOTH_CONFIG.value,
+        expertOnly = true,
     ),
-    SECURITY(
-        Res.string.security,
-        SettingsRoutes.Security,
-        Icons.Default.Security,
-        AdminMessage.ConfigType.SECURITY_CONFIG.value,
-    ),
+    SECURITY(Res.string.security, SettingsRoutes.Security, Icons.Default.Security, AdminMessage.ConfigType.SECURITY_CONFIG.value, expertOnly = true),
     ;
 
     companion object {

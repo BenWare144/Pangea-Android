@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.Text
 import org.jetbrains.compose.resources.stringResource
 import org.meshtastic.core.model.Channel
 import org.meshtastic.core.strings.Res
@@ -39,6 +40,7 @@ import org.meshtastic.core.strings.cancel
 import org.meshtastic.core.strings.channel_name
 import org.meshtastic.core.strings.default_
 import org.meshtastic.core.strings.downlink_enabled
+import org.meshtastic.core.strings.enable_expert_mode_to_edit
 import org.meshtastic.core.strings.save
 import org.meshtastic.core.strings.uplink_enabled
 import org.meshtastic.core.ui.component.EditBase64Preference
@@ -55,6 +57,7 @@ fun EditChannelDialog(
     channelSettings: ChannelSettings,
     onAddClick: (ChannelSettings) -> Unit,
     onDismissRequest: () -> Unit,
+    expertModeEnabled: Boolean,
     modifier: Modifier = Modifier,
     modemPresetName: String = stringResource(Res.string.default_),
 ) {
@@ -99,24 +102,33 @@ fun EditChannelDialog(
                     onFocusChanged = { isFocused = it.isFocused },
                 )
 
-                EditBase64Preference(
-                    title = "PSK",
-                    value = channelInput.psk ?: okio.ByteString.EMPTY,
-                    enabled = true,
-                    keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-                    onValueChange = {
-                        val fullPsk = Channel(ChannelSettings(psk = it)).psk
-                        if (fullPsk.size in setOf(0, 16, 32)) {
-                            channelInput = channelInput.copy(psk = it)
-                        }
-                    },
-                    onGenerateKey = { channelInput = channelInput.copy(psk = Channel.getRandomKey()) },
-                )
+                if (expertModeEnabled) {
+                    EditBase64Preference(
+                        title = "PSK",
+                        value = channelInput.psk ?: okio.ByteString.EMPTY,
+                        enabled = true,
+                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                        onValueChange = {
+                            val fullPsk = Channel(ChannelSettings(psk = it)).psk
+                            if (fullPsk.size in setOf(0, 16, 32)) {
+                                channelInput = channelInput.copy(psk = it)
+                            }
+                        },
+                        onGenerateKey = { channelInput = channelInput.copy(psk = Channel.getRandomKey()) },
+                    )
+                } else {
+                    EditTextPreference(
+                        title = "PSK",
+                        value = stringResource(Res.string.hidden),
+                        enabled = false,
+                        onValueChanged = {},
+                    )
+                }
 
                 SwitchPreference(
                     title = stringResource(Res.string.uplink_enabled),
                     checked = channelInput.uplink_enabled ?: false,
-                    enabled = true,
+                    enabled = expertModeEnabled,
                     onCheckedChange = { channelInput = channelInput.copy(uplink_enabled = it) },
                     padding = PaddingValues(0.dp),
                 )
@@ -124,20 +136,28 @@ fun EditChannelDialog(
                 SwitchPreference(
                     title = stringResource(Res.string.downlink_enabled),
                     checked = channelInput.downlink_enabled ?: false,
-                    enabled = true,
+                    enabled = expertModeEnabled,
                     onCheckedChange = { channelInput = channelInput.copy(downlink_enabled = it) },
                     padding = PaddingValues(0.dp),
                 )
 
                 val moduleSettings = channelInput.module_settings ?: ModuleSettings()
                 PositionPrecisionPreference(
-                    enabled = true,
+                    enabled = expertModeEnabled,
                     value = moduleSettings.position_precision ?: 0,
                     onValueChanged = {
                         val updatedModule = moduleSettings.copy(position_precision = it)
                         channelInput = channelInput.copy(module_settings = updatedModule)
                     },
                 )
+
+                if (!expertModeEnabled) {
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        style = androidx.compose.material3.MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
             }
         },
     )
@@ -150,5 +170,6 @@ private fun EditChannelDialogPreview() {
         channelSettings = ChannelSettings(psk = Channel.default.settings.psk, name = Channel.default.name),
         onAddClick = {},
         onDismissRequest = {},
+        expertModeEnabled = false,
     )
 }

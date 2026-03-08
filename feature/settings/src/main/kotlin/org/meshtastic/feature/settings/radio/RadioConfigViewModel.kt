@@ -53,6 +53,7 @@ import org.meshtastic.core.data.repository.RadioConfigRepository
 import org.meshtastic.core.database.entity.MyNodeEntity
 import org.meshtastic.core.database.model.Node
 import org.meshtastic.core.database.model.getStringResFrom
+import org.meshtastic.core.datastore.UiPreferencesDataSource
 import org.meshtastic.core.model.Position
 import org.meshtastic.core.navigation.SettingsRoutes
 import org.meshtastic.core.prefs.analytics.AnalyticsPrefs
@@ -119,6 +120,7 @@ constructor(
     private val mapConsentPrefs: MapConsentPrefs,
     private val analyticsPrefs: AnalyticsPrefs,
     private val homoglyphEncodingPrefs: HomoglyphPrefs,
+    private val uiPreferencesDataSource: UiPreferencesDataSource,
 ) : ViewModel() {
     private val meshService: IMeshService?
         get() = serviceRepository.meshService
@@ -134,6 +136,8 @@ constructor(
     fun toggleHomoglyphCharactersEncodingEnabled() {
         homoglyphEncodingPrefs.homoglyphEncodingEnabled = !homoglyphEncodingPrefs.homoglyphEncodingEnabled
     }
+
+    val expertModeEnabled = uiPreferencesDataSource.expertModeEnabled
 
     private val destNum =
         savedStateHandle.get<Int>("destNum")

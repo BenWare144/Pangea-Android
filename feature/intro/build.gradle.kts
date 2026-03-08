@@ -27,6 +27,7 @@ plugins {
 configure<LibraryExtension> { namespace = "org.meshtastic.feature.intro" }
 
 dependencies {
+    implementation(projects.core.datastore)
     implementation(projects.core.strings)
     implementation(projects.core.ui)
 

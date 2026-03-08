@@ -33,6 +33,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.unit.dp
 import androidx.core.location.LocationCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -50,6 +51,7 @@ import org.meshtastic.core.strings.config_position_broadcast_smart_minimum_inter
 import org.meshtastic.core.strings.config_position_flags_summary
 import org.meshtastic.core.strings.config_position_gps_update_interval_summary
 import org.meshtastic.core.strings.device_gps
+import org.meshtastic.core.strings.enable_expert_mode_to_edit
 import org.meshtastic.core.strings.fixed_position
 import org.meshtastic.core.strings.gps_en_gpio
 import org.meshtastic.core.strings.gps_mode
@@ -81,6 +83,7 @@ import org.meshtastic.proto.Config
 @Suppress("LongMethod", "CyclomaticComplexMethod")
 fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBack: () -> Unit) {
     val state by viewModel.radioConfigState.collectAsStateWithLifecycle()
+    val expertModeEnabled by viewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val coroutineScope = rememberCoroutineScope()
     var phoneLocation: Location? by remember { mutableStateOf(null) }
     val node by viewModel.destNode.collectAsStateWithLifecycle()
@@ -211,10 +214,11 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
         }
         item {
             TitledCard(title = stringResource(Res.string.device_gps)) {
+                val deviceGpsEnabled = state.connected && expertModeEnabled
                 SwitchPreference(
                     title = stringResource(Res.string.fixed_position),
                     checked = formState.value.fixed_position ?: false,
-                    enabled = state.connected,
+                    enabled = deviceGpsEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(fixed_position = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -223,7 +227,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     EditTextPreference(
                         title = stringResource(Res.string.latitude),
                         value = locationInput.latitude,
-                        enabled = state.connected,
+                        enabled = deviceGpsEnabled,
                         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                         onValueChanged = { lat: Double ->
                             if (lat >= -90 && lat <= 90.0) {
@@ -235,7 +239,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     EditTextPreference(
                         title = stringResource(Res.string.longitude),
                         value = locationInput.longitude,
-                        enabled = state.connected,
+                        enabled = deviceGpsEnabled,
                         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                         onValueChanged = { lon: Double ->
                             if (lon >= -180 && lon <= 180.0) {
@@ -247,14 +251,14 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     EditTextPreference(
                         title = stringResource(Res.string.altitude),
                         value = locationInput.altitude,
-                        enabled = state.connected,
+                        enabled = deviceGpsEnabled,
                         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                         onValueChanged = { alt: Int -> locationInput = locationInput.copy(altitude = alt) },
                     )
                     HorizontalDivider()
                     RequireLocation { isLocationRequiredAndDisabled: Boolean ->
                         TextButton(
-                            enabled = state.connected && !isLocationRequiredAndDisabled,
+                            enabled = deviceGpsEnabled && !isLocationRequiredAndDisabled,
                             onClick = {
                                 @SuppressLint("MissingPermission")
                                 coroutineScope.launch { phoneLocation = viewModel.getCurrentLocation() }
@@ -267,7 +271,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     HorizontalDivider()
                     DropDownPreference(
                         title = stringResource(Res.string.gps_mode),
-                        enabled = state.connected,
+                        enabled = deviceGpsEnabled,
                         items = Config.PositionConfig.GpsMode.entries.map { it to it.name },
                         selectedItem = formState.value.gps_mode ?: Config.PositionConfig.GpsMode.DISABLED,
                         onItemSelected = { formState.value = formState.value.copy(gps_mode = it) },
@@ -277,7 +281,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     DropDownPreference(
                         title = stringResource(Res.string.update_interval),
                         summary = stringResource(Res.string.config_position_gps_update_interval_summary),
-                        enabled = state.connected,
+                        enabled = deviceGpsEnabled,
                         items = items.map { it to it.toDisplayString() },
                         selectedItem =
                         FixedUpdateIntervals.fromValue((formState.value.gps_update_interval ?: 0).toLong())
@@ -285,6 +289,13 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                         onItemSelected = {
                             formState.value = formState.value.copy(gps_update_interval = it.value.toInt())
                         },
+                    )
+                }
+                if (!expertModeEnabled) {
+                    HorizontalDivider()
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        modifier = androidx.compose.ui.Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     )
                 }
             }
@@ -295,13 +306,20 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                     title = stringResource(Res.string.position_flags),
                     summary = stringResource(Res.string.config_position_flags_summary),
                     value = formState.value.position_flags ?: 0,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items =
                     Config.PositionConfig.PositionFlags.entries
                         .filter { it != Config.PositionConfig.PositionFlags.UNSET }
                         .map { it.value to it.name },
                     onItemSelected = { formState.value = formState.value.copy(position_flags = it) },
                 )
+                if (!expertModeEnabled) {
+                    HorizontalDivider()
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        modifier = androidx.compose.ui.Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                }
             }
         }
         item {
@@ -309,7 +327,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                 val pins = remember { gpioPins }
                 DropDownPreference(
                     title = stringResource(Res.string.gps_receive_gpio),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = pins,
                     selectedItem = formState.value.rx_gpio ?: 0,
                     onItemSelected = { formState.value = formState.value.copy(rx_gpio = it) },
@@ -317,7 +335,7 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                 HorizontalDivider()
                 DropDownPreference(
                     title = stringResource(Res.string.gps_transmit_gpio),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = pins,
                     selectedItem = formState.value.tx_gpio ?: 0,
                     onItemSelected = { formState.value = formState.value.copy(tx_gpio = it) },
@@ -325,11 +343,18 @@ fun PositionConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBa
                 HorizontalDivider()
                 DropDownPreference(
                     title = stringResource(Res.string.gps_en_gpio),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = pins,
                     selectedItem = formState.value.gps_en_gpio ?: 0,
                     onItemSelected = { formState.value = formState.value.copy(gps_en_gpio = it) },
                 )
+                if (!expertModeEnabled) {
+                    HorizontalDivider()
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        modifier = androidx.compose.ui.Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                }
             }
         }
     }
