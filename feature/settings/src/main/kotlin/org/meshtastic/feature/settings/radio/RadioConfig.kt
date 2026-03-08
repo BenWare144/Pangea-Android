@@ -33,6 +33,7 @@ import androidx.compose.material.icons.rounded.Restore
 import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.rounded.SystemUpdate
 import androidx.compose.material.icons.rounded.Upload
+import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -58,6 +59,7 @@ import org.meshtastic.core.strings.Res
 import org.meshtastic.core.strings.administration
 import org.meshtastic.core.strings.advanced_title
 import org.meshtastic.core.strings.backup_restore
+import org.meshtastic.core.strings.expert_mode
 import org.meshtastic.core.strings.clean_node_database_title
 import org.meshtastic.core.strings.debug_panel
 import org.meshtastic.core.strings.device_configuration
@@ -89,6 +91,7 @@ fun RadioConfigItemList(
     isManaged: Boolean,
     node: Node? = null,
     excludedModulesUnlocked: Boolean = false,
+    expertModeEnabled: Boolean = false,
     isOtaCapable: Boolean = false,
     onPreserveFavoritesToggle: (Boolean) -> Unit = {},
     onRouteClick: (Enum<*>) -> Unit = {},
@@ -108,11 +111,15 @@ fun RadioConfigItemList(
     }
 
     Column {
+        if (expertModeEnabled) {
+            ListItem(text = stringResource(Res.string.expert_mode), leadingIcon = Icons.Rounded.Build, trailingIcon = null) {}
+        }
+
         TitledCard(title = stringResource(Res.string.radio_configuration)) {
             if (isManaged) {
                 ManagedMessage()
             }
-            ConfigRoute.radioConfigRoutes.forEach {
+            ConfigRoute.radioConfigRoutes.filter { expertModeEnabled || !it.expertOnly }.forEach {
                 ListItem(text = stringResource(it.title), leadingIcon = it.icon, enabled = enabled) { onRouteClick(it) }
             }
         }
@@ -121,18 +128,21 @@ fun RadioConfigItemList(
             if (isManaged) {
                 ManagedMessage()
             }
-            ConfigRoute.deviceConfigRoutes(state.metadata).forEach {
+            ConfigRoute.deviceConfigRoutes(state.metadata).filter { expertModeEnabled || !it.expertOnly }.forEach {
                 ListItem(text = stringResource(it.title), leadingIcon = it.icon, enabled = enabled) { onRouteClick(it) }
             }
         }
 
-        TitledCard(title = stringResource(Res.string.module_settings), modifier = Modifier.padding(top = 16.dp)) {
-            if (isManaged) {
-                ManagedMessage()
-            }
+        val visibleModules = modules.filter { expertModeEnabled || !it.expertOnly }
+        if (visibleModules.isNotEmpty()) {
+            TitledCard(title = stringResource(Res.string.module_settings), modifier = Modifier.padding(top = 16.dp)) {
+                if (isManaged) {
+                    ManagedMessage()
+                }
 
-            modules.forEach {
-                ListItem(text = stringResource(it.title), leadingIcon = it.icon, enabled = enabled) { onRouteClick(it) }
+                visibleModules.forEach {
+                    ListItem(text = stringResource(it.title), leadingIcon = it.icon, enabled = enabled) { onRouteClick(it) }
+                }
             }
         }
     }
@@ -230,12 +240,14 @@ fun RadioConfigItemList(
                 onClick = { onNavigate(SettingsRoutes.CleanNodeDb) },
             )
 
-            ListItem(
-                text = stringResource(Res.string.debug_panel),
-                leadingIcon = Icons.Rounded.BugReport,
-                enabled = enabled,
-                onClick = { onNavigate(SettingsRoutes.DebugPanel) },
-            )
+            if (expertModeEnabled) {
+                ListItem(
+                    text = stringResource(Res.string.debug_panel),
+                    leadingIcon = Icons.Rounded.BugReport,
+                    enabled = enabled,
+                    onClick = { onNavigate(SettingsRoutes.DebugPanel) },
+                )
+            }
         }
     }
 }

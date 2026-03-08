@@ -35,6 +35,7 @@ import javax.inject.Singleton
 
 internal const val KEY_APP_INTRO_COMPLETED = "app_intro_completed"
 internal const val KEY_THEME = "theme"
+internal const val KEY_EXPERT_MODE_ENABLED = "expert_mode_enabled"
 
 // Node list filters/sort
 internal const val KEY_NODE_SORT = "node-sort-option"
@@ -55,6 +56,7 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
 
     // Default value for AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
     val theme: StateFlow<Int> = dataStore.prefStateFlow(key = THEME, default = -1)
+    val expertModeEnabled: StateFlow<Boolean> = dataStore.prefStateFlow(key = EXPERT_MODE_ENABLED, default = false)
 
     val nodeSort: StateFlow<Int> = dataStore.prefStateFlow(key = NODE_SORT, default = -1)
     val includeUnknown: StateFlow<Boolean> = dataStore.prefStateFlow(key = INCLUDE_UNKNOWN, default = false)
@@ -70,6 +72,10 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
 
     fun setTheme(value: Int) {
         dataStore.setPref(key = THEME, value = value)
+    }
+
+    fun setExpertModeEnabled(value: Boolean) {
+        dataStore.setPref(key = EXPERT_MODE_ENABLED, value = value)
     }
 
     fun setNodeSort(value: Int) {
@@ -109,6 +115,7 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
     private companion object {
         val APP_INTRO_COMPLETED = booleanPreferencesKey(KEY_APP_INTRO_COMPLETED)
         val THEME = intPreferencesKey(KEY_THEME)
+        val EXPERT_MODE_ENABLED = booleanPreferencesKey(KEY_EXPERT_MODE_ENABLED)
         val NODE_SORT = intPreferencesKey(KEY_NODE_SORT)
         val INCLUDE_UNKNOWN = booleanPreferencesKey(KEY_INCLUDE_UNKNOWN)
         val EXCLUDE_INFRASTRUCTURE = booleanPreferencesKey(KEY_EXCLUDE_INFRASTRUCTURE)

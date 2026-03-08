@@ -131,6 +131,7 @@ fun SettingsScreen(
     onNavigate: (Route) -> Unit = {},
 ) {
     val excludedModulesUnlocked by settingsViewModel.excludedModulesUnlocked.collectAsStateWithLifecycle()
+    val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val localConfig by settingsViewModel.localConfig.collectAsStateWithLifecycle()
     val ourNode by settingsViewModel.ourNodeInfo.collectAsStateWithLifecycle()
     val isConnected by settingsViewModel.isConnected.collectAsStateWithLifecycle(false)
@@ -191,7 +192,7 @@ fun SettingsScreen(
                     val nodeName = (it.short_name ?: "").ifBlank { "node" }
                     val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
                     val dateStr = dateFormat.format(nowMillis.toInstant().toDate())
-                    val fileName = "Meshtastic_${nodeName}_${dateStr}_nodeConfig.cfg"
+                    val fileName = "Pangea_${nodeName}_${dateStr}_nodeConfig.cfg"
                     val intent =
                         Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                             addCategory(Intent.CATEGORY_OPENABLE)
@@ -247,6 +248,7 @@ fun SettingsScreen(
                 isManaged = localConfig.security?.is_managed ?: false,
                 node = destNode,
                 excludedModulesUnlocked = excludedModulesUnlocked,
+                expertModeEnabled = expertModeEnabled,
                 isOtaCapable = isOtaCapable,
                 onPreserveFavoritesToggle = { viewModel.setPreserveFavorites(it) },
                 onRouteClick = { route ->
@@ -388,7 +390,7 @@ fun SettingsScreen(
                         Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                             addCategory(Intent.CATEGORY_OPENABLE)
                             type = "application/csv"
-                            putExtra(Intent.EXTRA_TITLE, "Meshtastic_rangetest_${nodeName}_$timestamp.csv")
+                            putExtra(Intent.EXTRA_TITLE, "Pangea_rangetest_${nodeName}_$timestamp.csv")
                         }
                     exportRangeTestLauncher.launch(intent)
                 }
@@ -408,7 +410,7 @@ fun SettingsScreen(
                         Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                             addCategory(Intent.CATEGORY_OPENABLE)
                             type = "application/csv"
-                            putExtra(Intent.EXTRA_TITLE, "Meshtastic_datalog_${nodeName}_$timestamp.csv")
+                            putExtra(Intent.EXTRA_TITLE, "Pangea_datalog_${nodeName}_$timestamp.csv")
                         }
                     exportDataLauncher.launch(intent)
                 }

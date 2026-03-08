@@ -20,14 +20,18 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
@@ -36,6 +40,7 @@ import org.meshtastic.core.strings.allow_input_source
 import org.meshtastic.core.strings.canned_message
 import org.meshtastic.core.strings.canned_message_config
 import org.meshtastic.core.strings.canned_message_enabled
+import org.meshtastic.core.strings.enable_expert_mode_to_edit
 import org.meshtastic.core.strings.generate_input_event_on_ccw
 import org.meshtastic.core.strings.generate_input_event_on_cw
 import org.meshtastic.core.strings.generate_input_event_on_press
@@ -50,12 +55,14 @@ import org.meshtastic.core.ui.component.DropDownPreference
 import org.meshtastic.core.ui.component.EditTextPreference
 import org.meshtastic.core.ui.component.SwitchPreference
 import org.meshtastic.core.ui.component.TitledCard
+import org.meshtastic.core.ui.theme.StatusColors.StatusOrange
 import org.meshtastic.feature.settings.radio.RadioConfigViewModel
 import org.meshtastic.proto.ModuleConfig
 
 @Composable
 fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBack: () -> Unit) {
     val state by viewModel.radioConfigState.collectAsStateWithLifecycle()
+    val expertModeEnabled by viewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val cannedMessageConfig = state.moduleConfig.canned_message ?: ModuleConfig.CannedMessageConfig()
     val messages = state.cannedMessageMessages
     val formState = rememberConfigState(initialValue = cannedMessageConfig)
@@ -94,7 +101,7 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                 SwitchPreference(
                     title = stringResource(Res.string.rotary_encoder_1_enabled),
                     checked = formState.value.rotary1_enabled,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(rotary1_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -102,27 +109,27 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                 EditTextPreference(
                     title = stringResource(Res.string.gpio_pin_for_rotary_encoder_a_port),
                     value = formState.value.inputbroker_pin_a ?: 0,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                     onValueChanged = { formState.value = formState.value.copy(inputbroker_pin_a = it) },
                 )
                 EditTextPreference(
                     title = stringResource(Res.string.gpio_pin_for_rotary_encoder_b_port),
                     value = formState.value.inputbroker_pin_b ?: 0,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                     onValueChanged = { formState.value = formState.value.copy(inputbroker_pin_b = it) },
                 )
                 EditTextPreference(
                     title = stringResource(Res.string.gpio_pin_for_rotary_encoder_press_port),
                     value = formState.value.inputbroker_pin_press ?: 0,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                     onValueChanged = { formState.value = formState.value.copy(inputbroker_pin_press = it) },
                 )
                 DropDownPreference(
                     title = stringResource(Res.string.generate_input_event_on_press),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = ModuleConfig.CannedMessageConfig.InputEventChar.entries.map { it to it.name },
                     selectedItem =
                     formState.value.inputbroker_event_press ?: ModuleConfig.CannedMessageConfig.InputEventChar.NONE,
@@ -131,7 +138,7 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                 HorizontalDivider()
                 DropDownPreference(
                     title = stringResource(Res.string.generate_input_event_on_cw),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = ModuleConfig.CannedMessageConfig.InputEventChar.entries.map { it to it.name },
                     selectedItem =
                     formState.value.inputbroker_event_cw ?: ModuleConfig.CannedMessageConfig.InputEventChar.NONE,
@@ -140,7 +147,7 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                 HorizontalDivider()
                 DropDownPreference(
                     title = stringResource(Res.string.generate_input_event_on_ccw),
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     items = ModuleConfig.CannedMessageConfig.InputEventChar.entries.map { it to it.name },
                     selectedItem =
                     formState.value.inputbroker_event_ccw ?: ModuleConfig.CannedMessageConfig.InputEventChar.NONE,
@@ -150,7 +157,7 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                 SwitchPreference(
                     title = stringResource(Res.string.up_down_select_input_enabled),
                     checked = formState.value.updown1_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(updown1_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -159,13 +166,21 @@ fun CannedMessageConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(),
                     title = stringResource(Res.string.allow_input_source),
                     value = formState.value.allow_input_source ?: "",
                     maxSize = 63, // allow_input_source max_size:16
-                    enabled = state.connected,
+                    enabled = state.connected && expertModeEnabled,
                     isError = false,
                     keyboardOptions =
                     KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text, imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                     onValueChanged = { formState.value = formState.value.copy(allow_input_source = it) },
                 )
+                if (!expertModeEnabled) {
+                    HorizontalDivider()
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        color = MaterialTheme.colorScheme.StatusOrange,
+                    )
+                }
                 SwitchPreference(
                     title = stringResource(Res.string.send_bell),
                     checked = formState.value.send_bell ?: false,

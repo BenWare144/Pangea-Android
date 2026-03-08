@@ -25,6 +25,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -48,6 +50,8 @@ import org.meshtastic.core.ui.util.showToast
 @Composable
 fun AppIntroductionScreen(onDone: () -> Unit) {
     val context = LocalContext.current
+    val viewModel: IntroViewModel = hiltViewModel()
+    val expertModeEnabled by viewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val backStack = rememberNavBackStack(Welcome)
 
     NavDisplay(
@@ -72,7 +76,7 @@ fun AppIntroductionScreen(onDone: () -> Unit) {
 
                         NotificationsScreen(
                             showNextButton = canShowNotifications == true,
-                            onSkip = { backStack.add(Bluetooth) },
+                            onSkip = { backStack.add(ExpertMode) },
                             onConfigure = {
                                 if (canShowNotifications == true) {
                                     backStack.add(CriticalAlerts)
@@ -83,7 +87,7 @@ fun AppIntroductionScreen(onDone: () -> Unit) {
                 } else {
                     NotificationsScreen(
                         showNextButton = false,
-                        onSkip = { backStack.add(Bluetooth) },
+                        onSkip = { backStack.add(ExpertMode) },
                         onConfigure = { isConfiguring = true },
                     )
                 }
@@ -91,7 +95,7 @@ fun AppIntroductionScreen(onDone: () -> Unit) {
 
             entry<CriticalAlerts> {
                 CriticalAlertsScreen(
-                    onSkip = { backStack.add(Bluetooth) },
+                    onSkip = { backStack.add(ExpertMode) },
                     onConfigure = {
                         val intent =
                             Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
@@ -99,8 +103,16 @@ fun AppIntroductionScreen(onDone: () -> Unit) {
                                 putExtra(Settings.EXTRA_CHANNEL_ID, "my_alerts")
                             }
                         context.startActivity(intent)
-                        backStack.add(Bluetooth)
+                        backStack.add(ExpertMode)
                     },
+                )
+            }
+
+            entry<ExpertMode> {
+                ExpertModeScreen(
+                    expertModeEnabled = expertModeEnabled,
+                    onExpertModeChanged = viewModel::setExpertModeEnabled,
+                    onContinue = { backStack.add(Bluetooth) },
                 )
             }
 
@@ -161,5 +173,7 @@ fun AppIntroductionScreen(onDone: () -> Unit) {
 @Serializable private data object CriticalAlerts : NavKey
 
 @Serializable private data object Bluetooth : NavKey
+
+@Serializable private data object ExpertMode : NavKey
 
 @Serializable private data object Location : NavKey

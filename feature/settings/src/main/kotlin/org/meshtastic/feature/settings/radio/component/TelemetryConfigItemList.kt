@@ -18,9 +18,13 @@ package org.meshtastic.feature.settings.radio.component
 
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
@@ -31,6 +35,7 @@ import org.meshtastic.core.strings.air_quality_metrics_update_interval_seconds
 import org.meshtastic.core.strings.device_metrics_update_interval_seconds
 import org.meshtastic.core.strings.device_telemetry_enabled
 import org.meshtastic.core.strings.device_telemetry_enabled_summary
+import org.meshtastic.core.strings.enable_expert_mode_to_edit
 import org.meshtastic.core.strings.environment_metrics_module_enabled
 import org.meshtastic.core.strings.environment_metrics_on_screen_enabled
 import org.meshtastic.core.strings.environment_metrics_update_interval_seconds
@@ -43,6 +48,7 @@ import org.meshtastic.core.strings.telemetry_config
 import org.meshtastic.core.ui.component.DropDownPreference
 import org.meshtastic.core.ui.component.SwitchPreference
 import org.meshtastic.core.ui.component.TitledCard
+import org.meshtastic.core.ui.theme.StatusColors.StatusOrange
 import org.meshtastic.feature.settings.radio.RadioConfigViewModel
 import org.meshtastic.feature.settings.util.IntervalConfiguration
 import org.meshtastic.feature.settings.util.toDisplayString
@@ -51,6 +57,7 @@ import org.meshtastic.proto.ModuleConfig
 @Composable
 fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onBack: () -> Unit) {
     val state by viewModel.radioConfigState.collectAsStateWithLifecycle()
+    val expertModeEnabled by viewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val telemetryConfig = state.moduleConfig.telemetry ?: ModuleConfig.TelemetryConfig()
     val formState = rememberConfigState(initialValue = telemetryConfig)
 
@@ -71,12 +78,13 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
     ) {
         item {
             TitledCard(title = stringResource(Res.string.telemetry_config)) {
+                val telemetryEnabled = state.connected && expertModeEnabled
                 if (capabilities.canToggleTelemetryEnabled) {
                     SwitchPreference(
                         title = stringResource(Res.string.device_telemetry_enabled),
                         summary = stringResource(Res.string.device_telemetry_enabled_summary),
                         checked = formState.value.device_telemetry_enabled ?: false,
-                        enabled = state.connected,
+                        enabled = telemetryEnabled,
                         onCheckedChange = { formState.value = formState.value.copy(device_telemetry_enabled = it) },
                         containerColor = CardDefaults.cardColors().containerColor,
                     )
@@ -86,7 +94,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 DropDownPreference(
                     title = stringResource(Res.string.device_metrics_update_interval_seconds),
                     selectedItem = (formState.value.device_update_interval ?: 0).toLong(),
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     items = items.map { it.value to it.toDisplayString() },
                     onItemSelected = { formState.value = formState.value.copy(device_update_interval = it.toInt()) },
                 )
@@ -94,7 +102,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.environment_metrics_module_enabled),
                     checked = formState.value.environment_measurement_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(environment_measurement_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -103,7 +111,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 DropDownPreference(
                     title = stringResource(Res.string.environment_metrics_update_interval_seconds),
                     selectedItem = (formState.value.environment_update_interval ?: 0).toLong(),
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     items = envItems.map { it.value to it.toDisplayString() },
                     onItemSelected = {
                         formState.value = formState.value.copy(environment_update_interval = it.toInt())
@@ -113,7 +121,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.environment_metrics_on_screen_enabled),
                     checked = formState.value.environment_screen_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(environment_screen_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -121,7 +129,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.environment_metrics_use_fahrenheit),
                     checked = formState.value.environment_display_fahrenheit ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(environment_display_fahrenheit = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -129,7 +137,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.air_quality_metrics_module_enabled),
                     checked = formState.value.air_quality_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(air_quality_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -138,7 +146,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 DropDownPreference(
                     title = stringResource(Res.string.air_quality_metrics_update_interval_seconds),
                     selectedItem = (formState.value.air_quality_interval ?: 0).toLong(),
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     items = airItems.map { it.value to it.toDisplayString() },
                     onItemSelected = { formState.value = formState.value.copy(air_quality_interval = it.toInt()) },
                 )
@@ -146,7 +154,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.power_metrics_module_enabled),
                     checked = formState.value.power_measurement_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(power_measurement_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
@@ -155,7 +163,7 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 DropDownPreference(
                     title = stringResource(Res.string.power_metrics_update_interval_seconds),
                     selectedItem = (formState.value.power_update_interval ?: 0).toLong(),
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     items = powerItems.map { it.value to it.toDisplayString() },
                     onItemSelected = { formState.value = formState.value.copy(power_update_interval = it.toInt()) },
                 )
@@ -163,10 +171,18 @@ fun TelemetryConfigScreen(viewModel: RadioConfigViewModel = hiltViewModel(), onB
                 SwitchPreference(
                     title = stringResource(Res.string.power_metrics_on_screen_enabled),
                     checked = formState.value.power_screen_enabled ?: false,
-                    enabled = state.connected,
+                    enabled = telemetryEnabled,
                     onCheckedChange = { formState.value = formState.value.copy(power_screen_enabled = it) },
                     containerColor = CardDefaults.cardColors().containerColor,
                 )
+                if (!expertModeEnabled) {
+                    HorizontalDivider()
+                    Text(
+                        text = stringResource(Res.string.enable_expert_mode_to_edit),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        color = MaterialTheme.colorScheme.StatusOrange,
+                    )
+                }
             }
         }
     }

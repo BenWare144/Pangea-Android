@@ -79,6 +79,7 @@ import org.meshtastic.proto.Config
 @Composable
 fun ChannelConfigScreen(viewModel: RadioConfigViewModel, onBack: () -> Unit) {
     val state by viewModel.radioConfigState.collectAsStateWithLifecycle()
+    val expertModeEnabled by viewModel.expertModeEnabled.collectAsStateWithLifecycle()
 
     if (state.responseState.isWaiting()) {
         PacketResponseStateDialog(state = state.responseState, onDismiss = viewModel::clearPacketResponse)
@@ -139,6 +140,7 @@ private fun ChannelConfigScreen(
         EditChannelDialog(
             channelSettings = with(settingsListInput) { if (size > index) get(index) else ChannelSettings() },
             modemPresetName = modemPresetName,
+            expertModeEnabled = expertModeEnabled,
             onAddClick = {
                 if (settingsListInput.size > index) {
                     settingsListInput[index] = it
