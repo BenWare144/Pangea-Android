@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filter</string>
     <string name="desc_node_filter_clear">állomás filter törlése</string>
     <string name="node_filter_title">Szűrés</string>
@@ -155,7 +139,7 @@
     <string name="qr_code">QR kód</string>
     <string name="unknown_username">Ismeretlen felhasználónév</string>
     <string name="send">Küldeni</string>
-    <string name="warning_not_paired">Még nem párosított egyetlen Meshtastic rádiót sem ehhez a telefonhoz. Kérem pároztasson egyet és állítsa be a felhasználónevet.\n\nEz a szabad forráskódú alkalmazás fejlesztés alatt áll, ha hibát talál kérem írjon a projekt fórumába: https://github.com/orgs/meshtastic/discussions\n\nBővebb információért látogasson el a projekt weboldalára - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Még nem párosított egyetlen Pangea rádiót sem ehhez a telefonhoz. Kérem pároztasson egyet és állítsa be a felhasználónevet.\n\nEz a szabad forráskódú alkalmazás fejlesztés alatt áll, ha hibát talál kérem írjon a projekt fórumába: https://github.com/orgs/pangea/discussions\n\nBővebb információért látogasson el a projekt weboldalára - www.pangea.org.</string>
     <string name="you">Te</string>
     <string name="analytics_okay">Analitika és hibajelentések engedélyezése.</string>
     <string name="accept">Elfogadni</string>
@@ -163,10 +147,10 @@
     <string name="discard_changes">Elvetés</string>
     <string name="save_changes">Mentés</string>
     <string name="new_channel_rcvd">Új csatorna URL érkezett</string>
-    <string name="permission_missing">A Meshtastic helyhozzáférést igényel az új eszközök Bluetooth-os kereséséhez. Használaton kívül kikapcsolható.</string>
+    <string name="permission_missing">A Pangea helyhozzáférést igényel az új eszközök Bluetooth-os kereséséhez. Használaton kívül kikapcsolható.</string>
     <string name="report_bug">Hiba jelentése</string>
     <string name="report_a_bug">Hiba jelentése</string>
-    <string name="report_bug_text">Biztosan jelenteni akarja a hibát? Bejelentés után kérem írjon a https://github.com/orgs/meshtastic/discussions fórumba, hogy így össze tudjuk hangolni a jelentést azzal, amit talált.</string>
+    <string name="report_bug_text">Biztosan jelenteni akarja a hibát? Bejelentés után kérem írjon a https://github.com/orgs/pangea/discussions fórumba, hogy így össze tudjuk hangolni a jelentést azzal, amit talált.</string>
     <string name="report">Jelentés</string>
     <string name="pairing_completed">Pároztatás befejeződött, a szolgáltatás indítása</string>
     <string name="pairing_failed_try_again">Pároztatás sikertelen, kérem próbálja meg újra.</string>
@@ -288,7 +272,7 @@
     <string name="bluetooth_disabled">A Bluetooth ki van kapcsolva. Engedélyezd az eszköz beállításaiban.</string>
     <string name="open_settings">Beállítások megnyitása</string>
     <string name="firmware_version">Firmware-verzió: %1$s</string>
-    <string name="permission_missing_31">A Meshtastic-nek engedélyezni kell a „Közeli eszközök” hozzáférést, hogy Bluetooth-on keresztül eszközöket találjon és csatlakozzon. Használaton kívül kikapcsolható.</string>
+    <string name="permission_missing_31">A Pangea-nek engedélyezni kell a „Közeli eszközök” hozzáférést, hogy Bluetooth-on keresztül eszközöket találjon és csatlakozzon. Használaton kívül kikapcsolható.</string>
     <string name="direct_message">Közvetlen üzenet</string>
     <string name="nodedb_reset">NodeDB törlése</string>
     <string name="delivery_confirmed">Kézbesítés sikeres</string>
@@ -358,7 +342,7 @@
     <string name="meshtastic_new_nodes_notifications">Új állomás értesítések</string>
     <string name="more_details">Több részlet</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Jel–zaj arány (SNR): a kommunikációban a kívánt jel szintjének és a háttérzaj szintjének aránya. A Meshtastic és más vezeték nélküli rendszerek esetében a magasabb SNR tisztább jelet jelent, ami javítja az adatátvitel megbízhatóságát és minőségét.</string>
+    <string name="snr_definition">Jel–zaj arány (SNR): a kommunikációban a kívánt jel szintjének és a háttérzaj szintjének aránya. A Pangea és más vezeték nélküli rendszerek esetében a magasabb SNR tisztább jelet jelent, ami javítja az adatátvitel megbízhatóságát és minőségét.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Vett jelerősség-mutató (RSSI): az antenna által vett jel teljesítményszintjének mérése. A magasabb RSSI általában erősebb, stabilabb kapcsolatot jelez.</string>
     <string name="iaq_definition">(Beltéri levegőminőség) relatív IAQ érték a Bosch BME680 szenzor alapján. Értéktartomány: 0–500.</string>
@@ -411,7 +395,7 @@
     <string name="current">Áramerősség</string>
     <string name="voltage">Feszültség</string>
     <string name="are_you_sure">Biztos vagy benne?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Elolvastam a <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Eszközszerep-dokumentációt</a> és a <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Megfelelő eszközszerep kiválasztása</a> című blogbejegyzést.]]></string>
+    <string name="router_role_confirmation_text">Elolvastam a &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Eszközszerep-dokumentációt&lt;/a&gt; és a &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Megfelelő eszközszerep kiválasztása&lt;/a&gt; című blogbejegyzést.</string>
     <string name="i_know_what_i_m_doing">Tudom, mit csinálok.</string>
     <string name="low_battery_message">A %1$s csomópont akkumulátora alacsony (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Alacsony töltöttség értesítések</string>
@@ -420,7 +404,7 @@
     <string name="udp_enabled">Engedélyezve</string>
     <string name="udp_broadcast">UDP sugárzás</string>
     <string name="udp_config">UDP-beállítások</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Utoljára hallva: %2$s<br>Utolsó pozíció: %3$s<br>Akkumulátor: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Utoljára hallva: %2$s&lt;br&gt;Utolsó pozíció: %3$s&lt;br&gt;Akkumulátor: %4$s</string>
     <string name="toggle_my_position">Saját pozíció váltása</string>
     <string name="orient_north">Északra tájolás</string>
     <string name="user">Felhasználó</string>
@@ -436,7 +420,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Soros port</string>
     <string name="external_notification">Külső értesítés</string>
-    <string name="store_forward"><![CDATA[Tárolás és továbbítás]]></string>
+    <string name="store_forward">Tárolás és továbbítás</string>
     <string name="range_test">Hatótáv-teszt</string>
     <string name="telemetry">Telemetria</string>
     <string name="canned_message">Előre beállított üzenet</string>
@@ -648,7 +632,7 @@
     <string name="timeout">Időtúllépés</string>
     <string name="serial_mode">Soros mód</string>
     <string name="override_console_serial_port">Konzol soros port felülbírálása</string>
-    <string name="store_forward_enabled"><![CDATA[Tárolás és továbbítás engedélyezve]]></string>
+    <string name="store_forward_enabled">Tárolás és továbbítás engedélyezve</string>
     <string name="heartbeat">Heartbeat jel</string>
     <string name="number_of_records">Rekordok száma</string>
     <string name="history_return_max">Előzmény-visszaadás maximum</string>
@@ -671,7 +655,7 @@
     <string name="long_name">Hosszú név</string>
     <string name="short_name">Rövid név</string>
     <string name="hardware_model">Hardvermodell</string>
-    <string name="licensed_amateur_radio_text">Ennek az opciónak az engedélyezése letiltja a titkosítást, és nem kompatibilis az alapértelmezett Meshtastic hálózattal.</string>
+    <string name="licensed_amateur_radio_text">Ennek az opciónak az engedélyezése letiltja a titkosítást, és nem kompatibilis az alapértelmezett Pangea hálózattal.</string>
     <string name="dew_point">Harmatpont</string>
     <string name="pressure">Nyomás</string>
     <string name="gas_resistance">Gázellenállás</string>
@@ -680,10 +664,10 @@
     <string name="wind">Szél</string>
     <string name="weight">Súly</string>
     <string name="radiation">Sugárzás</string>
-    <string name="store_forward_config"><![CDATA[Tárolás és továbbítás beállításai]]></string>
+    <string name="store_forward_config">Tárolás és továbbítás beállításai</string>
     <string name="indoor_air_quality_iaq">Beltéri levegőminőség (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Biztonsági mentés és visszaállítás]]></string>
+    <string name="backup_restore">Biztonsági mentés és visszaállítás</string>
     <string name="import_configuration">Beállítás importálása</string>
     <string name="export_configuration">Beállítás exportálása</string>
     <string name="hardware">Hardver</string>
@@ -774,7 +758,7 @@
     <string name="no_network_devices">Nem található hálózati eszköz.</string>
     <string name="no_usb_devices">Nem találhatók USB-soros eszközök.</string>
     <string name="scroll_to_bottom">Görgetés az aljára</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Biztonsági állapot</string>
     <string name="security_icon_secure">Biztonságos</string>
     <string name="security_icon_badge_warning_description">Figyelmeztető jelvény</string>
@@ -826,7 +810,7 @@
     <string name="installed_firmware_version">Jelenleg telepítve</string>
     <string name="latest_stable_firmware">Legújabb stabil</string>
     <string name="latest_alpha_firmware">Legújabb alpha</string>
-    <string name="supported_by_community">Meshtastic közösség által támogatott</string>
+    <string name="supported_by_community">Pangea közösség által támogatott</string>
     <string name="firmware_edition">Firmware kiadás</string>
     <string name="recent_network_devices">Legutóbbi hálózati eszközök</string>
     <string name="discovered_network_devices">Felfedezett hálózati eszközök</string>
@@ -847,11 +831,11 @@
     <string name="notifications_for_low_battery_alerts">Értesítések az alacsony akkumulátorszintű riasztásokról a csatlakoztatott eszköznél.</string>
     <string name="configure_notification_permissions">Értesítési engedélyek beállítása</string>
     <string name="phone_location">Telefon helyzete</string>
-    <string name="phone_location_description">A Meshtastic a telefonod helyzetét használja több funkció engedélyezéséhez. A helyhozzáférést bármikor módosíthatod a beállításokban.</string>
+    <string name="phone_location_description">A Pangea a telefonod helyzetét használja több funkció engedélyezéséhez. A helyhozzáférést bármikor módosíthatod a beállításokban.</string>
     <string name="share_location">Helyzet megosztása</string>
     <string name="share_location_description">Használd a telefon GPS-ét a helyzet elküldéséhez a csomópontra, ahelyett, hogy a csomópont hardveres GPS-ét használnád.</string>
     <string name="distance_measurements">Távolságmérés</string>
-    <string name="distance_measurements_description">Megjeleníti a távolságot a telefonod és más, pozícióval rendelkező Meshtastic csomópontok között.</string>
+    <string name="distance_measurements_description">Megjeleníti a távolságot a telefonod és más, pozícióval rendelkező Pangea csomópontok között.</string>
     <string name="distance_filters">Távolságszűrők</string>
     <string name="distance_filters_description">Szűrd a csomópont-listát és a mesh térképet a telefon közelsége alapján.</string>
     <string name="mesh_map_location">Mesh-térkép helyzet</string>
@@ -862,7 +846,7 @@
     <string name="critical_alerts">Kritikus riasztások</string>
     <string name="critical_alerts_dnd_request_text">A kritikus riasztások – például SOS üzenetek – fogadása érdekében, még „Ne zavarj” módban is, külön engedélyt kell adni. Engedélyezd ezt az értesítési beállításoknál.    </string>
     <string name="configure_critical_alerts">Kritikus riasztások beállítása</string>
-    <string name="notification_permissions_description">A Meshtastic értesítésekkel tájékoztat az új üzenetekről és más fontos eseményekről. Az értesítési engedélyeket bármikor módosíthatod a beállításokban.</string>
+    <string name="notification_permissions_description">A Pangea értesítésekkel tájékoztat az új üzenetekről és más fontos eseményekről. Az értesítési engedélyeket bármikor módosíthatod a beállításokban.</string>
     <string name="next">Tovább</string>
     <string name="grant_permissions">Engedély megadása</string>
     <string name="nodes_queued_for_deletion">%1$d csomópont vár törlésre:</string>

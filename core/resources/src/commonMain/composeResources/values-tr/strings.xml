@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtre</string>
     <string name="desc_node_filter_clear">düğüm filtresini kaldır</string>
     <string name="node_filter_include_unknown">Bilinmeyenleri dahil et</string>
@@ -81,7 +65,7 @@
     <string name="qr_code">Karekod</string>
     <string name="unknown_username">Bilinmeyen kullanıcı adı</string>
     <string name="send">Gönder</string>
-    <string name="warning_not_paired">Telefonu, Meshtastic uyumlu bir cihaz ile eşleştirmediniz. Bir cihazla eşleştirin ve kullanıcı adınızı belirleyin.\n\nAçık kaynaklı bu uygulama şu an alfa-test aşamasında, problem fark ederseniz forumda lütfen paylaşın: https://github.com/orgs/meshtastic/discussions\n\nDaha fazla bilgi için, sitemiz: www.meshtastic.org.</string>
+    <string name="warning_not_paired">Telefonu, Pangea uyumlu bir cihaz ile eşleştirmediniz. Bir cihazla eşleştirin ve kullanıcı adınızı belirleyin.\n\nAçık kaynaklı bu uygulama şu an alfa-test aşamasında, problem fark ederseniz forumda lütfen paylaşın: https://github.com/orgs/pangea/discussions\n\nDaha fazla bilgi için, sitemiz: www.pangea.org.</string>
     <string name="you">Siz</string>
     <string name="accept">Kabul et</string>
     <string name="cancel">İptal</string>
@@ -89,7 +73,7 @@
     <string name="new_channel_rcvd">Yeni Kanal Adresi(URL) alındı</string>
     <string name="report_bug">Hata Bildir</string>
     <string name="report_a_bug">Hata Bildir</string>
-    <string name="report_bug_text">Hata bildirmek istediğinizden emin misiniz? Hata bildirdikten sonra, lütfen https://github.com/orgs/meshtastic/discussions sayfasında paylaşınız ki raporu bulgularınızla eşleştirebilelim.</string>
+    <string name="report_bug_text">Hata bildirmek istediğinizden emin misiniz? Hata bildirdikten sonra, lütfen https://github.com/orgs/pangea/discussions sayfasında paylaşınız ki raporu bulgularınızla eşleştirebilelim.</string>
     <string name="report">Bildir</string>
     <string name="pairing_completed">Eşleşme tamamlandı, servis başlatılıyor</string>
     <string name="pairing_failed_try_again">Eşleşme başarısız, lütfen tekrar seçiniz</string>
@@ -224,7 +208,7 @@
     <string name="meshtastic_new_nodes_notifications">Yeni düğüm bildirimleri</string>
     <string name="more_details">Daha fazla detay</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Sinyal-Gürültü Oranı, iletişimde istenen bir sinyalin seviyesini arka plan gürültüsü seviyesine mukayese ölçmek için kullanılan bir ölçüdür. Meshtastic ve diğer kablosuz sistemlerde, daha yüksek bir SNR, veri iletiminin güvenilirliğini ve kalitesini artırabilecek daha net bir sinyale işaret eder.</string>
+    <string name="snr_definition">Sinyal-Gürültü Oranı, iletişimde istenen bir sinyalin seviyesini arka plan gürültüsü seviyesine mukayese ölçmek için kullanılan bir ölçüdür. Pangea ve diğer kablosuz sistemlerde, daha yüksek bir SNR, veri iletiminin güvenilirliğini ve kalitesini artırabilecek daha net bir sinyale işaret eder.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Alınan Sinyal Gücü Göstergesi, anten tarafından alınan güç seviyesini belirlemek için kullanılan bir ölçüdür. Daha yüksek bir RSSI değeri genellikle daha güçlü ve daha istikrarlı bir bağlantıya işaret eder.</string>
     <string name="iaq_definition">(İç Hava Kalitesi) Bosch BME680 tarafından ölçülen bağıl ölçekli IAQ değeri. Değer Aralığı 0–500.</string>
@@ -265,7 +249,7 @@
     <string name="current">Akım</string>
     <string name="voltage">Voltaj</string>
     <string name="are_you_sure">Emin misiniz?</string>
-    <string name="router_role_confirmation_text"><![CDATA[<a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Cihaz Rolü Dokümantasyonu</a> ve <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Doğru Cihaz Rolünü Seçme</a> hakkındaki blog yazılarını okudum.]]></string>
+    <string name="router_role_confirmation_text">&lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Cihaz Rolü Dokümantasyonu&lt;/a&gt; ve &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Doğru Cihaz Rolünü Seçme&lt;/a&gt; hakkındaki blog yazılarını okudum.</string>
     <string name="i_know_what_i_m_doing">Ne yaptığımı biliyorum.</string>
     <string name="low_battery_message">%1$s Düğümünün pili düşük (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Düşük pil bildirimleri</string>
@@ -273,7 +257,7 @@
     <string name="meshtastic_low_battery_temporary_remote_notifications">Düşük pil bildirimleri (favori düğümler)</string>
     <string name="udp_enabled">Açık</string>
     <string name="udp_config">UDP Ayarları</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Son duyulma: %2$s<br>Son konum: %3$s<br>Pil: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Son duyulma: %2$s&lt;br&gt;Son konum: %3$s&lt;br&gt;Pil: %4$s</string>
     <string name="toggle_my_position">Konumunumu aç/kapa</string>
     <string name="user">Kullanıcı</string>
     <string name="channels">Kanallar</string>
@@ -288,7 +272,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Seri</string>
     <string name="external_notification">Dış Bildirim</string>
-    <string name="store_forward"><![CDATA[Kaydet & Yönlendir]]></string>
+    <string name="store_forward">Kaydet &amp; Yönlendir</string>
     <string name="range_test">Mesafe Testi</string>
     <string name="telemetry">Telemetri</string>
     <string name="canned_message">Önceden Hazırlanmış Mesaj</string>
@@ -454,7 +438,7 @@
     <string name="timeout">Zaman Aşımı</string>
     <string name="serial_mode">Seri modu</string>
     <string name="override_console_serial_port">Konsol seri portunu geçersiz kıl</string>
-    <string name="store_forward_enabled"><![CDATA[Kaydet & Yönlendir etkin]]></string>
+    <string name="store_forward_enabled">Kaydet &amp; Yönlendir etkin</string>
     <string name="heartbeat">Kalp atışı</string>
     <string name="number_of_records">Kayıt sayısı</string>
     <string name="history_return_max">Geçmiş geri dönüş maksimum</string>
@@ -473,7 +457,7 @@
     <string name="long_name">Uzun Ad</string>
     <string name="short_name">Kısa Ad</string>
     <string name="hardware_model">Donanım modeli</string>
-    <string name="licensed_amateur_radio_text">Bu seçeneği aktif etmek şifrelemeyi devre dışı bırakır ve bu varsayılan Meshtastic ağı ile uyumsuzdur.</string>
+    <string name="licensed_amateur_radio_text">Bu seçeneği aktif etmek şifrelemeyi devre dışı bırakır ve bu varsayılan Pangea ağı ile uyumsuzdur.</string>
     <string name="dew_point">Çiğ Noktası</string>
     <string name="pressure">Basınç</string>
     <string name="gas_resistance">Gaz Direnci</string>
@@ -482,10 +466,10 @@
     <string name="wind">Rüzgar</string>
     <string name="weight">Ağırlık</string>
     <string name="radiation">Radyasyon</string>
-    <string name="store_forward_config"><![CDATA[Kaydet & Yönlendir Ayarı]]></string>
+    <string name="store_forward_config">Kaydet &amp; Yönlendir Ayarı</string>
     <string name="indoor_air_quality_iaq">İç Hava Kalitesi (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Yedekleme & Geri yükleme]]></string>
+    <string name="backup_restore">Yedekleme &amp; Geri yükleme</string>
     <string name="import_configuration">Ayarları içe aktar</string>
     <string name="export_configuration">Ayarları dışa aktar</string>
     <string name="hardware">Donanım</string>
@@ -536,7 +520,7 @@
     <string name="map_filter">Harita Filtresi\n</string>
     <string name="only_favorites">Sadece Favoriler</string>
     <string name="disconnect">Bağlantıyı Kes</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Güvenlik Durumu</string>
     <string name="security_icon_secure">Güvenlik</string>
     <string name="unknown">Bilinmeyen</string>
@@ -559,7 +543,7 @@
     <string name="settings">ayarlar</string>
     <string name="critical_alerts">Kritik Uyarılar</string>
     <string name="configure_critical_alerts">Kritik Uyarı Yapılandır</string>
-    <string name="notification_permissions_description">Meshtastic, yeni mesajlar ve diğer önemli etkinlikler hakkında sizi bilgilendirmek için bildirimleri kullanır. Bildirim izinlerinizi istediğiniz zaman ayarlardan güncelleyebilirsiniz.</string>
+    <string name="notification_permissions_description">Pangea, yeni mesajlar ve diğer önemli etkinlikler hakkında sizi bilgilendirmek için bildirimleri kullanır. Bildirim izinlerinizi istediğiniz zaman ayarlardan güncelleyebilirsiniz.</string>
     <string name="next">Sonraki</string>
     <string name="eight_hours">8 Saat</string>
     <string name="one_day">24 Saat</string>

@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Suodatus</string>
     <string name="desc_node_filter_clear">tyhjennä suodatukset</string>
     <string name="node_filter_title">Suodata otsikon mukaan</string>
@@ -168,7 +152,7 @@
     <string name="qr_code">QR-koodi</string>
     <string name="unknown_username">Tuntematon käyttäjänimi</string>
     <string name="send">Lähetä</string>
-    <string name="warning_not_paired">Et ole vielä yhdistänyt Meshtastic -yhteensopivaa radiota tähän puhelimeen. Muodosta laitepari puhelimen kanssa ja aseta käyttäjänimesi.\n\nTämä avoimen lähdekoodin sovellus on vielä kehitysvaiheessa. Jos löydät virheen, lähetä siitä viesti foorumillemme: https://github.com/orgs/meshtastic/discussions\n\nLisätietoja saat verkkosivuiltamme - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Et ole vielä yhdistänyt Pangea -yhteensopivaa radiota tähän puhelimeen. Muodosta laitepari puhelimen kanssa ja aseta käyttäjänimesi.\n\nTämä avoimen lähdekoodin sovellus on vielä kehitysvaiheessa. Jos löydät virheen, lähetä siitä viesti foorumillemme: https://github.com/orgs/pangea/discussions\n\nLisätietoja saat verkkosivuiltamme - www.pangea.org.</string>
     <string name="you">Sinä</string>
     <string name="analytics_okay">Salli analytiikka ja virheraportit.</string>
     <string name="accept">Hyväksy</string>
@@ -176,10 +160,10 @@
     <string name="discard_changes">Hylkää</string>
     <string name="save_changes">Tallenna</string>
     <string name="new_channel_rcvd">Uusi kanavan URL-osoite vastaanotettu</string>
-    <string name="permission_missing">Meshtastic tarvitsee sijaintioikeudet, jotta se voi löytää uusia laitteita Bluetoothin kautta. Voit poistaa oikeuden käytöstä, kun et käytä sovellusta.</string>
+    <string name="permission_missing">Pangea tarvitsee sijaintioikeudet, jotta se voi löytää uusia laitteita Bluetoothin kautta. Voit poistaa oikeuden käytöstä, kun et käytä sovellusta.</string>
     <string name="report_bug">Ilmoita virheestä</string>
     <string name="report_a_bug">Ilmoita virheestä</string>
-    <string name="report_bug_text">Oletko varma, että haluat raportoida virheestä? Tee tämän jälkeen julkaisu https://github.com/orgs/meshtastic/discussions osoitteessa, jotta voimme yhdistää löytämäsi virheen raporttiin.</string>
+    <string name="report_bug_text">Oletko varma, että haluat raportoida virheestä? Tee tämän jälkeen julkaisu https://github.com/orgs/pangea/discussions osoitteessa, jotta voimme yhdistää löytämäsi virheen raporttiin.</string>
     <string name="report">Raportti</string>
     <string name="pairing_completed">Laitepari on muodostettu, käynnistettään palvelua</string>
     <string name="pairing_failed_try_again">Laiteparin muodostaminen epäonnistui, valitse uudelleen</string>
@@ -211,7 +195,7 @@
     <string name="meshtastic_service_notifications">Palveluilmoitukset</string>
     <string name="acknowledgements">Kiitokset</string>
     <string name="open_source_libraries">Avoimen lähteen kirjastot</string>
-    <string name="open_source_description">Meshtastic on rakennettu seuraavilla avoimen lähdekoodin kirjastoilla. Napauta mitä tahansa kirjastoa nähdäksesi sen lisenssin.</string>
+    <string name="open_source_description">Pangea on rakennettu seuraavilla avoimen lähdekoodin kirjastoilla. Napauta mitä tahansa kirjastoa nähdäksesi sen lisenssin.</string>
     <string name="library_count">%1$d kirjastot</string>
     <string name="channel_invalid">Kanavan URL-osoite on virheellinen, eikä sitä voida käyttää</string>
     <string name="contact_invalid">Tämä yhteystieto on virheellinen eikä sitä voi lisätä</string>
@@ -316,7 +300,7 @@
     <string name="bluetooth_disabled">Bluetooth on pois käytöstä. Ota se käyttöön laitteen asetuksista.</string>
     <string name="open_settings">Avaa asetukset</string>
     <string name="firmware_version">Firmwaren versio: %1$s</string>
-    <string name="permission_missing_31">Meshtastic tarvitsee \"lähistön laitteet\" -oikeudet, jotta se voi löytää ja yhdistää laitteisiin Bluetoothin kautta. Voit poistaa oikeuden käytöstä, kun et käytä sovellusta.</string>
+    <string name="permission_missing_31">Pangea tarvitsee \"lähistön laitteet\" -oikeudet, jotta se voi löytää ja yhdistää laitteisiin Bluetoothin kautta. Voit poistaa oikeuden käytöstä, kun et käytä sovellusta.</string>
     <string name="direct_message">Yksityisviesti</string>
     <string name="nodedb_reset">Tyhjennä NodeDB-tietokanta</string>
     <string name="delivery_confirmed">Toimitus vahvistettu</string>
@@ -401,7 +385,7 @@
     <string name="meshtastic_new_nodes_notifications">Uuden laitteen ilmoitukset</string>
     <string name="more_details">Lisätietoja</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signaali-kohinasuhde (SNR) on mittari, jota käytetään viestinnässä halutun signaalin tason ja taustahälyn tason määrittämisessä. Meshtasticissa ja muissa langattomissa järjestelmissä korkeampi SNR tarkoittaa selkeämpää signaalia, joka voi parantaa tiedonsiirron luotettavuutta ja laatua.</string>
+    <string name="snr_definition">Signaali-kohinasuhde (SNR) on mittari, jota käytetään viestinnässä halutun signaalin tason ja taustahälyn tason määrittämisessä. Pangeaissa ja muissa langattomissa järjestelmissä korkeampi SNR tarkoittaa selkeämpää signaalia, joka voi parantaa tiedonsiirron luotettavuutta ja laatua.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Vastaanotetun signaalin voimakkuusindikaattori (RSSI) on mittari, jota käytetään määrittämään antennilla vastaanotetun signaalin voimakkuus. Korkeampi RSSI-arvo yleensä osoittaa vahvemman ja vakaamman yhteyden.</string>
     <string name="iaq_definition">Sisäilman laatu (IAQ) on suhteellinen asteikko, jota voidaan mitata mm. Bosch BME680 anturilla ja sen arvoväli on 0–500.</string>
@@ -460,7 +444,7 @@
     <string name="current">Virta</string>
     <string name="voltage">Jännite</string>
     <string name="are_you_sure">Oletko varma?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Olen lukenut <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Laitteen roolit ohjeen</a> ja blogikirjoituksen <a href="http://meshtastic.org/blog/choosing-the-right-device-role"> valitakseni laitteelle oikean roolin</a>.]]></string>
+    <string name="router_role_confirmation_text">Olen lukenut &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Laitteen roolit ohjeen&lt;/a&gt; ja blogikirjoituksen &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt; valitakseni laitteelle oikean roolin&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Tiedän mitä olen tekemässä.</string>
     <string name="low_battery_message">Laitteen %1$s akun varaustila on vähissä (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Akun vähäisen varauksen ilmoitukset</string>
@@ -470,7 +454,7 @@
     <string name="udp_enabled">Käytössä</string>
     <string name="udp_broadcast">UDP-lähetys</string>
     <string name="udp_config">UDP asetukset</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Viimeksi kuultu: %2$s<br>Viimeisin sijainti: %3$s<br>Akku: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Viimeksi kuultu: %2$s&lt;br&gt;Viimeisin sijainti: %3$s&lt;br&gt;Akku: %4$s</string>
     <string name="toggle_my_position">Kytke sijainti päälle</string>
     <string name="orient_north">Aseta kompassi pohjoiseen</string>
     <string name="user">Käyttäjä</string>
@@ -486,7 +470,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Sarjaliitäntä</string>
     <string name="external_notification">Ulkoiset ilmoitukset</string>
-    <string name="store_forward"><![CDATA[Varastoi & välitä]]></string>
+    <string name="store_forward">Varastoi &amp; välitä</string>
     <string name="range_test">Kuuluvuustesti</string>
     <string name="telemetry">Telemetria</string>
     <string name="canned_message">Esiasetettu viesti</string>
@@ -705,7 +689,7 @@
     <string name="timeout">Aikakatkaisu</string>
     <string name="serial_mode">Sarjaportin tila</string>
     <string name="override_console_serial_port">Korvaa konsolin sarjaportti</string>
-    <string name="store_forward_enabled"><![CDATA[Tallenna ja lähetä edelleen]]></string>
+    <string name="store_forward_enabled">Tallenna ja lähetä edelleen</string>
     <string name="heartbeat">Valvontasignaali</string>
     <string name="number_of_records">Kirjausten määrä</string>
     <string name="history_return_max">Historian maksimimäärä</string>
@@ -729,7 +713,7 @@
     <string name="short_name">Lyhytnimi</string>
     <string name="hardware_model">Laitteen malli</string>
     <string name="licensed_amateur_radio">Lisensoitu radioamatööri (HAM)</string>
-    <string name="licensed_amateur_radio_text">Jos otat tämän asetuksen käyttöön, salaus poistetaan käytöstä, eikä laite ole enää yhteensopiva oletusasetuksilla toimivan Meshtastic-verkon kanssa.</string>
+    <string name="licensed_amateur_radio_text">Jos otat tämän asetuksen käyttöön, salaus poistetaan käytöstä, eikä laite ole enää yhteensopiva oletusasetuksilla toimivan Pangea-verkon kanssa.</string>
     <string name="dew_point">Kastepiste</string>
     <string name="pressure">Ilmanpaine</string>
     <string name="gas_resistance">Kaasuvastus</string>
@@ -738,10 +722,10 @@
     <string name="wind">Tuuli</string>
     <string name="weight">Paino</string>
     <string name="radiation">Säteily</string>
-    <string name="store_forward_config"><![CDATA[Varastoi & välitä asetukset]]></string>
+    <string name="store_forward_config">Varastoi &amp; välitä asetukset</string>
     <string name="indoor_air_quality_iaq">Sisäilmanlaatu (IAQ)</string>
     <string name="url">URL-osoite</string>
-    <string name="backup_restore"><![CDATA[Varmuuskopiointi ja palautus]]></string>
+    <string name="backup_restore">Varmuuskopiointi ja palautus</string>
     <string name="import_configuration">Asetusten tuonti</string>
     <string name="export_configuration">Asetusten vienti</string>
     <string name="hardware">Laite</string>
@@ -839,7 +823,7 @@
     <string name="no_network_devices">Verkkolaitteita ei löytynyt.</string>
     <string name="no_usb_devices">USB-sarjalaitteita ei löytynyt.</string>
     <string name="scroll_to_bottom">Siirry loppuun</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Turvallisuustila</string>
     <string name="security_icon_secure">Suojattu</string>
     <string name="security_icon_badge_warning_description">Varoituskuvake</string>
@@ -895,7 +879,7 @@
     <string name="installed_firmware_version">Asennettu</string>
     <string name="latest_stable_firmware">Viimeisin vakaa (stable)</string>
     <string name="latest_alpha_firmware">Viimeisin epävakaa (alpha)</string>
-    <string name="supported_by_community">Meshtastic-yhteisön tukema</string>
+    <string name="supported_by_community">Pangea-yhteisön tukema</string>
     <string name="firmware_edition">Laiteohjelmistoversio</string>
     <string name="recent_network_devices">Äskettäin havaitut verkkolaitteet</string>
     <string name="discovered_network_devices">Löydetyt verkkolaitteet</string>
@@ -905,7 +889,7 @@
     <string name="stay_connected_anywhere">Pysy yhteydessä kaikkialla</string>
     <string name="communicate_off_the_grid">Viestitä ilman verkkoyhteyttä ystäviesi ja yhteisösi kanssa ilman matkapuhelinverkkoa.</string>
     <string name="create_your_own_networks">Luo omia verkkoja</string>
-    <string name="easily_set_up_private_mesh_networks">Luo vaivattomasti yksityisiä meshtastic verkkoja turvalliseen ja luotettavaan viestintään kaukana asutuista paikoista.</string>
+    <string name="easily_set_up_private_mesh_networks">Luo vaivattomasti yksityisiä pangea verkkoja turvalliseen ja luotettavaan viestintään kaukana asutuista paikoista.</string>
     <string name="track_and_share_locations">Seuraa ja jaa sijainteja</string>
     <string name="share_your_location_in_real_time">Jaa sijaintisi reaaliaikaisesti ja varmista ryhmäsi yhteistoiminta GPS-toimintojen avulla.</string>
     <string name="app_notifications">Sovellusilmoitukset</string>
@@ -918,15 +902,15 @@
     <string name="critical_alerts_description">Kriittiset paketit toimitetaan ilmoituksina, vaikka puhelin olisi Älä häiritse -tilassa.</string>
     <string name="configure_notification_permissions">Määritä ilmoitusten käyttöoikeudet</string>
     <string name="phone_location">Puhelimen sijainti</string>
-    <string name="phone_location_description">Meshtastic hyödyntää puhelimen sijaintia tarjotakseen erilaisia toimintoja. Voit muuttaa sijaintioikeuksia koska tahansa asetuksista.</string>
+    <string name="phone_location_description">Pangea hyödyntää puhelimen sijaintia tarjotakseen erilaisia toimintoja. Voit muuttaa sijaintioikeuksia koska tahansa asetuksista.</string>
     <string name="share_location">Jaa sijainti</string>
     <string name="share_location_description">Lähetä sijaintitiedot puhelimen GPS:llä laitteen oman GPS:n sijasta.</string>
     <string name="distance_measurements">Etäisyyden mittaukset</string>
-    <string name="distance_measurements_description">Näytä etäisyys puhelimen ja muiden sijainnin jakavien Meshtastic laitteiden välillä.</string>
+    <string name="distance_measurements_description">Näytä etäisyys puhelimen ja muiden sijainnin jakavien Pangea laitteiden välillä.</string>
     <string name="distance_filters">Etäisyyden suodattimet</string>
-    <string name="distance_filters_description">Suodata laitelista ja meshtastic kartta puhelimesi läheisyyden perusteella.</string>
-    <string name="mesh_map_location">Meshtastic kartan sijainti</string>
-    <string name="mesh_map_location_description">Ottaa käyttöön puhelimen sijainnin sinisenä pisteenä meshtastic kartalla.</string>
+    <string name="distance_filters_description">Suodata laitelista ja pangea kartta puhelimesi läheisyyden perusteella.</string>
+    <string name="mesh_map_location">Pangea kartan sijainti</string>
+    <string name="mesh_map_location_description">Ottaa käyttöön puhelimen sijainnin sinisenä pisteenä pangea kartalla.</string>
     <string name="configure_location_permissions">Määritä sijainnin käyttöoikeudet</string>
     <string name="skip">Ohita</string>
     <string name="settings">asetukset</string>
@@ -936,7 +920,7 @@
         käyttöoikeuden. Ota se käyttöön ilmoitusasetuksissa.
     </string>
     <string name="configure_critical_alerts">Määritä kriittiset hälytykset</string>
-    <string name="notification_permissions_description">Meshtastic käyttää ilmoituksia tiedottaakseen uusista viesteistä ja muista tärkeistä tapahtumista. Voit muuttaa ilmoitusasetuksia milloin tahansa.</string>
+    <string name="notification_permissions_description">Pangea käyttää ilmoituksia tiedottaakseen uusista viesteistä ja muista tärkeistä tapahtumista. Voit muuttaa ilmoitusasetuksia milloin tahansa.</string>
     <string name="next">Seuraava</string>
     <string name="grant_permissions">Myönnä oikeudet</string>
     <string name="nodes_queued_for_deletion">%1$d laitetta jonossa poistettavaksi:</string>
@@ -1150,9 +1134,9 @@
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Määritä Bluetooth-oikeudet</string>
     <string name="connect_to_radio">Yhdistä radioon</string>
-    <string name="connect_to_radio_description">Etsi Meshtastic-laitteita ja yhdistä niihin.</string>
+    <string name="connect_to_radio_description">Etsi Pangea-laitteita ja yhdistä niihin.</string>
     <string name="bluetooth_feature_discovery">Haku</string>
-    <string name="bluetooth_feature_discovery_description">Etsi ja tunnista lähelläsi olevia Meshtastic-laitteita.</string>
+    <string name="bluetooth_feature_discovery_description">Etsi ja tunnista lähelläsi olevia Pangea-laitteita.</string>
     <string name="bluetooth_feature_config">Asetukset</string>
     <string name="bluetooth_feature_config_description">Hallitse laitteesi asetuksia ja kanavia langattomasti.</string>
     <string name="permission_granted">Lupa myönnetty</string>
@@ -1172,7 +1156,7 @@
     <string name="local_stats_heap_value">%1$d / %2$d</string>
     <string name="local_stats_updated_at">%1$s</string>
     <string name="powered">Powered</string>
-    <string name="meshtastic_stats">Meshtastic tilastot</string>
+    <string name="meshtastic_stats">Pangea tilastot</string>
     <string name="refresh">Päivitä</string>
     <string name="updated">Päivitetty</string>
     <!-- Network Map Layers -->

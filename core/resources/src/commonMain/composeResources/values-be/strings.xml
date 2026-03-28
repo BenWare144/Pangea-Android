@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Фільтраваць</string>
     <string name="desc_node_filter_clear">скінуць фільтр</string>
     <string name="node_filter_title">Фільтраваць па</string>
@@ -213,7 +197,7 @@
     <string name="set_your_region">Выберыце ваш рэгіён</string>
     <string name="reply">Адказаць</string>
     <string name="export_keys">Экспартаваць ключы</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->
     <!-- INSECURE_PRECISE_MQTT_WARNING State (Red Open Lock with Warning Badge) -->

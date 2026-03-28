@@ -44,6 +44,7 @@ import org.meshtastic.core.resources.i_agree_to_share_my_location
 import org.meshtastic.core.resources.map_reporting
 import org.meshtastic.core.resources.map_reporting_consent_header
 import org.meshtastic.core.resources.map_reporting_consent_text
+import org.meshtastic.core.resources.map_reporting_consent_disclaimer
 import org.meshtastic.core.resources.map_reporting_interval_seconds
 import org.meshtastic.core.resources.map_reporting_summary
 import org.meshtastic.core.ui.component.DropDownPreference
@@ -92,6 +93,7 @@ fun MapReportingPreference(
                 Text(text = stringResource(Res.string.map_reporting_consent_header), modifier = Modifier.padding(16.dp))
                 HorizontalDivider()
                 Text(stringResource(Res.string.map_reporting_consent_text), modifier = Modifier.padding(16.dp))
+                Text(stringResource(Res.string.map_reporting_consent_disclaimer), modifier = Modifier.padding(16.dp))
 
                 SwitchPreference(
                     title = stringResource(Res.string.i_agree),

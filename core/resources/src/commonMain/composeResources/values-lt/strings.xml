@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filtras</string>
@@ -68,7 +52,7 @@
     <string name="qr_code">QR kodas</string>
     <string name="unknown_username">Nežinomas vartotojo vardas</string>
     <string name="send">Siųsti</string>
-    <string name="warning_not_paired">Su šiuo telefonu dar nėra susietas joks Meshtastic įtaisais. Prašome suporuoti įrenginį ir nustatyti savo vartotojo vardą.\n\nŠi atvirojo kodo programa yra kūrimo stadijoje, jei pastebėsite problemas, prašome pranešti mūsų forume: https://github.com/orgs/meshtastic/discussions\n\nDaugiau informacijos rasite mūsų interneto svetainėje - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Su šiuo telefonu dar nėra susietas joks Pangea įtaisais. Prašome suporuoti įrenginį ir nustatyti savo vartotojo vardą.\n\nŠi atvirojo kodo programa yra kūrimo stadijoje, jei pastebėsite problemas, prašome pranešti mūsų forume: https://github.com/orgs/pangea/discussions\n\nDaugiau informacijos rasite mūsų interneto svetainėje - www.pangea.org.</string>
     <string name="you">Tu</string>
     <string name="accept">Priimti</string>
     <string name="cancel">Atšaukti</string>
@@ -76,7 +60,7 @@
     <string name="new_channel_rcvd">Gautas naujo kanalo URL</string>
     <string name="report_bug">Pranešti apie klaidą</string>
     <string name="report_a_bug">Pranešti apie klaidą</string>
-    <string name="report_bug_text">Ar tikrai norite pranešti apie klaidą? Po pranešimo prašome parašyti forume https://github.com/orgs/meshtastic/discussions, kad galėtume suderinti pranešimą su jūsų pastebėjimais.</string>
+    <string name="report_bug_text">Ar tikrai norite pranešti apie klaidą? Po pranešimo prašome parašyti forume https://github.com/orgs/pangea/discussions, kad galėtume suderinti pranešimą su jūsų pastebėjimais.</string>
     <string name="report">Raportuoti</string>
     <string name="pairing_completed">Susiejimas užbaigtas, paslauga pradedama</string>
     <string name="pairing_failed_try_again">Susiejimas nepavyko, prašome pasirinkti iš naujo</string>

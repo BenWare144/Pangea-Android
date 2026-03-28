@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtru</string>
     <string name="desc_node_filter_clear">ștergeți filtrul nodurilor</string>
     <string name="node_filter_title">Filtrare după</string>
@@ -161,7 +145,7 @@
     <string name="qr_code">Cod QR</string>
     <string name="unknown_username">Nume utilizator necunoscut</string>
     <string name="send">Trimite</string>
-    <string name="warning_not_paired">Încă nu ai asociat un radio compatibil cu Meshtastic cu acest telefon. Te rugăm să asociezi un dispozitiv și să îți setezi numele de utilizator.\n\nAceastă aplicaţie open-source este în dezvoltare, dacă întâmpinaţi probleme, vă rugăm să postaţi pe forumul nostru: https://github.com/orgs/meshtastic/discussions\n\nPentru mai multe informații, consultați pagina noastră de internet - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Încă nu ai asociat un radio compatibil cu Pangea cu acest telefon. Te rugăm să asociezi un dispozitiv și să îți setezi numele de utilizator.\n\nAceastă aplicaţie open-source este în dezvoltare, dacă întâmpinaţi probleme, vă rugăm să postaţi pe forumul nostru: https://github.com/orgs/pangea/discussions\n\nPentru mai multe informații, consultați pagina noastră de internet - www.pangea.org.</string>
     <string name="you">Tu</string>
     <string name="analytics_okay">Permiteți analiza și raportări de erori.</string>
     <string name="accept">Accept</string>
@@ -169,10 +153,10 @@
     <string name="discard_changes">Eliminați</string>
     <string name="save_changes">Salvează</string>
     <string name="new_channel_rcvd">Am primit un nou URL de canal</string>
-    <string name="permission_missing">Meshtastic necesită permisiuni de localizare activate pentru a găsi dispozitive noi prin Bluetooth. Puteți dezactiva această funcție când nu o utilizați.</string>
+    <string name="permission_missing">Pangea necesită permisiuni de localizare activate pentru a găsi dispozitive noi prin Bluetooth. Puteți dezactiva această funcție când nu o utilizați.</string>
     <string name="report_bug">Raportează Bug</string>
     <string name="report_a_bug">Raportează un bug</string>
-    <string name="report_bug_text">Ești sigur că vrei să raportezi un bug? După ce ai raportat, te rog postează în https://github.com/orgs/meshtastic/discussions că să reușim să potrivim reportul tău cu ce ai găsit.</string>
+    <string name="report_bug_text">Ești sigur că vrei să raportezi un bug? După ce ai raportat, te rog postează în https://github.com/orgs/pangea/discussions că să reușim să potrivim reportul tău cu ce ai găsit.</string>
     <string name="report">Raportare</string>
     <string name="pairing_completed">Conectare reușită, începem serviciul</string>
     <string name="pairing_failed_try_again">Conectare eșuată, te rog reselecteaza</string>
@@ -303,7 +287,7 @@
     <string name="bluetooth_disabled">Bluetooth este dezactivat. Vă rugăm să îl activați în setările dispozitivului.</string>
     <string name="open_settings">Deschideți setările</string>
     <string name="firmware_version">Versiune firmware: %1$s</string>
-    <string name="permission_missing_31">Meshtastic necesită permisiunea „Dispozitive din apropiere” pentru a găsi și conecta dispozitive prin Bluetooth. Puteți dezactiva această funcție când nu o utilizați.</string>
+    <string name="permission_missing_31">Pangea necesită permisiunea „Dispozitive din apropiere” pentru a găsi și conecta dispozitive prin Bluetooth. Puteți dezactiva această funcție când nu o utilizați.</string>
     <string name="direct_message">Mesaj direct</string>
     <string name="nodedb_reset">Resetare NodeDB</string>
     <string name="delivery_confirmed">Livrare confirmată</string>
@@ -383,7 +367,7 @@
     <string name="meshtastic_new_nodes_notifications">Notificări noduri noi</string>
     <string name="more_details">Mai multe detalii</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Raportul semnal-zgomot (Signal-to-Noise Ratio), o măsură utilizată în comunicații pentru a cuantifica nivelul unui semnal dorit în raport cu nivelul zgomotului de fond. În Meshtastic și în alte sisteme wireless, un SNR mai mare indică un semnal mai clar, care poate îmbunătăți fiabilitatea și calitatea transmiterii datelor.</string>
+    <string name="snr_definition">Raportul semnal-zgomot (Signal-to-Noise Ratio), o măsură utilizată în comunicații pentru a cuantifica nivelul unui semnal dorit în raport cu nivelul zgomotului de fond. În Pangea și în alte sisteme wireless, un SNR mai mare indică un semnal mai clar, care poate îmbunătăți fiabilitatea și calitatea transmiterii datelor.</string>
     <string name="rssi"> RSSI</string>
     <string name="rssi_definition">Indicatorul intensității semnalului recepționat (Received Signal Strength Indicator), o măsurătoare utilizată pentru a determina nivelul de putere recepționat de antenă. O valoare RSSI mai mare indică, în general, o conexiune mai puternică și mai stabilă.</string>
     <string name="iaq_definition">(Calitatea aerului interior) valoarea IAQ pe o scară relativă, măsurată cu Bosch BME680. Intervalul valorilor: 0–500.</string>
@@ -441,7 +425,7 @@
     <string name="current">Actual</string>
     <string name="voltage">Tensiune</string>
     <string name="are_you_sure">Sunteți sigur?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Am citit <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Documentația privind rolul dispozitivului</a> și articolul de blog despre <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Alegerea rolului potrivit pentru dispozitiv</a>.]]></string>
+    <string name="router_role_confirmation_text">Am citit &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Documentația privind rolul dispozitivului&lt;/a&gt; și articolul de blog despre &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Alegerea rolului potrivit pentru dispozitiv&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Știu ce fac.</string>
     <string name="low_battery_message">Nodul %1$s are bateria descărcată (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Notificări pentru baterii descărcate</string>
@@ -451,7 +435,7 @@
     <string name="udp_enabled">Activat</string>
     <string name="udp_broadcast">Difuzare UDP</string>
     <string name="udp_config">Configurare UDP</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Ultima recepție: %2$s<br>Ultima poziție: %3$s<br>Baterie: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Ultima recepție: %2$s&lt;br&gt;Ultima poziție: %3$s&lt;br&gt;Baterie: %4$s</string>
     <string name="toggle_my_position">Comută poziția mea</string>
     <string name="orient_north">Orientare spre nord</string>
     <string name="user">Utilizator</string>
@@ -467,7 +451,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Serial</string>
     <string name="external_notification">Notificare externă</string>
-    <string name="store_forward"><![CDATA[Reținere și redirecționare]]></string>
+    <string name="store_forward">Reținere și redirecționare</string>
     <string name="range_test">Test de rază</string>
     <string name="telemetry">Telemetrie</string>
     <string name="canned_message">Mesaj predefinit</string>
@@ -597,7 +581,7 @@
     <string name="position_config">Poziție</string>
     <string name="security_config">Securitate</string>
     <string name="timeout">Expirat</string>
-    <string name="store_forward_enabled"><![CDATA[Reținere și redirecționare activată]]></string>
+    <string name="store_forward_enabled">Reținere și redirecționare activată</string>
     <string name="long_name">Nume lung</string>
     <string name="short_name">Nume scurt</string>
     <string name="hardware_model">Model hardware</string>
@@ -607,14 +591,14 @@
     <string name="wind">Vânt</string>
     <string name="weight">Greutate</string>
     <string name="radiation">Radiație</string>
-    <string name="store_forward_config"><![CDATA[Configurație reținere și redirecționare]]></string>
+    <string name="store_forward_config">Configurație reținere și redirecționare</string>
     <string name="url">URL</string>
     <string name="request_device_metrics">Valori dispozitiv</string>
     <string name="request_environment_metrics">Indicatori de mediu</string>
     <string name="request_power_metrics">Valori putere</string>
     <string name="show_waypoints">Arată repere</string>
     <string name="node_count_template">(%1$d online / %2$d afișate / %3$d în total)</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="advanced_title">Avansate</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->

@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtr</string>
     <string name="desc_node_filter_clear">vyčistit filtr uzlů</string>
     <string name="node_filter_title">Filtrovat podle</string>
@@ -133,7 +117,7 @@
     <string name="qr_code">QR kód</string>
     <string name="unknown_username">Neznámé uživatelské jméno</string>
     <string name="send">Odeslat</string>
-    <string name="warning_not_paired">Ještě jste s tímto telefonem nespárovali rádio kompatibilní s Meshtastic. Spárujte prosím zařízení a nastavte své uživatelské jméno.\n\nTato open-source aplikace je ve vývoji, pokud narazíte na problémy, napište na naše fórum: https://github.com/orgs/meshtastic/discussions\n\nDalší informace naleznete na naší webové stránce - www. meshtastic.org.</string>
+    <string name="warning_not_paired">Ještě jste s tímto telefonem nespárovali rádio kompatibilní s Pangea. Spárujte prosím zařízení a nastavte své uživatelské jméno.\n\nTato open-source aplikace je ve vývoji, pokud narazíte na problémy, napište na naše fórum: https://github.com/orgs/pangea/discussions\n\nDalší informace naleznete na naší webové stránce - www. pangea.org.</string>
     <string name="you">Vy</string>
     <string name="analytics_okay">Povolit analýzu a hlášení pádů.</string>
     <string name="accept">Přijmout</string>
@@ -141,10 +125,10 @@
     <string name="discard_changes">Zrušit</string>
     <string name="save_changes">Uložit</string>
     <string name="new_channel_rcvd">Nová URL kanálu přijata</string>
-    <string name="permission_missing">Meshtastic potřebuje přístup k poloze pro vyhledávání zařízení přes Bluetooth. Povolení můžete kdykoli vypnout.</string>
+    <string name="permission_missing">Pangea potřebuje přístup k poloze pro vyhledávání zařízení přes Bluetooth. Povolení můžete kdykoli vypnout.</string>
     <string name="report_bug">Nahlášení chyby</string>
     <string name="report_a_bug">Nahlásit chybu</string>
-    <string name="report_bug_text">Jste si jistý, že chcete nahlásit chybu? Po odeslání prosím přidejte zprávu do https://github.com/orgs/meshtastic/discussions abychom mohli přiřadit Vaši nahlášenou chybu k příspěvku.</string>
+    <string name="report_bug_text">Jste si jistý, že chcete nahlásit chybu? Po odeslání prosím přidejte zprávu do https://github.com/orgs/pangea/discussions abychom mohli přiřadit Vaši nahlášenou chybu k příspěvku.</string>
     <string name="report">Odeslat chybové hlášení</string>
     <string name="pairing_completed">Párování bylo úspěšné, spouštím službu</string>
     <string name="pairing_failed_try_again">Párování selhalo, prosím zkuste to znovu</string>
@@ -173,7 +157,7 @@
     <string name="meshtastic_service_notifications">Servisní upozornění</string>
     <string name="acknowledgements">Poděkování</string>
     <string name="open_source_libraries">Open source knihovny</string>
-    <string name="open_source_description">Meshtastic používá následující open-source knihovny. Klepnutím zobrazíte jejich licence.</string>
+    <string name="open_source_description">Pangea používá následující open-source knihovny. Klepnutím zobrazíte jejich licence.</string>
     <string name="library_count">%1$d knihoven</string>
     <string name="channel_invalid">Tato adresa URL kanálu je neplatná a nelze ji použít</string>
     <string name="contact_invalid">Tento kontakt je neplatný a nelze jej přidat</string>
@@ -278,7 +262,7 @@
     <string name="bluetooth_disabled">Bluetooth je zakázáno. Prosím povolte jej v nastavení zařízení.</string>
     <string name="open_settings">Otevřít nastavení</string>
     <string name="firmware_version">Verze firmware: %1$s</string>
-    <string name="permission_missing_31">Meshtastic potřebuje mít povoleno oprávnění ‚Blízká zařízení‘, aby mohl vyhledávat a připojovat zařízení přes Bluetooth. Když jej nepoužíváte, můžete jej vypnout.</string>
+    <string name="permission_missing_31">Pangea potřebuje mít povoleno oprávnění ‚Blízká zařízení‘, aby mohl vyhledávat a připojovat zařízení přes Bluetooth. Když jej nepoužíváte, můžete jej vypnout.</string>
     <string name="direct_message">Přímá zpráva</string>
     <string name="nodedb_reset">Reset NodeDB</string>
     <string name="delivery_confirmed">Doručeno</string>
@@ -355,7 +339,7 @@
     <string name="meshtastic_new_nodes_notifications">Oznámení o nových uzlech</string>
     <string name="more_details">Více detailů</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Poměr signálu k šumu (SNR) je veličina používaná k vyjádření poměru mezi úrovní požadovaného signálu a úrovní šumu na pozadí. V Meshtastic a dalších bezdrátových systémech vyšší hodnota SNR značí čistší signál, což může zvýšit spolehlivost a kvalitu přenosu dat.</string>
+    <string name="snr_definition">Poměr signálu k šumu (SNR) je veličina používaná k vyjádření poměru mezi úrovní požadovaného signálu a úrovní šumu na pozadí. V Pangea a dalších bezdrátových systémech vyšší hodnota SNR značí čistší signál, což může zvýšit spolehlivost a kvalitu přenosu dat.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indikátor síly přijímaného signálu, měření, které se používá k určení hladiny výkonu přijímané anténou. Vyšší hodnota RSSI obvykle znamená silnější a stabilnější spojení.</string>
     <string name="iaq_definition">(Vnitřní kvalita ovzduší) relativní hodnota IAQ měřená Bosch BME680. Hodnota rozsahu 0–500.</string>
@@ -415,7 +399,7 @@
     <string name="current">Proud</string>
     <string name="voltage">Napětí</string>
     <string name="are_you_sure">Jste si jistý?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Přečetl jsem si <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">dokumentaci o rolích zařízení</a> a blogový příspěvek o <a href="http://meshtastic.org/blog/choosing-the-right-device-role">výběru správné role zařízení</a>.]]></string>
+    <string name="router_role_confirmation_text">Přečetl jsem si &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;dokumentaci o rolích zařízení&lt;/a&gt; a blogový příspěvek o &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;výběru správné role zařízení&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Vím co dělám.</string>
     <string name="low_battery_message">Uzel %1$s má nízký stav baterie (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Upozornění na nízký stav baterie</string>
@@ -424,7 +408,7 @@
     <string name="baro_pressure">Tlak</string>
     <string name="udp_enabled">Povoleno</string>
     <string name="udp_config">UDP Konfigurace</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Naposledy slyšen: %2$s<br>Poslední pozice: %3$s<br>Baterie: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Naposledy slyšen: %2$s&lt;br&gt;Poslední pozice: %3$s&lt;br&gt;Baterie: %4$s</string>
     <string name="toggle_my_position">Zapnout/vypnout pozici</string>
     <string name="user">Uživatel</string>
     <string name="channels">Kanály</string>
@@ -439,7 +423,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Sériový</string>
     <string name="external_notification">Externí oznámení</string>
-    <string name="store_forward"><![CDATA[Uložit a přeposlat]]></string>
+    <string name="store_forward">Uložit a přeposlat</string>
     <string name="range_test">Zkouška dosahu</string>
     <string name="telemetry">Telemetrie</string>
     <string name="canned_message">Přednastavené zprávy</string>
@@ -637,7 +621,7 @@
     <string name="timeout">Vypršel čas spojení</string>
     <string name="serial_mode">Sériový režim</string>
     <string name="override_console_serial_port">Přepsat sériový port komunikace</string>
-    <string name="store_forward_enabled"><![CDATA[Uložit a přeposlat povoleno]]></string>
+    <string name="store_forward_enabled">Uložit a přeposlat povoleno</string>
     <string name="heartbeat">Pulzující LED</string>
     <string name="number_of_records">Počet záznamů</string>
     <string name="server">Server</string>
@@ -658,7 +642,7 @@
     <string name="short_name">Krátké jméno</string>
     <string name="hardware_model">Hardwarový model</string>
     <string name="licensed_amateur_radio">Licencované amatérské rádio (Ham)</string>
-    <string name="licensed_amateur_radio_text">Povolení této možnosti zruší šifrování a není kompatibilní se základním nastavením Meshtastic sítě.</string>
+    <string name="licensed_amateur_radio_text">Povolení této možnosti zruší šifrování a není kompatibilní se základním nastavením Pangea sítě.</string>
     <string name="dew_point">Rosný bod</string>
     <string name="pressure">Tlak</string>
     <string name="gas_resistance">Odpor plynu</string>
@@ -667,10 +651,10 @@
     <string name="wind">Vítr</string>
     <string name="weight">Hmotnost</string>
     <string name="radiation">Radiace</string>
-    <string name="store_forward_config"><![CDATA[Nastavení uložit a přeposlat]]></string>
+    <string name="store_forward_config">Nastavení uložit a přeposlat</string>
     <string name="indoor_air_quality_iaq">Kvalita vnitřního ovzduší (IAQ)</string>
     <string name="url">Adresa URL</string>
-    <string name="backup_restore"><![CDATA[Zálohování a obnovení]]></string>
+    <string name="backup_restore">Zálohování a obnovení</string>
     <string name="import_configuration">Importovat nastavení</string>
     <string name="export_configuration">Exportovat nastavení</string>
     <string name="hardware">Hardware</string>
@@ -753,7 +737,7 @@
     <string name="disconnect">Odpojit</string>
     <string name="no_network_devices">Nebyla nalezena žádná síťová zařízení.</string>
     <string name="no_usb_devices">Nebyla nalezena žádná sériová zařízení USB.</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Stav zabezpečení</string>
     <string name="security_icon_secure">Bezpečný</string>
     <string name="unknown_channel">Neznámý kanál</string>
@@ -799,7 +783,7 @@
     <string name="installed_firmware_version">Aktuálně instalováno</string>
     <string name="latest_stable_firmware">Poslední stabilní</string>
     <string name="latest_alpha_firmware">Poslední alfa</string>
-    <string name="supported_by_community">Podporováno komunitou Meshtastic</string>
+    <string name="supported_by_community">Podporováno komunitou Pangea</string>
     <string name="firmware_edition">Firmware edice</string>
     <string name="recent_network_devices">Nedávná síťová zařízení</string>
     <string name="discovered_network_devices">Nalezená síťová zařízení</string>
@@ -822,11 +806,11 @@
     <string name="critical_alerts_description">Pakety označené jako kritické budou ignorovat přepínač ztlumení i nastavení režimu Nerušit v oznamovacím centru systému.</string>
     <string name="configure_notification_permissions">Nastavit oprávnění oznámení</string>
     <string name="phone_location">Poloha telefonu</string>
-    <string name="phone_location_description">Meshtastic využívá polohu telefonu pro některé funkce. Oprávnění k poloze si můžete kdykoli upravit v nastavení.</string>
+    <string name="phone_location_description">Pangea využívá polohu telefonu pro některé funkce. Oprávnění k poloze si můžete kdykoli upravit v nastavení.</string>
     <string name="share_location">Sdílet polohu</string>
     <string name="share_location_description">Použijte GPS telefonu k odesílání polohy do svého uzlu namísto použití hardwarového GPS přímo na uzlu.</string>
     <string name="distance_measurements">Měření vzdálenosti</string>
-    <string name="distance_measurements_description">Zobrazí vzdálenost mezi vaším telefonem a ostatními uzly Meshtastic s určenou polohou.</string>
+    <string name="distance_measurements_description">Zobrazí vzdálenost mezi vaším telefonem a ostatními uzly Pangea s určenou polohou.</string>
     <string name="distance_filters">Filtry vzdálenosti</string>
     <string name="distance_filters_description">Filtrovat seznam uzlů a mesh mapu podle vzdálenosti od vašeho telefonu.</string>
     <string name="mesh_map_location">Poloha v mesh mapě</string>
@@ -837,7 +821,7 @@
     <string name="critical_alerts">Kritická upozornění</string>
     <string name="critical_alerts_dnd_request_text">Chcete-li dostávat kritická upozornění (např. SOS) i v režimu Nerušit, povolte speciální oprávnění v nastavení oznámení.</string>
     <string name="configure_critical_alerts">Nastavit kritická upozornění</string>
-    <string name="notification_permissions_description">Meshtastic vás pomocí oznámení upozorní na nové zprávy a důležité události. Nastavení oznámení si můžete kdykoli upravit.</string>
+    <string name="notification_permissions_description">Pangea vás pomocí oznámení upozorní na nové zprávy a důležité události. Nastavení oznámení si můžete kdykoli upravit.</string>
     <string name="next">Další</string>
     <string name="grant_permissions">Povolit oprávnění</string>
     <string name="nodes_queued_for_deletion">%1$d uzlů zařazeno k odstranění:</string>
@@ -1027,7 +1011,7 @@
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Nastavení oprávnění Bluetooth</string>
     <string name="bluetooth_feature_discovery">Objevujte</string>
-    <string name="bluetooth_feature_discovery_description">Najděte a identifikujte zařízení Meshtastic ve svém okolí.</string>
+    <string name="bluetooth_feature_discovery_description">Najděte a identifikujte zařízení Pangea ve svém okolí.</string>
     <string name="bluetooth_feature_config">Nastavení</string>
     <string name="bluetooth_feature_config_description">Bezdrátová správa nastavení a kanálů zařízení.</string>
     <string name="local_stats_battery">Baterie: %1$d %%</string>

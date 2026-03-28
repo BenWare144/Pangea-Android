@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtre</string>
     <string name="desc_node_filter_clear">Effacer le filtre de nœud</string>
     <string name="node_filter_title">Filtrer par</string>
@@ -167,7 +151,7 @@
     <string name="qr_code">Code QR</string>
     <string name="unknown_username">Nom d'Utilisateur inconnu</string>
     <string name="send">Envoyer</string>
-    <string name="warning_not_paired">Aucune radio Meshtastic compatible n'a été jumelée à ce téléphone. Jumelez un appareil et spécifiez votre nom d'utilisateur.\n\nL'application open-source est en test alpha, si vous rencontrez des problèmes postez au chat sur notre site web.\n\nPour plus d'information visitez notre site web - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Aucune radio Pangea compatible n'a été jumelée à ce téléphone. Jumelez un appareil et spécifiez votre nom d'utilisateur.\n\nL'application open-source est en test alpha, si vous rencontrez des problèmes postez au chat sur notre site web.\n\nPour plus d'information visitez notre site web - www.pangea.org.</string>
     <string name="you">Vous</string>
     <string name="analytics_okay">Autoriser les statistiques et les rapports de plantage.</string>
     <string name="accept">Accepter</string>
@@ -175,10 +159,10 @@
     <string name="discard_changes">Ignorer</string>
     <string name="save_changes">Sauvegarder</string>
     <string name="new_channel_rcvd">Réception de l'URL d'un nouveau cana</string>
-    <string name="permission_missing">Meshtastic a besoin d'autorisations de localisation activées pour trouver de nouveaux appareils via Bluetooth. Vous pouvez désactiver lorsque la localisation n'est pas utilisée.</string>
+    <string name="permission_missing">Pangea a besoin d'autorisations de localisation activées pour trouver de nouveaux appareils via Bluetooth. Vous pouvez désactiver lorsque la localisation n'est pas utilisée.</string>
     <string name="report_bug">Rapporter Bogue</string>
     <string name="report_a_bug">Rapporter un Bogue</string>
-    <string name="report_bug_text">Êtes-vous certain de vouloir rapporter un bogue ? Après l'envoi, veuillez poster dans https://github.com/orgs/meshtastic/discussions afin que nous puissions examiner ce que vous avez trouvé.</string>
+    <string name="report_bug_text">Êtes-vous certain de vouloir rapporter un bogue ? Après l'envoi, veuillez poster dans https://github.com/orgs/pangea/discussions afin que nous puissions examiner ce que vous avez trouvé.</string>
     <string name="report">Rapport</string>
     <string name="pairing_completed">Jumelage terminé, démarrage du service</string>
     <string name="pairing_failed_try_again">Le jumelage a échoué, veuillez sélectionner à nouveau</string>
@@ -308,7 +292,7 @@
     <string name="bluetooth_disabled">Le Bluetooth est désactivé. Veuillez l'activer dans les paramètres de votre appareil.</string>
     <string name="open_settings">Ouvrir les paramètres</string>
     <string name="firmware_version">Version du firmware : %1$s</string>
-    <string name="permission_missing_31">Meshtastic a besoin des autorisations \"Périphériques à proximité\" activées pour trouver et se connecter à des appareils via Bluetooth. Vous pouvez désactiver la lorsque la localisation n'est pas utilisée.</string>
+    <string name="permission_missing_31">Pangea a besoin des autorisations \"Périphériques à proximité\" activées pour trouver et se connecter à des appareils via Bluetooth. Vous pouvez désactiver la lorsque la localisation n'est pas utilisée.</string>
     <string name="direct_message">Message direct</string>
     <string name="nodedb_reset">Reconfiguration de NodeDB</string>
     <string name="delivery_confirmed">Réception confirmée par le destinataire</string>
@@ -388,7 +372,7 @@
     <string name="meshtastic_new_nodes_notifications">Notifikasyon nouvo nœud</string>
     <string name="more_details">Plus de détails</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signal-to-Noise Ratio, une mesure utilisée dans les communications pour quantifier le niveau du signal par rapport au niveau du bruit de fond. Dans les systèmes Meshtastic et autres systèmes sans fil, un SNR plus élevé indique un signal plus clair qui peut améliorer la fiabilité et la qualité de la transmission de données.</string>
+    <string name="snr_definition">Signal-to-Noise Ratio, une mesure utilisée dans les communications pour quantifier le niveau du signal par rapport au niveau du bruit de fond. Dans les systèmes Pangea et autres systèmes sans fil, un SNR plus élevé indique un signal plus clair qui peut améliorer la fiabilité et la qualité de la transmission de données.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indicateur de force du signal reçu, une mesure utilisée pour déterminer le niveau de puissance reçu par l'antenne. Une valeur RSSI plus élevée indique généralement une connexion plus forte et plus stable.</string>
     <string name="iaq_definition">(Qualité de l'air intérieur) valeur de l'échelle relative IAQ mesurée par Bosch BME680. Plage de valeur 0–500.</string>
@@ -447,7 +431,7 @@
     <string name="current">Actif</string>
     <string name="voltage">Tension</string>
     <string name="are_you_sure">Êtes-vous sûr ?</string>
-    <string name="router_role_confirmation_text"><![CDATA[J'ai lu la <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Documentation du rôle de l'appareil</a> et le billet de blog sur comment <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Choisir le rôle de l'appareil approprié</a>.]]></string>
+    <string name="router_role_confirmation_text">J'ai lu la &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Documentation du rôle de l'appareil&lt;/a&gt; et le billet de blog sur comment &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Choisir le rôle de l'appareil approprié&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Je sais ce que je fais.</string>
     <string name="low_battery_message">La batterie du nœud %1$s est faible (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Notifications de batterie faible</string>
@@ -457,7 +441,7 @@
     <string name="udp_enabled">Activé</string>
     <string name="udp_broadcast">Diffusion UDP</string>
     <string name="udp_config">Configuration UDP</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Dernière écoute : %2$s<br>Dernière position : %3$s<br>Batterie : %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Dernière écoute : %2$s&lt;br&gt;Dernière position : %3$s&lt;br&gt;Batterie : %4$s</string>
     <string name="toggle_my_position">Basculer ma position</string>
     <string name="orient_north">Orienter vers le nord</string>
     <string name="user">Utilisateur</string>
@@ -473,7 +457,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Série</string>
     <string name="external_notification">Notification externe</string>
-    <string name="store_forward"><![CDATA[Stocker & Transférer]]></string>
+    <string name="store_forward">Stocker &amp; Transférer</string>
     <string name="range_test">Tests de portée</string>
     <string name="telemetry">Télémétrie</string>
     <string name="canned_message">Message prédéfini</string>
@@ -692,7 +676,7 @@
     <string name="timeout">Délai d'expiration</string>
     <string name="serial_mode">Mode série</string>
     <string name="override_console_serial_port">Outrepasser le port série de la console</string>
-    <string name="store_forward_enabled"><![CDATA[Stocker & Transférer activé]]></string>
+    <string name="store_forward_enabled">Stocker &amp; Transférer activé</string>
     <string name="heartbeat">Battement de cœur (heartbeat)</string>
     <string name="number_of_records">Nombre d'enregistrements</string>
     <string name="history_return_max">Limite d’historique renvoyé</string>
@@ -716,7 +700,7 @@
     <string name="short_name">Nom court</string>
     <string name="hardware_model">Modèle de matériel</string>
     <string name="licensed_amateur_radio">Radioamateur licencié (RA)</string>
-    <string name="licensed_amateur_radio_text">L'activation de cette option désactive le chiffrement et n'est pas compatible avec le réseau Meshtastic par défaut.</string>
+    <string name="licensed_amateur_radio_text">L'activation de cette option désactive le chiffrement et n'est pas compatible avec le réseau Pangea par défaut.</string>
     <string name="dew_point">Point de rosée</string>
     <string name="pressure">Pression</string>
     <string name="gas_resistance">Résistance au gaz</string>
@@ -725,10 +709,10 @@
     <string name="wind">Vent</string>
     <string name="weight">Poids</string>
     <string name="radiation">Radiation</string>
-    <string name="store_forward_config"><![CDATA[Paramètres Stocker & Transférer]]></string>
+    <string name="store_forward_config">Paramètres Stocker &amp; Transférer</string>
     <string name="indoor_air_quality_iaq">Qualité de l'air intérieur (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Sauvegarder & Restaurer]]></string>
+    <string name="backup_restore">Sauvegarder &amp; Restaurer</string>
     <string name="import_configuration">Importer la configuration</string>
     <string name="export_configuration">Exporter la configuration</string>
     <string name="hardware">Matériel</string>
@@ -826,7 +810,7 @@
     <string name="no_network_devices">Aucun périphérique réseau trouvé.</string>
     <string name="no_usb_devices">Aucun périphérique série USB détecté.</string>
     <string name="scroll_to_bottom">Défiler vers le bas</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Statut de sécurité</string>
     <string name="security_icon_secure">Sécurisé</string>
     <string name="security_icon_badge_warning_description">Badge d'alerte</string>
@@ -882,7 +866,7 @@
     <string name="installed_firmware_version">Actuellement installés</string>
     <string name="latest_stable_firmware">Dernière version stable</string>
     <string name="latest_alpha_firmware">Dernière version alpha</string>
-    <string name="supported_by_community">Soutenu par la communauté Meshtastic</string>
+    <string name="supported_by_community">Soutenu par la communauté Pangea</string>
     <string name="firmware_edition">Version du micrologiciel</string>
     <string name="recent_network_devices">Périphériques réseaux récents</string>
     <string name="discovered_network_devices">Appareils réseau découverts</string>
@@ -905,11 +889,11 @@
     <string name="critical_alerts_description">Sélectionnez les paquets envoyés comme critiques ignorera le commutateur muet et les paramètres Ne pas déranger dans le centre de notification du système d'exploitation.</string>
     <string name="configure_notification_permissions">Configurer les autorisations de notification</string>
     <string name="phone_location">Localisation du téléphone</string>
-    <string name="phone_location_description">Meshtastic utilise la localisation de votre téléphone pour activer un certain nombre de fonctionnalités. Vous pouvez mettre à jour vos autorisations de localisation à tout moment à partir des paramètres.</string>
+    <string name="phone_location_description">Pangea utilise la localisation de votre téléphone pour activer un certain nombre de fonctionnalités. Vous pouvez mettre à jour vos autorisations de localisation à tout moment à partir des paramètres.</string>
     <string name="share_location">Localisation partagée</string>
     <string name="share_location_description">Utilisez le GPS de votre téléphone pour envoyer des emplacements à votre nœud au lieu d'utiliser le GPS de votre nœud.</string>
     <string name="distance_measurements">Mesures de distance</string>
-    <string name="distance_measurements_description">Afficher la distance entre votre téléphone et les autres nœuds Meshtastic avec des positions.</string>
+    <string name="distance_measurements_description">Afficher la distance entre votre téléphone et les autres nœuds Pangea avec des positions.</string>
     <string name="distance_filters">Filtres de distance</string>
     <string name="distance_filters_description">Filtrer la liste de nœuds et la carte de maillage en fonction de la proximité de votre téléphone.</string>
     <string name="mesh_map_location">Emplacement de la carte de maillage</string>
@@ -920,7 +904,7 @@
     <string name="critical_alerts">Alertes critiques</string>
     <string name="critical_alerts_dnd_request_text">Pour assurer la réception des alertes critiques, comme les messages de SOS, même lorsque votre périphérique est en mode \"Ne pas déranger\", vous devez donner les droits spéciaux. Activez cela dans les paramètres de notifications    </string>
     <string name="configure_critical_alerts">Configurer les alertes critiques</string>
-    <string name="notification_permissions_description">Meshtastic utilise les notifications pour vous tenir à jour sur les nouveaux messages et autres événements importants. Vous pouvez mettre à jour vos autorisations de notification à tout moment à partir des paramètres.</string>
+    <string name="notification_permissions_description">Pangea utilise les notifications pour vous tenir à jour sur les nouveaux messages et autres événements importants. Vous pouvez mettre à jour vos autorisations de notification à tout moment à partir des paramètres.</string>
     <string name="next">Suivant</string>
     <string name="grant_permissions">Accorder les autorisations</string>
     <string name="nodes_queued_for_deletion">%1$d nœuds en attente de suppression :</string>
@@ -1127,9 +1111,9 @@
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Configurer les autorisations Bluetooth</string>
     <string name="connect_to_radio">Se connecter à la radio</string>
-    <string name="connect_to_radio_description">Recherchez et connectez-vous à votre périphérique radio maillage Meshtastic.</string>
+    <string name="connect_to_radio_description">Recherchez et connectez-vous à votre périphérique radio maillage Pangea.</string>
     <string name="bluetooth_feature_discovery">Découverte</string>
-    <string name="bluetooth_feature_discovery_description">Trouvez et identifiez les dispositifs Meshtastic autour de  vous.</string>
+    <string name="bluetooth_feature_discovery_description">Trouvez et identifiez les dispositifs Pangea autour de  vous.</string>
     <string name="bluetooth_feature_config">Configuration</string>
     <string name="bluetooth_feature_config_description">Gérer à distance sans fil les paramètres et les canaux de votre appareil.</string>
     <string name="permission_granted">Autorisation accordée</string>

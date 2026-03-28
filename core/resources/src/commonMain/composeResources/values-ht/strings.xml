@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filtre</string>
@@ -69,7 +53,7 @@
     <string name="qr_code">Kòd QR</string>
     <string name="unknown_username">Non itilizatè enkoni</string>
     <string name="send">Voye</string>
-    <string name="warning_not_paired">Ou poko konekte ak yon radyo ki konpatib ak Meshtastic sou telefòn sa a. Tanpri konekte yon aparèy epi mete non itilizatè w lan.\n\nSa a se yon aplikasyon piblik ki nan tès Alpha. Si ou gen pwoblèm, tanpri pataje sou fowòm nou an: https://github.com/orgs/meshtastic/discussions\n\nPou plis enfòmasyon, vizite sit wèb nou an - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Ou poko konekte ak yon radyo ki konpatib ak Pangea sou telefòn sa a. Tanpri konekte yon aparèy epi mete non itilizatè w lan.\n\nSa a se yon aplikasyon piblik ki nan tès Alpha. Si ou gen pwoblèm, tanpri pataje sou fowòm nou an: https://github.com/orgs/pangea/discussions\n\nPou plis enfòmasyon, vizite sit wèb nou an - www.pangea.org.</string>
     <string name="you">Ou</string>
     <string name="accept">Aksepte</string>
     <string name="cancel">Anile</string>
@@ -77,7 +61,7 @@
     <string name="new_channel_rcvd">Nouvo kanal URL resevwa</string>
     <string name="report_bug">Rapòte yon pwoblèm</string>
     <string name="report_a_bug">Rapòte pwoblèm</string>
-    <string name="report_bug_text">Èske ou sèten ou vle rapòte yon pwoblèm? Aprew fin rapòte, tanpri pataje sou https://github.com/orgs/meshtastic/discussions pou nou ka konpare rapò a ak sa ou jwenn nan.</string>
+    <string name="report_bug_text">Èske ou sèten ou vle rapòte yon pwoblèm? Aprew fin rapòte, tanpri pataje sou https://github.com/orgs/pangea/discussions pou nou ka konpare rapò a ak sa ou jwenn nan.</string>
     <string name="report">Rapò</string>
     <string name="pairing_completed">Koneksyon konplè, sèvis kòmanse</string>
     <string name="pairing_failed_try_again">Koneksyon echwe, tanpri chwazi ankò</string>
@@ -195,7 +179,7 @@
     <string name="encryption_error">Pa matche kle piblik</string>
     <string name="meshtastic_new_nodes_notifications">Notifikasyon nouvo nœud</string>
     <string name="more_details">Plis detay</string>
-    <string name="snr_definition">Rapò Siynal sou Bri, yon mezi ki itilize nan kominikasyon pou mezire nivo siynal vle a kont nivo bri ki nan anviwònman an. Nan Meshtastic ak lòt sistèm san fil, yon SNR pi wo endike yon siynal pi klè ki ka amelyore fyab ak kalite transmisyon done.</string>
+    <string name="snr_definition">Rapò Siynal sou Bri, yon mezi ki itilize nan kominikasyon pou mezire nivo siynal vle a kont nivo bri ki nan anviwònman an. Nan Pangea ak lòt sistèm san fil, yon SNR pi wo endike yon siynal pi klè ki ka amelyore fyab ak kalite transmisyon done.</string>
     <string name="rssi_definition">Endikatè Fòs Siynal Resevwa, yon mezi ki itilize pou detèmine nivo pouvwa siynal ki resevwa pa antèn nan. Yon RSSI pi wo jeneralman endike yon koneksyon pi fò ak plis estab.</string>
     <string name="iaq_definition">(Kalite Lèy Entèryè) echèl relatif valè IAQ jan li mezire pa Bosch BME680. Ranje valè 0–500.</string>
     <string name="node_map">Kat Nœud</string>

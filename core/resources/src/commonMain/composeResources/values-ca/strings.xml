@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtre</string>
     <string name="desc_node_filter_clear">netejar filtre de node</string>
     <string name="node_filter_include_unknown">Incloure desconegut</string>
@@ -77,7 +61,7 @@
     <string name="qr_code">Codi QR</string>
     <string name="unknown_username">Nom d'usuari desconegut</string>
     <string name="send">Enviar</string>
-    <string name="warning_not_paired">Encara no has emparellat una ràdio compatible amb Meshtastic amb aquest telèfon. Si us plau emparella un dispositiu i configura el teu nom d'usuari. \n\nAquesta aplicació de codi obert està en desenvolupament. Si hi trobes problemes publica-ho en el nostre fòrum https://github.com/orgs/meshtastic/discussions\n\nPer a més informació visita la nostra pàgina web - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Encara no has emparellat una ràdio compatible amb Pangea amb aquest telèfon. Si us plau emparella un dispositiu i configura el teu nom d'usuari. \n\nAquesta aplicació de codi obert està en desenvolupament. Si hi trobes problemes publica-ho en el nostre fòrum https://github.com/orgs/pangea/discussions\n\nPer a més informació visita la nostra pàgina web - www.pangea.org.</string>
     <string name="you">Tu</string>
     <string name="accept">Acceptar</string>
     <string name="cancel">Cancel·lar</string>
@@ -85,7 +69,7 @@
     <string name="new_channel_rcvd">Nova URL de canal rebuda</string>
     <string name="report_bug">Informar d'error</string>
     <string name="report_a_bug">Informar d'un error</string>
-    <string name="report_bug_text">Estàs segur que vols informar d'un error? Després d'informar-ne, si us plau publica en https://github.com/orgs/meshtastic/discussions de tal manera que puguem emparellar l'informe amb allò que has trobat.</string>
+    <string name="report_bug_text">Estàs segur que vols informar d'un error? Després d'informar-ne, si us plau publica en https://github.com/orgs/pangea/discussions de tal manera que puguem emparellar l'informe amb allò que has trobat.</string>
     <string name="report">Informe</string>
     <string name="pairing_completed">Emparellament completat, iniciar servei</string>
     <string name="pairing_failed_try_again">Emparellament fallit, si us plau selecciona un altre cop</string>
@@ -192,7 +176,7 @@
     <string name="region_frequency_plan">Regió</string>
     <string name="timeout">Temps esgotat</string>
     <string name="distance">Distància</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->
     <!-- INSECURE_PRECISE_MQTT_WARNING State (Red Open Lock with Warning Badge) -->

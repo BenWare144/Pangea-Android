@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">絞り込み</string>
     <string name="desc_node_filter_clear">ノードフィルターをクリアします</string>
     <string name="node_filter_title">絞り込み</string>
@@ -138,7 +122,7 @@
     <string name="qr_code">QRコード</string>
     <string name="unknown_username">ユーザー名不明</string>
     <string name="send">送信</string>
-    <string name="warning_not_paired">このスマートフォンはMeshtasticデバイスとペアリングされていません。デバイスとペアリングしてユーザー名を設定してください。\n\nこのオープンソースアプリケーションはアルファテスト中です。問題を発見した場合はBBSに書き込んでください。 https://github.com/orgs/meshtastic/discussions\n\n詳しくはWEBページをご覧ください。 www.meshtastic.org</string>
+    <string name="warning_not_paired">このスマートフォンはPangeaデバイスとペアリングされていません。デバイスとペアリングしてユーザー名を設定してください。\n\nこのオープンソースアプリケーションはアルファテスト中です。問題を発見した場合はBBSに書き込んでください。 https://github.com/orgs/pangea/discussions\n\n詳しくはWEBページをご覧ください。 www.pangea.org</string>
     <string name="you">あなた</string>
     <string name="analytics_okay">分析とクラッシュレポートを許可する。</string>
     <string name="accept">同意</string>
@@ -146,10 +130,10 @@
     <string name="discard_changes">破棄</string>
     <string name="save_changes">保存</string>
     <string name="new_channel_rcvd">新しいチャンネルURLを受信しました</string>
-    <string name="permission_missing">Meshtasticは、新規デバイスをBluetooth経由で検出するために位置情報の許可を有効にする必要があります。非使用時は無効にすることができます。</string>
+    <string name="permission_missing">Pangeaは、新規デバイスをBluetooth経由で検出するために位置情報の許可を有効にする必要があります。非使用時は無効にすることができます。</string>
     <string name="report_bug">バグを報告</string>
     <string name="report_a_bug">バグを報告</string>
-    <string name="report_bug_text">不具合報告として診断情報を送信しますか？送信した場合は https://github.com/orgs/meshtastic/discussions に検証できる報告を書き込んでください。</string>
+    <string name="report_bug_text">不具合報告として診断情報を送信しますか？送信した場合は https://github.com/orgs/pangea/discussions に検証できる報告を書き込んでください。</string>
     <string name="report">報告</string>
     <string name="pairing_completed">ペアリングが完了しました。サービスを開始します。</string>
     <string name="pairing_failed_try_again">ペアに設定できませんでした。もう一度選択してください。</string>
@@ -162,7 +146,7 @@
     <string name="ip_address">IPアドレス</string>
     <string name="ip_port">ポート:</string>
     <string name="connected">接続済</string>
-    <string name="connected_to">Meshtasticデバイスに接続しました
+    <string name="connected_to">Pangeaデバイスに接続しました
 (%1$s)</string>
     <string name="connection_status">現在の接続：</string>
     <string name="wifi_ip">Wi-Fi IP：</string>
@@ -170,7 +154,7 @@
     <string name="connecting">接続中</string>
     <string name="not_connected">接続されていません</string>
     <string name="no_device_selected">デバイスが選択されていません</string>
-    <string name="connected_sleeping">接続しましたが、Meshtasticデバイスはスリープ状態です。</string>
+    <string name="connected_sleeping">接続しましたが、Pangeaデバイスはスリープ状態です。</string>
     <string name="app_too_old">アプリを更新して下さい。</string>
     <string name="must_update">アプリが古く、デバイスと通信ができません。アプリストアまたはGithubでアプリを更新してください。詳細は<a href="https://meshtastic.org/docs/software/android/installation">こちら</a> に記載されています。</string>
     <string name="none">なし (切断)</string>
@@ -309,7 +293,7 @@
     <string name="meshtastic_new_nodes_notifications">新しいノードの通知</string>
     <string name="more_details">詳細を見る</string>
     <string name="snr">SN比</string>
-    <string name="snr_definition">信号対ノイズ比（SN比）は、通信において、目的の信号のレベルを背景ノイズのレベルに対して定量化するために使用される尺度です。Meshtasticや他の無線システムでは、SN比が高いほど信号が鮮明であることを示し、データ伝送の信頼性と品質を向上させることができます。</string>
+    <string name="snr_definition">信号対ノイズ比（SN比）は、通信において、目的の信号のレベルを背景ノイズのレベルに対して定量化するために使用される尺度です。Pangeaや他の無線システムでは、SN比が高いほど信号が鮮明であることを示し、データ伝送の信頼性と品質を向上させることができます。</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">受信信号強度インジケーター（RSSI）は、アンテナで受信している電力レベルを測定するための指標です。一般的にRSSI値が高いほど、より強力で安定した接続を示します。</string>
     <string name="iaq_definition">(屋内空気品質) 相対スケールIAQ値は、ボッシュBME680によって測定されます。 値の範囲は 0-500。</string>
@@ -349,14 +333,14 @@
     <string name="current">電流</string>
     <string name="voltage">電圧</string>
     <string name="are_you_sure">よろしいですか？</string>
-    <string name="router_role_confirmation_text"><![CDATA[私はすでに<a href="https://meshtastic.org/docs/configuration/radio/device/#roles">デバイスロールドキュメント</a>と <a href="http://meshtastic.org/blog/choosing-the-right-device-role> 正しいデバイスのロールを選択</a>についてのブログ記事を読んでいます。]]></string>
+    <string name="router_role_confirmation_text">私はすでに&lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;デバイスロールドキュメント&lt;/a&gt;と &lt;a href="http://pangea.org/blog/choosing-the-right-device-role&gt; 正しいデバイスのロールを選択&lt;/a&gt;についてのブログ記事を読んでいます。</string>
     <string name="i_know_what_i_m_doing">はい、了承します</string>
     <string name="low_battery_message">ノード %1$s のバッテリー残量が少なくなっています (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">バッテリー残量低下通知</string>
     <string name="low_battery_title">バッテリー低残量: %1$s</string>
     <string name="meshtastic_low_battery_temporary_remote_notifications">バッテリー残量低下通知 (お気に入りノード)</string>
     <string name="udp_config">UDP Config</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>最終受信: %2$s<br>最終位置: %3$s<br>バッテリー: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;最終受信: %2$s&lt;br&gt;最終位置: %3$s&lt;br&gt;バッテリー: %4$s</string>
     <string name="toggle_my_position">自分の位置を切り替え</string>
     <string name="user">ユーザー</string>
     <string name="channels">チャンネル</string>
@@ -371,7 +355,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">シリアル</string>
     <string name="external_notification">外部通知</string>
-    <string name="store_forward"><![CDATA[メッセージの一時保管と転送]]></string>
+    <string name="store_forward">メッセージの一時保管と転送</string>
     <string name="range_test">レンジテスト</string>
     <string name="telemetry">テレメトリー</string>
     <string name="canned_message">Cannedメッセージ</string>
@@ -534,7 +518,7 @@
     <string name="timeout">タイムアウト</string>
     <string name="serial_mode">シリアルモード</string>
     <string name="override_console_serial_port">コンソールのシリアルポートを上書き</string>
-    <string name="store_forward_enabled"><![CDATA[一時保管と転送の有効化]]></string>
+    <string name="store_forward_enabled">一時保管と転送の有効化</string>
     <string name="heartbeat">ハートビート</string>
     <string name="number_of_records">サーバーの最大保管レコード数  (デフォルト 約11,000レコード)</string>
     <string name="history_return_max">リクエスト可能な最大の履歴件数</string>
@@ -551,7 +535,7 @@
     <string name="node_id">ノード ID</string>
     <string name="hardware_model">ハードウェアのモデル</string>
     <string name="licensed_amateur_radio">アマチュア無線従事者 (ハム/HAM)</string>
-    <string name="licensed_amateur_radio_text">このオプションを有効にすると、暗号化が無効になりデフォルトのMeshtasticネットワークと互換性が無くなります。</string>
+    <string name="licensed_amateur_radio_text">このオプションを有効にすると、暗号化が無効になりデフォルトのPangeaネットワークと互換性が無くなります。</string>
     <string name="dew_point">露点</string>
     <string name="pressure">気圧</string>
     <string name="gas_resistance">ガス圧</string>
@@ -560,10 +544,10 @@
     <string name="wind">風力</string>
     <string name="weight">重さ</string>
     <string name="radiation">放射線</string>
-    <string name="store_forward_config"><![CDATA[メッセージの一時保管と転送の設定 (Store & Forward)]]></string>
+    <string name="store_forward_config">メッセージの一時保管と転送の設定 (Store &amp; Forward)</string>
     <string name="indoor_air_quality_iaq">屋内空気品質 (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[バックアップと復元]]></string>
+    <string name="backup_restore">バックアップと復元</string>
     <string name="import_configuration">設定をインポート</string>
     <string name="export_configuration">設定をエクスポート</string>
     <string name="hardware">ハードウェア</string>
@@ -617,7 +601,7 @@
     <string name="should_update_firmware">ファームウェアの更新を推奨します。</string>
     <string name="should_update">最新の修正や機能をご利用いただくために、お使いのノードのファームウェアをアップデートしてください。\n\n最新の安定ファームウェアバージョン: %1$s</string>
     <string name="disconnect">切断</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->
     <!-- INSECURE_PRECISE_MQTT_WARNING State (Red Open Lock with Warning Badge) -->
@@ -657,10 +641,10 @@
     <string name="all_time">すべて</string>
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Configure Bluetooth Permissions</string>
-    <string name="connect_to_radio">Meshtasticデバイスに接続しました</string>
-    <string name="connect_to_radio_description">Meshtastic メッシュ無線デバイスをスキャンして接続します。</string>
+    <string name="connect_to_radio">Pangeaデバイスに接続しました</string>
+    <string name="connect_to_radio_description">Pangea メッシュ無線デバイスをスキャンして接続します。</string>
     <string name="bluetooth_feature_discovery">ディスカバリー</string>
-    <string name="bluetooth_feature_discovery_description">あなたの近くにあるMeshtasticデバイスを見つけて識別します。</string>
+    <string name="bluetooth_feature_discovery_description">あなたの近くにあるPangeaデバイスを見つけて識別します。</string>
     <string name="bluetooth_feature_config">設定</string>
     <string name="bluetooth_feature_config_description">デバイスの設定とチャンネルをワイヤレスで管理します。</string>
     <string name="permission_granted">許可が与えられました</string>
@@ -678,7 +662,7 @@
     <string name="local_stats_heap_value">%1$d / %2$d</string>
     <string name="local_stats_updated_at">%1$s</string>
     <string name="powered">給電</string>
-    <string name="meshtastic_stats">Meshtastic 統計</string>
+    <string name="meshtastic_stats">Pangea 統計</string>
     <string name="refresh">更新</string>
     <string name="updated">更新済み</string>
     <!-- Network Map Layers -->

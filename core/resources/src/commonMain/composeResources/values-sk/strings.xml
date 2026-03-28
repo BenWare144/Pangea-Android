@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filter</string>
     <string name="desc_node_filter_clear">vymazať filter uzlov</string>
     <string name="node_filter_title">Filtrovať podľa</string>
@@ -121,7 +105,7 @@
     <string name="qr_code">QR kód</string>
     <string name="unknown_username">Neznáme užívateľské meno</string>
     <string name="send">Odoslať</string>
-    <string name="warning_not_paired">K tomuto telefónu ste ešte nespárovali žiadne zariadenie kompatibilné s Meshtastic. Prosím spárujte zariadenie a nastavte svoje užívateľské meno.\n\nTáto open-source aplikácia je v alpha testovacej fáze, ak nájdete chybu, prosím popíšte ju na fóre: https://github.com/orgs/meshtastic/discussions\n\n Pre viac informácií navštívte web stránku - www.meshtastic.org.</string>
+    <string name="warning_not_paired">K tomuto telefónu ste ešte nespárovali žiadne zariadenie kompatibilné s Pangea. Prosím spárujte zariadenie a nastavte svoje užívateľské meno.\n\nTáto open-source aplikácia je v alpha testovacej fáze, ak nájdete chybu, prosím popíšte ju na fóre: https://github.com/orgs/pangea/discussions\n\n Pre viac informácií navštívte web stránku - www.pangea.org.</string>
     <string name="you">Vy</string>
     <string name="analytics_okay">Povoliť posielanie analytiky a chybových hlásení.</string>
     <string name="accept">Prijať</string>
@@ -131,7 +115,7 @@
     <string name="new_channel_rcvd">Prijatá nová URL kanálu</string>
     <string name="report_bug">Nahlásiť chybu</string>
     <string name="report_a_bug">Nahlásiť chybu</string>
-    <string name="report_bug_text">Ste si istý, že chcete nahlásiť chybu? Po odoslaní prosím pridajte správu do https://github.com/orgs/meshtastic/discussions aby sme vedeli priradiť Vami nahlásenú chybu ku Vášmu príspevku.</string>
+    <string name="report_bug_text">Ste si istý, že chcete nahlásiť chybu? Po odoslaní prosím pridajte správu do https://github.com/orgs/pangea/discussions aby sme vedeli priradiť Vami nahlásenú chybu ku Vášmu príspevku.</string>
     <string name="report">Nahlásiť</string>
     <string name="pairing_completed">Párovanie ukončené, štartujem službu</string>
     <string name="pairing_failed_try_again">Párovanie zlyhalo, prosím skúste to znovu</string>
@@ -285,7 +269,7 @@
     <string name="meshtastic_new_nodes_notifications">Notifikácie nových uzlov</string>
     <string name="more_details">Viac detailov</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Pomer signálu od šumu (SNR), miera používaná v komunikácii na kvantifikáciu úrovne požadovaného signálu k úrovni hluku pozadia. V Meshtastic a iných bezdrôtových systémoch znamená vyšší SNR jasnejší signál, ktorý môže zvýšiť spoľahlivosť a kvalitu prenosu údajov.</string>
+    <string name="snr_definition">Pomer signálu od šumu (SNR), miera používaná v komunikácii na kvantifikáciu úrovne požadovaného signálu k úrovni hluku pozadia. V Pangea a iných bezdrôtových systémoch znamená vyšší SNR jasnejší signál, ktorý môže zvýšiť spoľahlivosť a kvalitu prenosu údajov.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indikátor sily prijímaného signálu (RSSI), meranie používané na určenie úrovne výkonu prijatého skrz anténu. Vyššia hodnota RSSI vo všeobecnosti znamená silnejšie a stabilnejšie pripojenie.</string>
     <string name="iaq_definition">(Kvalita vzduchu v interiéri) relatívna hodnota IAQ meraná prístrojom Bosch BME680. Rozsah hodnôt 0–500.</string>
@@ -328,14 +312,14 @@
     <string name="current">Prúd</string>
     <string name="voltage">Napätie</string>
     <string name="are_you_sure">Si si istý?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Prečítal som si <a href="https://meshtastic.org/docs/configuration/radio/device/#roles"> Dokumentáciu o úlohách zariadení</a> a blog o <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Výberaní správnej úlohy pre zariadenie </a>.]]></string>
+    <string name="router_role_confirmation_text">Prečítal som si &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt; Dokumentáciu o úlohách zariadení&lt;/a&gt; a blog o &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Výberaní správnej úlohy pre zariadenie &lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Viem čo robím.</string>
     <string name="low_battery_message">Uzol %1$s má slabú batériu (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Upozornenia o slabej batérii</string>
     <string name="low_battery_title">Slabá batéria: %1$s</string>
     <string name="meshtastic_low_battery_temporary_remote_notifications">Upozornenia o slabej batérii (obľúbene uzle)</string>
     <string name="udp_config">Konfigurácia UDP</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Naposledy počutý: %2$s<br>Posledná pozícia: %3$s<br>Batéria: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Naposledy počutý: %2$s&lt;br&gt;Posledná pozícia: %3$s&lt;br&gt;Batéria: %4$s</string>
     <string name="toggle_my_position">Zapnúť lokalizáciu</string>
     <string name="user">Užívateľ</string>
     <string name="channels">Kanále</string>
@@ -350,7 +334,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Sériový</string>
     <string name="external_notification">Externá notifikácia</string>
-    <string name="store_forward"><![CDATA[Uložiť a preposlať]]></string>
+    <string name="store_forward">Uložiť a preposlať</string>
     <string name="range_test">Test dosahu</string>
     <string name="telemetry">Telemetria</string>
     <string name="canned_message">Konzervovaná správa</string>
@@ -422,7 +406,7 @@
     <string name="weight">Hmotnosť</string>
     <string name="radiation">Radiácia</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Zálohovanie a Obnovenie]]></string>
+    <string name="backup_restore">Zálohovanie a Obnovenie</string>
     <string name="import_configuration">Importovať konfiguráciu</string>
     <string name="export_configuration">Exportovať konfiguráciu</string>
     <string name="hardware">Hardvér</string>
@@ -436,7 +420,7 @@
     <string name="primary">Primárna</string>
     <string name="secondary">Sekundárna</string>
     <string name="bottom_nav_settings">Nastavenia</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->
     <!-- INSECURE_PRECISE_MQTT_WARNING State (Red Open Lock with Warning Badge) -->

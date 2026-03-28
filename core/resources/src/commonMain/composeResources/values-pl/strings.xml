@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filtr</string>
     <string name="desc_node_filter_clear">Wyczyść filtr</string>
     <string name="node_filter_title">Filtry</string>
@@ -148,7 +132,7 @@
     <string name="qr_code">Kod QR</string>
     <string name="unknown_username">Nieznana nazwa użytkownika</string>
     <string name="send">Wyślij</string>
-    <string name="warning_not_paired">Nie sparowałeś jeszcze urządzenia Meshtastic z tym telefonem. Proszę sparować urządzenie i ustawić swoją nazwę użytkownika.\n\nTa aplikacja open-source jest w fazie rozwoju, jeśli znajdziesz problemy, napisz na naszym forum: https://github.com/orgs/meshtastic/discussions\n\nWięcej informacji znajdziesz na naszej stronie internetowej - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Nie sparowałeś jeszcze urządzenia Pangea z tym telefonem. Proszę sparować urządzenie i ustawić swoją nazwę użytkownika.\n\nTa aplikacja open-source jest w fazie rozwoju, jeśli znajdziesz problemy, napisz na naszym forum: https://github.com/orgs/pangea/discussions\n\nWięcej informacji znajdziesz na naszej stronie internetowej - www.pangea.org.</string>
     <string name="you">Ty</string>
     <string name="analytics_okay">Zezwalaj na analizę i raportowanie awarii.</string>
     <string name="accept">Akceptuj</string>
@@ -156,10 +140,10 @@
     <string name="discard_changes">Odrzuć</string>
     <string name="save_changes">Zapisz</string>
     <string name="new_channel_rcvd">Otrzymano nowy URL kanału</string>
-    <string name="permission_missing">Meshtastic potrzebuje permisji na użycie lokalizacji w celu wykrywania nowych urządzeń poprzez Bluetooth. Możesz wyłączyć, gdy nie jest w użyciu.</string>
+    <string name="permission_missing">Pangea potrzebuje permisji na użycie lokalizacji w celu wykrywania nowych urządzeń poprzez Bluetooth. Możesz wyłączyć, gdy nie jest w użyciu.</string>
     <string name="report_bug">Zgłoś błąd</string>
     <string name="report_a_bug">Zgłoś błąd</string>
-    <string name="report_bug_text">Czy na pewno chcesz zgłosić błąd? Po zgłoszeniu opublikuj post na https://github.com/orgs/meshtastic/discussions, abyśmy mogli dopasować zgłoszenie do tego, co znalazłeś.</string>
+    <string name="report_bug_text">Czy na pewno chcesz zgłosić błąd? Po zgłoszeniu opublikuj post na https://github.com/orgs/pangea/discussions, abyśmy mogli dopasować zgłoszenie do tego, co znalazłeś.</string>
     <string name="report">Zgłoś</string>
     <string name="pairing_completed">Parowanie zakończone, uruchamianie</string>
     <string name="pairing_failed_try_again">Parowanie nie powiodło się, wybierz ponownie</string>
@@ -293,7 +277,7 @@
     <string name="bluetooth_disabled">Bluetooth jest wyłączony. Proszę, włącz go w ustawieniach twojego urządzenia.</string>
     <string name="open_settings">Otwórz ustawienia</string>
     <string name="firmware_version">Wersja oprogramowania: %1$s</string>
-    <string name="permission_missing_31">Meshtastic potrzebuje uprawnienia \"Urządzenia w pobliżu\" w celu znalezienia i połączenia się z urządzeniem poprzez Bluetooth. Możesz wyłączyć, gdy nie jest używane.</string>
+    <string name="permission_missing_31">Pangea potrzebuje uprawnienia \"Urządzenia w pobliżu\" w celu znalezienia i połączenia się z urządzeniem poprzez Bluetooth. Możesz wyłączyć, gdy nie jest używane.</string>
     <string name="direct_message">Bezpośrednia wiadomość</string>
     <string name="nodedb_reset">Zresetuj NodeDB</string>
     <string name="delivery_confirmed">Dostarczono</string>
@@ -367,7 +351,7 @@
     <string name="meshtastic_new_nodes_notifications">Powiadomienia o nowych węzłach</string>
     <string name="more_details">Więcej…</string>
     <string name="snr">SNR:</string>
-    <string name="snr_definition">Współczynnik sygnału do szumu (Signal-to-Noise Ratio) - miara stosowana w komunikacji do określania poziomu pożądanego sygnału w stosunku do poziomu szumu tła. W Meshtastic i innych systemach bezprzewodowych wyższy współczynnik SNR oznacza czystszy sygnał, który może zwiększyć niezawodność i jakość transmisji danych.</string>
+    <string name="snr_definition">Współczynnik sygnału do szumu (Signal-to-Noise Ratio) - miara stosowana w komunikacji do określania poziomu pożądanego sygnału w stosunku do poziomu szumu tła. W Pangea i innych systemach bezprzewodowych wyższy współczynnik SNR oznacza czystszy sygnał, który może zwiększyć niezawodność i jakość transmisji danych.</string>
     <string name="rssi">RSSI:</string>
     <string name="rssi_definition">Received Signal Strength Indicator - miara używana do określenia poziomu mocy odbieranej przez antenę. Wyższa wartość RSSI zazwyczaj oznacza silniejsze i bardziej stabilne połączenie.</string>
     <string name="iaq_definition">Jakość powietrza w pomieszczeniach (Indoor Air Quality) - wartość względna w skali IAQ mierzona czujnikiem BME680. Zakres wartości: 0–500.</string>
@@ -425,7 +409,7 @@
     <string name="current">Natężenie</string>
     <string name="voltage">Napięcie</string>
     <string name="are_you_sure">Czy jesteś pewien?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Przeczytałem <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Dokumentacja roli urządzenia</a> oraz post na blogu o <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Wybranie odpowiedniej roli urządzenia</a>.]]></string>
+    <string name="router_role_confirmation_text">Przeczytałem &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Dokumentacja roli urządzenia&lt;/a&gt; oraz post na blogu o &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Wybranie odpowiedniej roli urządzenia&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Wiem, co robię.</string>
     <string name="low_battery_message">Węzeł %1$s ma niski poziom baterii (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Powiadomienia o niskim poziomie baterii</string>
@@ -434,7 +418,7 @@
     <string name="udp_enabled">Włączony</string>
     <string name="udp_broadcast">Transmisja UDP</string>
     <string name="udp_config">Ustawienia UDP</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s-<br>Ostatnio słyszany: %2$s<br>Ostatnia pozycja: %3$s<br>Bateria: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s-&lt;br&gt;Ostatnio słyszany: %2$s&lt;br&gt;Ostatnia pozycja: %3$s&lt;br&gt;Bateria: %4$s</string>
     <string name="toggle_my_position">Pokaż moją pozycję</string>
     <string name="orient_north">Zorientuj na północ</string>
     <string name="user">Użytkownik</string>
@@ -450,7 +434,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Seryjny</string>
     <string name="external_notification">Zewnętrzne Powiadomienie</string>
-    <string name="store_forward"><![CDATA[Przechowuj i przekazuj]]></string>
+    <string name="store_forward">Przechowuj i przekazuj</string>
     <string name="range_test">Test zasięgu</string>
     <string name="telemetry">Telemetria</string>
     <string name="audio">Dźwięk</string>
@@ -609,7 +593,7 @@
     <string name="wind">Wiatr</string>
     <string name="radiation">Promieniowanie</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Kopia zapasowa i przywracanie]]></string>
+    <string name="backup_restore">Kopia zapasowa i przywracanie</string>
     <string name="import_configuration">Import konfiguracji</string>
     <string name="export_configuration">Eksport konfiguracji</string>
     <string name="hardware">Sprzęt</string>
@@ -661,7 +645,7 @@
     <string name="export_keys">Eksportuj klucze</string>
     <string name="disconnect">Rozłącz</string>
     <string name="scroll_to_bottom">Przewiń w dół</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="unknown_channel">Nieznany kanał</string>
     <string name="warning">Uwaga</string>
     <string name="unknown">Nieznany</string>

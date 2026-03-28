@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filter</string>
@@ -74,7 +58,7 @@
     <string name="qr_code">QR koda</string>
     <string name="unknown_username">Neznano uporabniško ime</string>
     <string name="send">Pošlji</string>
-    <string name="warning_not_paired">S tem telefonom še niste seznanili združljivega Meshtastic radia. Prosimo povežite napravo in nastavite svoje uporabniško ime. \n\nTa odprtokodna aplikacija je v alfa testiranju, če imate težave, objavite na našem spletnem klepetu.\n\nZa več informacij glejte našo spletno stran - www.meshtastic.org.</string>
+    <string name="warning_not_paired">S tem telefonom še niste seznanili združljivega Pangea radia. Prosimo povežite napravo in nastavite svoje uporabniško ime. \n\nTa odprtokodna aplikacija je v alfa testiranju, če imate težave, objavite na našem spletnem klepetu.\n\nZa več informacij glejte našo spletno stran - www.pangea.org.</string>
     <string name="you">Jaz</string>
     <string name="accept">Sprejmi</string>
     <string name="cancel">Prekliči/zavrzi</string>
@@ -82,7 +66,7 @@
     <string name="new_channel_rcvd">Prejet je bil novi URL kanala</string>
     <string name="report_bug">Prijavi napako</string>
     <string name="report_a_bug">Prijavite napako</string>
-    <string name="report_bug_text">Ali ste prepričani, da želite prijaviti napako? Po poročanju objavite v https://github.com/orgs/meshtastic/discussions, da bomo lahko primerjali poročilo s tistim, kar ste našli.</string>
+    <string name="report_bug_text">Ali ste prepričani, da želite prijaviti napako? Po poročanju objavite v https://github.com/orgs/pangea/discussions, da bomo lahko primerjali poročilo s tistim, kar ste našli.</string>
     <string name="report">Poročilo</string>
     <string name="pairing_completed">Seznanjanje zaključeno, zagon storitve</string>
     <string name="pairing_failed_try_again">Seznanjanje ni uspelo. Prosimo, izberite znova</string>
@@ -205,7 +189,7 @@
     <string name="meshtastic_new_nodes_notifications">Obvestila novih vozlišč</string>
     <string name="more_details">Več podrobnosti</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Razmerje med signalom in šumom je merilo, ki se uporablja v komunikacijah za količinsko opredelitev ravni želenega signala glede na raven hrupa v ozadju. V Meshtastic in drugih brezžičnih sistemih višji SNR pomeni jasnejši signal, ki lahko poveča zanesljivost in kakovost prenosa podatkov.</string>
+    <string name="snr_definition">Razmerje med signalom in šumom je merilo, ki se uporablja v komunikacijah za količinsko opredelitev ravni želenega signala glede na raven hrupa v ozadju. V Pangea in drugih brezžičnih sistemih višji SNR pomeni jasnejši signal, ki lahko poveča zanesljivost in kakovost prenosa podatkov.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indikator moči sprejetega signala je meritev, ki se uporablja za določanje ravni moči, ki jo sprejema antena. Višja vrednost RSSI na splošno pomeni močnejšo in stabilnejšo povezavo.</string>
     <string name="iaq_definition">(Kakovost zraka v zaprtih prostorih) relativna vrednost IAQ na lestvici, izmerjena z Bosch BME680. Razpon vrednosti 0–500.</string>

@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">필터</string>
     <string name="desc_node_filter_clear">노드 필터 지우기</string>
     <string name="node_filter_title">필터</string>
@@ -86,7 +70,7 @@
     <string name="qr_code">QR코드</string>
     <string name="unknown_username">미확인 유저</string>
     <string name="send">보내기</string>
-    <string name="warning_not_paired">아직 스마트폰과 Meshtastic 장치와 연결하지 않았습니다. 장치와 연결하고 사용자 이름을 정하세요. \n\n이 오픈소스 응용 프로그램은 개발 중입니다. 문제가 발견되면 포럼: https://github.com/orgs/meshtastic/discussions 을 통해 알려주세요.\n\n 자세한 정보는 웹페이지 - www.meshtastic.org 를 참조하세요.</string>
+    <string name="warning_not_paired">아직 스마트폰과 Pangea 장치와 연결하지 않았습니다. 장치와 연결하고 사용자 이름을 정하세요. \n\n이 오픈소스 응용 프로그램은 개발 중입니다. 문제가 발견되면 포럼: https://github.com/orgs/pangea/discussions 을 통해 알려주세요.\n\n 자세한 정보는 웹페이지 - www.pangea.org 를 참조하세요.</string>
     <string name="you">나</string>
     <string name="accept">수락</string>
     <string name="cancel">취소</string>
@@ -94,7 +78,7 @@
     <string name="new_channel_rcvd">새로운 채널 URL 수신</string>
     <string name="report_bug">버그 보고</string>
     <string name="report_a_bug">버그 보고</string>
-    <string name="report_bug_text">버그를 보고하시겠습니까? 보고 후 Meshtastic 포럼 https://github.com/orgs/meshtastic/discussions 에 당신이 발견한 내용을 게시해주시면 신고 내용과 귀하가 찾은 내용을 일치 시킬 수 있습니다.</string>
+    <string name="report_bug_text">버그를 보고하시겠습니까? 보고 후 Pangea 포럼 https://github.com/orgs/pangea/discussions 에 당신이 발견한 내용을 게시해주시면 신고 내용과 귀하가 찾은 내용을 일치 시킬 수 있습니다.</string>
     <string name="report">보고</string>
     <string name="pairing_completed">연결 완료, 서비스를 시작합니다.</string>
     <string name="pairing_failed_try_again">연결 실패, 다시 시도해주세요.</string>
@@ -226,7 +210,7 @@
     <string name="meshtastic_new_nodes_notifications">새로운 노드 알림</string>
     <string name="more_details">자세히 보기</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">통신에서 원하는 신호의 수준을 배경 잡음의 수준과 비교하여 정량화하는 데 사용되는 신호 대 잡음비 Signal-to-Noise Ratio, SNR는 Meshtastic와 같은 무선 시스템에서 SNR이 높을수록 더 선명한 신호를 나타내어 데이터 전송의 안정성과 품질을 향상시킬 수 있습니다.</string>
+    <string name="snr_definition">통신에서 원하는 신호의 수준을 배경 잡음의 수준과 비교하여 정량화하는 데 사용되는 신호 대 잡음비 Signal-to-Noise Ratio, SNR는 Pangea와 같은 무선 시스템에서 SNR이 높을수록 더 선명한 신호를 나타내어 데이터 전송의 안정성과 품질을 향상시킬 수 있습니다.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">수신 신호 강도 지표 Received Signal Strength Indicator, RSSI는 안테나가 수신하는 신호의 전력 수준을 측정하는 데 사용되는 지표입니다. RSSI 값이 높을수록 일반적으로 더 강력하고 안정적인 연결을 나타냅니다.</string>
     <string name="iaq_definition">(실내공기질) Bosch BME680으로 측정한 상대적 척도 IAQ 값. 범위 0–500.</string>
@@ -267,7 +251,7 @@
     <string name="current">전류</string>
     <string name="voltage">전압</string>
     <string name="are_you_sure">확실합니까?</string>
-    <string name="router_role_confirmation_text"><![CDATA[<a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Device Role Documentation</a>과 <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Choosing The Right Device Role</a> 에 대한 블로그 게시물을 읽었습니다.]]></string>
+    <string name="router_role_confirmation_text">&lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Device Role Documentation&lt;/a&gt;과 &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Choosing The Right Device Role&lt;/a&gt; 에 대한 블로그 게시물을 읽었습니다.</string>
     <string name="i_know_what_i_m_doing">뭘하는지 알고 있습니다</string>
     <string name="low_battery_message">%1$s 노드의 배터리가 낮습니다. (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">배터리 부족 알림</string>
@@ -275,7 +259,7 @@
     <string name="meshtastic_low_battery_temporary_remote_notifications">배터리 부족 알림 (즐겨찾기 노드)</string>
     <string name="udp_enabled">활성화</string>
     <string name="udp_config">UDP 설정</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>최근 수신: %2$s<br>최근 위치: %3$s<br>배터리: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;최근 수신: %2$s&lt;br&gt;최근 위치: %3$s&lt;br&gt;배터리: %4$s</string>
     <string name="toggle_my_position">내 위치 토글</string>
     <string name="user">사용자</string>
     <string name="channels">채널</string>
@@ -290,7 +274,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">시리얼</string>
     <string name="external_notification">외부 알림</string>
-    <string name="store_forward"><![CDATA[저장 및 전달]]></string>
+    <string name="store_forward">저장 및 전달</string>
     <string name="range_test">거리 테스트</string>
     <string name="telemetry">텔레메트리</string>
     <string name="canned_message">빠른 답장 문구</string>
@@ -455,7 +439,7 @@
     <string name="serial_baud_rate">시리얼 baud rate</string>
     <string name="timeout">시간 초과</string>
     <string name="serial_mode">시리얼 모드</string>
-    <string name="store_forward_enabled"><![CDATA[저장 및 전달 활성화]]></string>
+    <string name="store_forward_enabled">저장 및 전달 활성화</string>
     <string name="server">서버</string>
     <string name="telemetry_config">텔레메트리 설정</string>
     <string name="environment_metrics_module_enabled">환경 메트릭 모듈 사용</string>
@@ -469,7 +453,7 @@
     <string name="long_name">긴 이름</string>
     <string name="short_name">짧은 이름</string>
     <string name="hardware_model">하드웨어 모델</string>
-    <string name="licensed_amateur_radio_text">이 옵션을 활성화하면 암호화가 비활성화되며 기본 Meshtastic 네트워크와 호환되지 않습니다.</string>
+    <string name="licensed_amateur_radio_text">이 옵션을 활성화하면 암호화가 비활성화되며 기본 Pangea 네트워크와 호환되지 않습니다.</string>
     <string name="dew_point">이슬점</string>
     <string name="pressure">기압</string>
     <string name="gas_resistance">가스 저항</string>
@@ -478,10 +462,10 @@
     <string name="wind">바람</string>
     <string name="weight">무게</string>
     <string name="radiation">복사</string>
-    <string name="store_forward_config"><![CDATA[저장 및 전달 설정]]></string>
+    <string name="store_forward_config">저장 및 전달 설정</string>
     <string name="indoor_air_quality_iaq">실내공기질 (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[백업 & 복구]]></string>
+    <string name="backup_restore">백업 &amp; 복구</string>
     <string name="import_configuration">설정 불러오기</string>
     <string name="export_configuration">설정 내보내기</string>
     <string name="hardware">하드웨어</string>
@@ -545,7 +529,7 @@
     <string name="disconnect">연결 끊기</string>
     <string name="no_network_devices">네트워크 장치를 찾을 수 없습니다.</string>
     <string name="no_usb_devices">USB 시리얼 장치를 찾을 수 없습니다.</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="unknown">알 수 없는</string>
     <string name="advanced_title">고급</string>
     <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->

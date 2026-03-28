@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Филтер</string>
@@ -123,7 +107,7 @@
     <string name="qr_code">QR код</string>
     <string name="unknown_username">Непознато корисничко име</string>
     <string name="send">Пошаљи</string>
-    <string name="warning_not_paired">Још нисте упарили Мештастик компатибилан радио са овим телефоном. Молимо вас да упарите уређај и поставите своје корисничко име.\n\nОва апликација отвореног кода је у развоју, ако нађете проблеме, молимо вас да их објавите на нашем форуму: https://github.com/orgs/meshtastic/discussions\n\nЗа више информација посетите нашу веб страницу - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Још нисте упарили Pangea компатибилан радио са овим телефоном. Молимо вас да упарите уређај и поставите своје корисничко име.\n\nОва апликација отвореног кода је у развоју, ако нађете проблеме, молимо вас да их објавите на нашем форуму: https://github.com/orgs/pangea/discussions\n\nЗа више информација посетите нашу веб страницу - www.pangea.org.</string>
     <string name="you">Ти</string>
     <string name="accept">Прихвати</string>
     <string name="cancel">Откажи</string>
@@ -131,7 +115,7 @@
     <string name="new_channel_rcvd">Примљен нови линк канала</string>
     <string name="report_bug">Пријави грешку</string>
     <string name="report_a_bug">Пријави грешку</string>
-    <string name="report_bug_text">Да ли сте сигурни да желите да пријавите грешку? Након пријаве, молимо вас да објавите на https://github.com/orgs/meshtastic/discussions како бисмо могли да упаримо извештај са оним што сте нашли.</string>
+    <string name="report_bug_text">Да ли сте сигурни да желите да пријавите грешку? Након пријаве, молимо вас да објавите на https://github.com/orgs/pangea/discussions како бисмо могли да упаримо извештај са оним што сте нашли.</string>
     <string name="report">Извештај</string>
     <string name="pairing_completed">Упаривање завршено, покрећем сервис</string>
     <string name="pairing_failed_try_again">Упаривање неуспешно, молимо изабери поново</string>
@@ -145,7 +129,7 @@
     <string name="not_connected">Није повезан</string>
     <string name="connected_sleeping">Повезан на радио уређај, али уређај је у стању спавања</string>
     <string name="app_too_old">Неопходно је ажурирање апликације</string>
-    <string name="must_update">Морате ажурирати ову апликацију у продавници апликација (или на Гитхабу). Превише је стара да би могла комуницирати са овим радио фирмвером. Молимо вас да прочитате наша &lt;a href='https://meshtastic.org/docs/software/android/installation'&gt;документа&lt;/a&gt; на ову тему.</string>
+    <string name="must_update">Морате ажурирати ову апликацију у продавници апликација (или на Гитхабу). Превише је стара да би могла комуницирати са овим радио фирмвером. Молимо вас да прочитате наша &lt;a href='https://pangea.org/docs/software/android/installation'&gt;документа&lt;/a&gt; на ову тему.</string>
     <string name="none">Ништа (онемогућено)</string>
     <string name="meshtastic_service_notifications">Обавештења о услугама</string>
     <string name="channel_invalid">Ова URL адреса канала је неважећа и не може се користити</string>
@@ -260,7 +244,7 @@
     <string name="meshtastic_new_nodes_notifications">Обавештења о новим чворовима</string>
     <string name="more_details">Више детаља</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Однос сигнал/шум SNR је мера која се користи у комуникацијама за квантитативно одређивање нивоа жељеног сигнала у односу на ниво позадинског шума. У Мештастик и другим бежичним системима, већи SNR указује на јаснији сигнал који може побољшати поузданост и квалитет преноса података.</string>
+    <string name="snr_definition">Однос сигнал/шум SNR је мера која се користи у комуникацијама за квантитативно одређивање нивоа жељеног сигнала у односу на ниво позадинског шума. У Pangea и другим бежичним системима, већи SNR указује на јаснији сигнал који може побољшати поузданост и квалитет преноса података.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Индикатор јачине примљеног сигнала RSSI је мера која се користи за одређивање нивоа снаге која се прима преко антене. Виша вредност RSSI генерално указује на јачу и стабилнију везу.</string>
     <string name="iaq_definition">Индекс квалитета ваздуха (IAQ) као мера за одређивање квалитета ваздуха унутрашњости, мерен са Bosch BME680. Вредности се крећу у распону од 0 до 500.</string>
@@ -307,7 +291,7 @@
     <string name="current">Струја</string>
     <string name="voltage">Напон</string>
     <string name="are_you_sure">Да ли сте сигурни?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Прочитао сам <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Документацију улога уређаја</a> и објаву на блогу <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Одабир праве улоге за уређај</a>.]]></string>
+    <string name="router_role_confirmation_text">Прочитао сам &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Документацију улога уређаја&lt;/a&gt; и објаву на блогу &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Одабир праве улоге за уређај&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Знам шта радим.</string>
     <string name="low_battery_message">Чвор %1$s има низак ниво батерије (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Нотификације о ниском нивоу батерије</string>
@@ -327,7 +311,7 @@
     <string name="security">Сигурност</string>
     <string name="serial">Серијска веза</string>
     <string name="external_notification">Спољна обавештења</string>
-    <string name="store_forward"><![CDATA[Сачувај и проследи]]></string>
+    <string name="store_forward">Сачувај и проследи</string>
     <string name="range_test">Тест домета</string>
     <string name="telemetry">Телеметрија (сензори)</string>
     <string name="ambient_lighting">Амбијентално осветљење</string>
@@ -397,7 +381,7 @@
     <string name="long_name">Дуго име</string>
     <string name="short_name">Кратко име</string>
     <string name="distance">Раздаљина</string>
-    <string name="store_forward_config"><![CDATA[Сачувај и проследи подешавања]]></string>
+    <string name="store_forward_config">Сачувај и проследи подешавања</string>
     <string name="indoor_air_quality_iaq">Квалитет ваздуха у затвореном простору (IAQ)</string>
     <string name="hardware">Хардвер</string>
     <string name="supported">Подржан</string>

@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filtro</string>
@@ -40,7 +24,7 @@
     <string name="qr_code">Código QR</string>
     <string name="unknown_username">Nome de usuario descoñecido</string>
     <string name="send">Enviar</string>
-    <string name="warning_not_paired">Aínda non enlazaches unha radio compatible con Meshtástic neste teléfono. Por favor enlaza un dispositivo e coloca o teu nome de usuario. \n\n Esta aplicación de código aberto está en desenvolvemento. Se atopas problemas por favor publícaos no noso foro: https://github.com/orgs/meshtastic/discussions\n\nPara máis información visita a nosa páxina - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Aínda non enlazaches unha radio compatible con Meshtástic neste teléfono. Por favor enlaza un dispositivo e coloca o teu nome de usuario. \n\n Esta aplicación de código aberto está en desenvolvemento. Se atopas problemas por favor publícaos no noso foro: https://github.com/orgs/pangea/discussions\n\nPara máis información visita a nosa páxina - www.pangea.org.</string>
     <string name="you">Ti</string>
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
@@ -48,7 +32,7 @@
     <string name="new_channel_rcvd">Novo enlace de canle recibida</string>
     <string name="report_bug">Reportar erro</string>
     <string name="report_a_bug">Reporta un erro</string>
-    <string name="report_bug_text">Seguro que queres reportar un erro? Despois de reportar, por favor publica en https://github.com/orgs/meshtastic/discussions para poder unir o reporte co que atopaches.</string>
+    <string name="report_bug_text">Seguro que queres reportar un erro? Despois de reportar, por favor publica en https://github.com/orgs/pangea/discussions para poder unir o reporte co que atopaches.</string>
     <string name="report">Reportar</string>
     <string name="pairing_completed">Enlazado completado, comezando servizo</string>
     <string name="pairing_failed_try_again">Enlazado fallou, por favor seleccione de novo</string>

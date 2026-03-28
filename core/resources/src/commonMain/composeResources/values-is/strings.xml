@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <!-- Position Config -->
@@ -22,7 +6,7 @@
     <string name="qr_code">QR kóði</string>
     <string name="unknown_username">Óþekkt notendanafn</string>
     <string name="send">Senda</string>
-    <string name="warning_not_paired">Þú hefur ekki parað Meshtastic radíó við þennan síma. Vinsamlegast paraðu búnað og veldu notendnafn.\n\nÞessi opni hugbúnaður er enn í þróun, finnir þú vandamál vinsamlegast búðu til þráð á spjallborðinu okkar: https://github.com/orgs/meshtastic/discussions\n\nFyrir frekari upplýsingar sjá vefsíðu - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Þú hefur ekki parað Pangea radíó við þennan síma. Vinsamlegast paraðu búnað og veldu notendnafn.\n\nÞessi opni hugbúnaður er enn í þróun, finnir þú vandamál vinsamlegast búðu til þráð á spjallborðinu okkar: https://github.com/orgs/pangea/discussions\n\nFyrir frekari upplýsingar sjá vefsíðu - www.pangea.org.</string>
     <string name="you">Þú</string>
     <string name="accept">Samþykkja</string>
     <string name="cancel">Hætta við</string>
@@ -30,7 +14,7 @@
     <string name="new_channel_rcvd">Ný slóð fyrir rás móttekin</string>
     <string name="report_bug">Tilkynna villu</string>
     <string name="report_a_bug">Tilkynna villu</string>
-    <string name="report_bug_text">Er þú viss um að vilja tilkynna villu? Eftir tilkynningu, settu vinsamlega inn þráð á https://github.com/orgs/meshtastic/discussions svo við getum tengt saman tilkynninguna við villuna sem þú fannst.</string>
+    <string name="report_bug_text">Er þú viss um að vilja tilkynna villu? Eftir tilkynningu, settu vinsamlega inn þráð á https://github.com/orgs/pangea/discussions svo við getum tengt saman tilkynninguna við villuna sem þú fannst.</string>
     <string name="report">Tilkynna</string>
     <string name="pairing_completed">Pörun lokið, ræsir þjónustu</string>
     <string name="pairing_failed_try_again">Pörun mistókst, vinsamlegast veljið aftur</string>

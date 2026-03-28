@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">過濾器</string>
     <string name="desc_node_filter_clear">清除節點過濾器</string>
     <string name="node_filter_title">篩選條件</string>
@@ -167,7 +151,7 @@
     <string name="qr_code">QRCODE</string>
     <string name="unknown_username">未知的使用者名稱</string>
     <string name="send">傳送</string>
-    <string name="warning_not_paired">您尚未將手機與 Meshtastic 相容的裝置配對。請先配對裝置並設置您的使用者名稱。\n\n此開源應用程式仍在開發中，如有問題，請在我們的論壇 https://github.com/orgs/meshtastic/discussions 上面發文詢問。\n\n 也可參閱我們的網頁 - www.meshtastic.org。</string>
+    <string name="warning_not_paired">您尚未將手機與 Pangea 相容的裝置配對。請先配對裝置並設置您的使用者名稱。\n\n此開源應用程式仍在開發中，如有問題，請在我們的論壇 https://github.com/orgs/pangea/discussions 上面發文詢問。\n\n 也可參閱我們的網頁 - www.pangea.org。</string>
     <string name="you">你</string>
     <string name="analytics_okay">允許傳送分析及崩潰報告。</string>
     <string name="accept">接受</string>
@@ -175,10 +159,10 @@
     <string name="discard_changes">放棄變更</string>
     <string name="save_changes">儲存</string>
     <string name="new_channel_rcvd">收到新的頻道 URL</string>
-    <string name="permission_missing">Meshtastic需要啟用定位及藍芽才能尋找新裝置，可以選擇在不使用時停用。</string>
+    <string name="permission_missing">Pangea需要啟用定位及藍芽才能尋找新裝置，可以選擇在不使用時停用。</string>
     <string name="report_bug">回報BUG</string>
     <string name="report_a_bug">回報問題</string>
-    <string name="report_bug_text">您確定要報告錯誤嗎？報告後，請在 https://github.com/orgs/meshtastic/discussions 上貼文，以便我們可以將報告與您發現的問題比對。</string>
+    <string name="report_bug_text">您確定要報告錯誤嗎？報告後，請在 https://github.com/orgs/pangea/discussions 上貼文，以便我們可以將報告與您發現的問題比對。</string>
     <string name="report">報告</string>
     <string name="pairing_completed">配對完成，開始服務</string>
     <string name="pairing_failed_try_again">配對失敗，請重新選擇</string>
@@ -304,7 +288,7 @@
     <string name="bluetooth_disabled">藍芽已關閉，請至手機設定內開啟藍芽功能。</string>
     <string name="open_settings">開啟設定</string>
     <string name="firmware_version">韌體版本：%1$s</string>
-    <string name="permission_missing_31">Meshtastic 應用程式需要啟用「鄰近裝置」權限，才能透過藍牙尋找並連接到裝置，可以選擇在不使用時停用。</string>
+    <string name="permission_missing_31">Pangea 應用程式需要啟用「鄰近裝置」權限，才能透過藍牙尋找並連接到裝置，可以選擇在不使用時停用。</string>
     <string name="direct_message">直通訊息</string>
     <string name="nodedb_reset">重設節點資料庫</string>
     <string name="delivery_confirmed">已確認送達</string>
@@ -385,7 +369,7 @@
     <string name="meshtastic_new_nodes_notifications">新節點通知</string>
     <string name="more_details">詳細資訊</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">信噪比（SNR），用於通訊中量化所需信號與背景噪音水平的指標。在 Meshtastic 及其他無線系統中，信噪比越高表示信號越清晰，可以提高數據傳輸的可靠性和品質。</string>
+    <string name="snr_definition">信噪比（SNR），用於通訊中量化所需信號與背景噪音水平的指標。在 Pangea 及其他無線系統中，信噪比越高表示信號越清晰，可以提高數據傳輸的可靠性和品質。</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">接收信號強度指示（RSSI）用於測量天線所接收到信號的功率強度。 RSSI 值越高通常代表連線越強且穩定。</string>
     <string name="iaq_definition">(室內空氣品質) 相對尺度 IAQ 值，由 Bosch BME680 測量。值範圍 0–500。</string>
@@ -443,7 +427,7 @@
     <string name="current">當前</string>
     <string name="voltage">電壓</string>
     <string name="are_you_sure">你確定嗎？</string>
-    <string name="router_role_confirmation_text"><![CDATA[我已經閱讀了<a href=“ https://meshtastic.org/docs/configuration/radio/device/#roles “>設備角色檔案</a>和關於<a href=”http://meshtastic.org/blog/choosing-the-right-device-role “>選擇正確的設備角色的博客文章 </a>。]]></string>
+    <string name="router_role_confirmation_text">我已經閱讀了&lt;a href=“ https://pangea.org/docs/configuration/radio/device/#roles “&gt;設備角色檔案&lt;/a&gt;和關於&lt;a href=”http://pangea.org/blog/choosing-the-right-device-role “&gt;選擇正確的設備角色的博客文章 &lt;/a&gt;。</string>
     <string name="i_know_what_i_m_doing">我知道我在做什麼。</string>
     <string name="low_battery_message">節點 %1$s 電量過低 (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">低電量通知</string>
@@ -453,7 +437,7 @@
     <string name="udp_enabled">已啟用</string>
     <string name="udp_broadcast">UDP 廣播</string>
     <string name="udp_config">UDP 設置</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>最後接收: %2$s<br>最後位置: %3$s<br>電量: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;最後接收: %2$s&lt;br&gt;最後位置: %3$s&lt;br&gt;電量: %4$s</string>
     <string name="toggle_my_position">切換我的位置</string>
     <string name="orient_north">定位朝北</string>
     <string name="user">使用者</string>
@@ -469,7 +453,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">序列埠</string>
     <string name="external_notification">外部通知</string>
-    <string name="store_forward"><![CDATA[儲存與轉發]]></string>
+    <string name="store_forward">儲存與轉發</string>
     <string name="range_test">範圍測試</string>
     <string name="telemetry">遙測</string>
     <string name="canned_message">罐頭訊息</string>
@@ -688,7 +672,7 @@
     <string name="timeout">逾時</string>
     <string name="serial_mode">序列埠模式</string>
     <string name="override_console_serial_port">覆蓋控制台序列埠</string>
-    <string name="store_forward_enabled"><![CDATA[啟用儲存並轉發]]></string>
+    <string name="store_forward_enabled">啟用儲存並轉發</string>
     <string name="heartbeat">心跳封包</string>
     <string name="number_of_records">紀錄數目</string>
     <string name="history_return_max">歴史紀錄最大返回值</string>
@@ -712,7 +696,7 @@
     <string name="short_name">裝置短名稱</string>
     <string name="hardware_model">硬體型號</string>
     <string name="licensed_amateur_radio">領有執照的業餘無線電台 (HAM)</string>
-    <string name="licensed_amateur_radio_text">啟用此選項將停用訊息加密，並與預設的 Meshtastic 網路不相容。</string>
+    <string name="licensed_amateur_radio_text">啟用此選項將停用訊息加密，並與預設的 Pangea 網路不相容。</string>
     <string name="dew_point">露點</string>
     <string name="pressure">氣壓</string>
     <string name="gas_resistance">氣體感測器</string>
@@ -721,10 +705,10 @@
     <string name="wind">風速</string>
     <string name="weight">重量</string>
     <string name="radiation">輻射</string>
-    <string name="store_forward_config"><![CDATA[儲存與轉發設定]]></string>
+    <string name="store_forward_config">儲存與轉發設定</string>
     <string name="indoor_air_quality_iaq">室內空氣品質 (IAQ)</string>
     <string name="url">網址</string>
-    <string name="backup_restore"><![CDATA[備份與還原]]></string>
+    <string name="backup_restore">備份與還原</string>
     <string name="import_configuration">匯入設定</string>
     <string name="export_configuration">匯出設定</string>
     <string name="hardware">硬體</string>
@@ -822,7 +806,7 @@
     <string name="no_network_devices">找不到網路裝置。</string>
     <string name="no_usb_devices">找不到 USB 序列裝置。</string>
     <string name="scroll_to_bottom">移至最底部</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">安全性狀態</string>
     <string name="security_icon_secure">安全性</string>
     <string name="security_icon_badge_warning_description">警告標誌</string>
@@ -878,7 +862,7 @@
     <string name="installed_firmware_version">目前已安裝</string>
     <string name="latest_stable_firmware">最新穩定版韌體</string>
     <string name="latest_alpha_firmware">最新測試版韌體</string>
-    <string name="supported_by_community">由 Meshtastic 社群協作</string>
+    <string name="supported_by_community">由 Pangea 社群協作</string>
     <string name="firmware_edition">韌體版本</string>
     <string name="recent_network_devices">最近的網路裝置</string>
     <string name="discovered_network_devices">發現的網路裝置</string>
@@ -901,11 +885,11 @@
     <string name="critical_alerts_description">標記為關鍵的封包在傳送時，將忽略訊息開關及作業系統通知中心的勿擾模式設定。</string>
     <string name="configure_notification_permissions">設定通知權限</string>
     <string name="phone_location">手機定位</string>
-    <string name="phone_location_description">Meshtastic 會使用您手機的定位資訊來啟用多項功能。您隨時可以在設定中修改定位權限。</string>
+    <string name="phone_location_description">Pangea 會使用您手機的定位資訊來啟用多項功能。您隨時可以在設定中修改定位權限。</string>
     <string name="share_location">分享位置</string>
     <string name="share_location_description">使用您手機的 GPS 來向節點發送位置，而不是使用節點上的 GPS 模組。</string>
     <string name="distance_measurements">距離量測</string>
-    <string name="distance_measurements_description">顯示您手機與其他有定位資訊的 Meshtastic 節點之間的距離。</string>
+    <string name="distance_measurements_description">顯示您手機與其他有定位資訊的 Pangea 節點之間的距離。</string>
     <string name="distance_filters">距離篩選器</string>
     <string name="distance_filters_description">根據您手機的距離，篩選節點列表和 Mesh 網路地圖。</string>
     <string name="mesh_map_location">Mesh Map 地圖位置</string>
@@ -919,7 +903,7 @@
         特殊權限。請在通知設定中啟用此功能。
     </string>
     <string name="configure_critical_alerts">設定緊急警示</string>
-    <string name="notification_permissions_description">Meshtastic 使用通知功能讓您隨時了解新訊息和其他重要事件。您可以隨時在設定中更新通知權限。</string>
+    <string name="notification_permissions_description">Pangea 使用通知功能讓您隨時了解新訊息和其他重要事件。您可以隨時在設定中更新通知權限。</string>
     <string name="next">繼續</string>
     <string name="grant_permissions">授予權限</string>
     <string name="nodes_queued_for_deletion">%1$d 個節點已排定移除：</string>
@@ -1129,9 +1113,9 @@
     <string name="bluetooth_permission">藍牙</string>
     <string name="configure_bluetooth_permissions">設定藍牙權限</string>
     <string name="connect_to_radio">連線至無線電</string>
-    <string name="connect_to_radio_description">掃描並連線至你的 Meshtastic 網狀無線電裝置。</string>
+    <string name="connect_to_radio_description">掃描並連線至你的 Pangea 網狀無線電裝置。</string>
     <string name="bluetooth_feature_discovery">探索</string>
-    <string name="bluetooth_feature_discovery_description">尋找並識別附近的 Meshtastic 裝置。</string>
+    <string name="bluetooth_feature_discovery_description">尋找並識別附近的 Pangea 裝置。</string>
     <string name="bluetooth_feature_config">設定</string>
     <string name="bluetooth_feature_config_description">無線管理你的裝置設定與頻道。</string>
     <string name="permission_granted">已授予權限</string>
@@ -1151,7 +1135,7 @@
     <string name="local_stats_heap_value">%1$d / %2$d</string>
     <string name="local_stats_updated_at">%1$s</string>
     <string name="powered">已供電</string>
-    <string name="meshtastic_stats">Meshtastic 統計</string>
+    <string name="meshtastic_stats">Pangea 統計</string>
     <string name="refresh">重新整理</string>
     <string name="updated">已更新</string>
     <!-- Network Map Layers -->

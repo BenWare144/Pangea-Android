@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filter</string>
@@ -74,7 +58,7 @@
     <string name="qr_code">QR kode</string>
     <string name="unknown_username">Ukjent Brukernavn</string>
     <string name="send">Send</string>
-    <string name="warning_not_paired">Du har ikke paret en Meshtastic kompatibel radio med denne telefonen. Vennligst parr en enhet, og sett ditt brukernavn.\n\nDenne åpen kildekode applikasjonen er i alfa-testing, Hvis du finner problemer, vennligst post på vårt forum: https://github.com/orgs/meshtastic/discussions\n\nFor mer informasjon, se vår nettside - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Du har ikke paret en Pangea kompatibel radio med denne telefonen. Vennligst parr en enhet, og sett ditt brukernavn.\n\nDenne åpen kildekode applikasjonen er i alfa-testing, Hvis du finner problemer, vennligst post på vårt forum: https://github.com/orgs/pangea/discussions\n\nFor mer informasjon, se vår nettside - www.pangea.org.</string>
     <string name="you">Deg</string>
     <string name="accept">Godta</string>
     <string name="cancel">Avbryt</string>
@@ -82,7 +66,7 @@
     <string name="new_channel_rcvd">Ny kanal URL mottatt</string>
     <string name="report_bug">Rapporter Feil</string>
     <string name="report_a_bug">Rapporter en feil</string>
-    <string name="report_bug_text">Er du sikker på at du vil rapportere en feil? Etter rapportering, vennligst posti https://github.com/orgs/meshtastic/discussions så vi kan matche rapporten med hva du fant.</string>
+    <string name="report_bug_text">Er du sikker på at du vil rapportere en feil? Etter rapportering, vennligst posti https://github.com/orgs/pangea/discussions så vi kan matche rapporten med hva du fant.</string>
     <string name="report">Rapport</string>
     <string name="pairing_completed">Paring fullført, starter tjeneste</string>
     <string name="pairing_failed_try_again">Paring feilet, vennligst velg igjen</string>
@@ -203,7 +187,7 @@
     <string name="meshtastic_new_nodes_notifications">Varsel om nye noder</string>
     <string name="more_details">Flere detaljer</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signal-to-Noise Ratio, et mål som brukes i kommunikasjon for å sette nivået av et ønsket signal til bakgrunnstrøynivået. I Meshtastic og andre trådløse systemer tyder et høyere SNR på et klarere signal som kan forbedre påliteligheten og kvaliteten på dataoverføringen.</string>
+    <string name="snr_definition">Signal-to-Noise Ratio, et mål som brukes i kommunikasjon for å sette nivået av et ønsket signal til bakgrunnstrøynivået. I Pangea og andre trådløse systemer tyder et høyere SNR på et klarere signal som kan forbedre påliteligheten og kvaliteten på dataoverføringen.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">\"Received Signal Strength Indicator\", en måling som brukes til å bestemme strømnivået som mottas av antennen. Høyere RSSI verdi indikerer generelt en sterkere og mer stabil forbindelse.</string>
     <string name="iaq_definition">(Innendørs luftkvalitet) relativ skala IAQ-verdi målt ved Bosch BME680. Verdi 0–500.</string>

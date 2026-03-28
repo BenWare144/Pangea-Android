@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Filter</string>
     <string name="desc_node_filter_clear">rensa filtrering av noder</string>
     <string name="node_filter_title">Filtrera på</string>
@@ -165,7 +149,7 @@
     <string name="qr_code">QR-kod</string>
     <string name="unknown_username">Okänt användarnamn</string>
     <string name="send">Skicka</string>
-    <string name="warning_not_paired">Du har ännu inte parat en Meshtastic-kompatibel radio med den här telefonen. Koppla ihop en enhet och ange ditt användarnamn.\n\nDetta öppna källkodsprogram (open source) är under utveckling, om du hittar problem, vänligen publicera det på vårt forum: https://github.com/orgs/meshtastic/discussions\n\nFör mer information se vår webbsida - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Du har ännu inte parat en Pangea-kompatibel radio med den här telefonen. Koppla ihop en enhet och ange ditt användarnamn.\n\nDetta öppna källkodsprogram (open source) är under utveckling, om du hittar problem, vänligen publicera det på vårt forum: https://github.com/orgs/pangea/discussions\n\nFör mer information se vår webbsida - www.pangea.org.</string>
     <string name="you">Du</string>
     <string name="analytics_okay">Tillåt analys och kraschrapportering.</string>
     <string name="accept">Acceptera</string>
@@ -173,10 +157,10 @@
     <string name="discard_changes">Släng</string>
     <string name="save_changes">Spara</string>
     <string name="new_channel_rcvd">Ny kanal-länk mottagen</string>
-    <string name="permission_missing">Meshtastic behöver platsbehörigheter aktiverade på telefonen för att hitta nya enheter via Bluetooth. Du kan inaktivera när den inte används.</string>
+    <string name="permission_missing">Pangea behöver platsbehörigheter aktiverade på telefonen för att hitta nya enheter via Bluetooth. Du kan inaktivera när den inte används.</string>
     <string name="report_bug">Rapportera bugg</string>
     <string name="report_a_bug">Rapportera bugg</string>
-    <string name="report_bug_text">Är du säker på att du vill rapportera en bugg? Efter rapportering, vänligen posta i https://github.com/orgs/meshtastic/discussions så att vi kan matcha rapporten med buggen du hittat.</string>
+    <string name="report_bug_text">Är du säker på att du vill rapportera en bugg? Efter rapportering, vänligen posta i https://github.com/orgs/pangea/discussions så att vi kan matcha rapporten med buggen du hittat.</string>
     <string name="report">Rapportera</string>
     <string name="pairing_completed">Parkoppling slutförd, startar tjänst</string>
     <string name="pairing_failed_try_again">Parkoppling misslyckades, försök igen</string>
@@ -304,7 +288,7 @@
     <string name="bluetooth_disabled">Bluetooth är inaktiverat. Aktivera den i inställningarna för enheten.</string>
     <string name="open_settings">Öppna inställningar</string>
     <string name="firmware_version">Fast programversion: %1$s</string>
-    <string name="permission_missing_31">Meshtastic behöver \"Närliggande enheter\"-behörigheter aktiverade för att hitta och ansluta till enheter via Bluetooth. Du kan inaktivera när den inte används.</string>
+    <string name="permission_missing_31">Pangea behöver \"Närliggande enheter\"-behörigheter aktiverade för att hitta och ansluta till enheter via Bluetooth. Du kan inaktivera när den inte används.</string>
     <string name="direct_message">Direktmeddelande</string>
     <string name="nodedb_reset">Nollställ NodeDB</string>
     <string name="delivery_confirmed">Sändning bekräftad</string>
@@ -380,7 +364,7 @@
     <string name="meshtastic_new_nodes_notifications">Ny nod avisering</string>
     <string name="more_details">Mer detaljer</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signal-to-Noise Ratio, är ett mått som används inom kommunikation för att kvantifiera nivån av en önskad signal mot nivån av bakgrundsbrus. I Meshtastic och andra trådlösa system indikerar en högre SNR en tydligare signal som kan förbättra tillförlitligheten och kvaliteten på dataöverföringen.</string>
+    <string name="snr_definition">Signal-to-Noise Ratio, är ett mått som används inom kommunikation för att kvantifiera nivån av en önskad signal mot nivån av bakgrundsbrus. I Pangea och andra trådlösa system indikerar en högre SNR en tydligare signal som kan förbättra tillförlitligheten och kvaliteten på dataöverföringen.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Received Signal Strength Indicator, ett mått som används för att avgöra effektnivån som togs emot av antennen. Ett högre RSSI-värde indikerar generellt en starkare och stabilare anslutning.</string>
     <string name="iaq_definition">(Indoor Air Quality) relativ skala IAQ värdet mätt med Bosch BME600. Värdeintervall 0-500.</string>
@@ -439,7 +423,7 @@
     <string name="current">Ström</string>
     <string name="voltage">Spänning</string>
     <string name="are_you_sure">Är du säker?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Jag har läst <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Device Role Documentation</a> och blogginlägget om <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Choosing The Right Device Role</a>.]]></string>
+    <string name="router_role_confirmation_text">Jag har läst &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Device Role Documentation&lt;/a&gt; och blogginlägget om &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Choosing The Right Device Role&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Jag vet vad jag håller på med.</string>
     <string name="low_battery_message">Noden %1$s har ett lågt batteri (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Avisering vid låg batterinivå</string>
@@ -449,7 +433,7 @@
     <string name="udp_enabled">Aktiverad</string>
     <string name="udp_broadcast">UDP-sändning</string>
     <string name="udp_config">UDP-konfiguration</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Senast hörd: %2$s<br>Senaste position: %3$s<br>Batteri: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Senast hörd: %2$s&lt;br&gt;Senaste position: %3$s&lt;br&gt;Batteri: %4$s</string>
     <string name="toggle_my_position">Växla min position</string>
     <string name="orient_north">Orientera mot norr</string>
     <string name="user">Användare</string>
@@ -465,7 +449,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Seriell kommunikation</string>
     <string name="external_notification">Extern avisering</string>
-    <string name="store_forward"><![CDATA[Lagra & skicka vidare]]></string>
+    <string name="store_forward">Lagra &amp; skicka vidare</string>
     <string name="range_test">Räckvidd</string>
     <string name="telemetry">Telemetri</string>
     <string name="canned_message">Burksvar</string>
@@ -653,7 +637,7 @@
     <string name="serial_baud_rate">Den seriella kommunikationens hastighet</string>
     <string name="timeout">Timeout</string>
     <string name="serial_mode">Seriellt läge</string>
-    <string name="store_forward_enabled"><![CDATA[Lagra & vidarebefordra är aktiverad]]></string>
+    <string name="store_forward_enabled">Lagra &amp; vidarebefordra är aktiverad</string>
     <string name="heartbeat">Pulsera</string>
     <string name="number_of_records">Antal poster</string>
     <string name="history_return_max">Maxstorlek för historik</string>
@@ -676,7 +660,7 @@
     <string name="long_name">Långt namn</string>
     <string name="short_name">Kort namn</string>
     <string name="hardware_model">Hårdvarumodell</string>
-    <string name="licensed_amateur_radio_text">Aktivering detta alternativ inaktiverar kryptering och är inte kompatibelt med standard Meshtastic-nätverk.</string>
+    <string name="licensed_amateur_radio_text">Aktivering detta alternativ inaktiverar kryptering och är inte kompatibelt med standard Pangea-nätverk.</string>
     <string name="dew_point">Daggpunkt</string>
     <string name="pressure">Tryck</string>
     <string name="gas_resistance">Gasmotstånd</string>
@@ -685,10 +669,10 @@
     <string name="wind">Vind</string>
     <string name="weight">Vikt</string>
     <string name="radiation">Strålning</string>
-    <string name="store_forward_config"><![CDATA[Inställningar för lagra & vidarebefodra]]></string>
+    <string name="store_forward_config">Inställningar för lagra &amp; vidarebefodra</string>
     <string name="indoor_air_quality_iaq">Luftkvalitet inomhus (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Säkerhetskopiering och återställning]]></string>
+    <string name="backup_restore">Säkerhetskopiering och återställning</string>
     <string name="import_configuration">Importera konfiguration</string>
     <string name="export_configuration">Exportera konfiguration</string>
     <string name="hardware">Hårdvara</string>
@@ -783,7 +767,7 @@
     <string name="no_network_devices">Inga nätverksenheter hittades.</string>
     <string name="no_usb_devices">Inga USB-seriella enheter hittades.</string>
     <string name="scroll_to_bottom">Gå till slutet</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Säkerhetsstatus</string>
     <string name="security_icon_secure">Säker</string>
     <string name="security_icon_badge_warning_description">Varningsemblem</string>
@@ -837,7 +821,7 @@
     <string name="installed_firmware_version">Installerad version</string>
     <string name="latest_stable_firmware">Senaste stabila</string>
     <string name="latest_alpha_firmware">Senaste alfa</string>
-    <string name="supported_by_community">Stöds av Meshtastic Community</string>
+    <string name="supported_by_community">Stöds av Pangea Community</string>
     <string name="firmware_edition">Fast programvaruversion</string>
     <string name="recent_network_devices">Senaste nätverksenheterna</string>
     <string name="discovered_network_devices">Upptäckta nätverksenheter</string>
@@ -859,11 +843,11 @@
     <string name="notifications_for_low_battery_alerts">Aviseringar för låg batterinivå för den anslutna enheten.</string>
     <string name="configure_notification_permissions">Konfigurera aviseringsbehörigheter</string>
     <string name="phone_location">Telefonens plats</string>
-    <string name="phone_location_description">Meshtastic använder telefonens plats för att aktivera ett antal funktioner. Du kan uppdatera dina platsbehörigheter när som helst från inställningar.</string>
+    <string name="phone_location_description">Pangea använder telefonens plats för att aktivera ett antal funktioner. Du kan uppdatera dina platsbehörigheter när som helst från inställningar.</string>
     <string name="share_location">Dela plats</string>
     <string name="share_location_description">Använd din telefons GPS för position istället för GPS:en på din nod.</string>
     <string name="distance_measurements">Avståndsmätning</string>
-    <string name="distance_measurements_description">Visa avståndet mellan din telefon och andra Meshtastic noder med kända positioner.</string>
+    <string name="distance_measurements_description">Visa avståndet mellan din telefon och andra Pangea noder med kända positioner.</string>
     <string name="distance_filters">Filtrera på avstånd</string>
     <string name="distance_filters_description">Filtrera nodlistan och mesh-kartan baserat på närheten till din telefon.</string>
     <string name="mesh_map_location">Mesh Map plats</string>
@@ -877,7 +861,7 @@
         -behörighet. Vänligen aktivera detta i aviseringsinställningarna.
     </string>
     <string name="configure_critical_alerts">Konfigurera kritiska larm</string>
-    <string name="notification_permissions_description">Meshtastic använder aviseringar för att hålla dig uppdaterad om nya meddelanden och andra viktiga händelser. Du kan uppdatera dina aviseringsbehörigheter när som helst från inställningar.</string>
+    <string name="notification_permissions_description">Pangea använder aviseringar för att hålla dig uppdaterad om nya meddelanden och andra viktiga händelser. Du kan uppdatera dina aviseringsbehörigheter när som helst från inställningar.</string>
     <string name="next">Nästa</string>
     <string name="grant_permissions">Ge behörigheter</string>
     <string name="nodes_queued_for_deletion">%1$d noder köade för radering:</string>

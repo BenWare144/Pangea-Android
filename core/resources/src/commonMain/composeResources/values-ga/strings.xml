@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Scagaire</string>
@@ -68,7 +52,7 @@
     <string name="qr_code">Cód QR</string>
     <string name="unknown_username">Ainm Úsáideora Anaithnid</string>
     <string name="send">Seol</string>
-    <string name="warning_not_paired">Níl raidió comhoiriúnach Meshtastic péireáilte leis an bhfón seo agat fós. Péireáil gléas le do thoil agus socraigh d’ainm úsáideora.\n\nTá an feidhmchlár foinse oscailte seo faoi alfa-thástáil, má aimsíonn tú fadhbanna cuir iad ar ár bhfóram: https://github.com/orgs/meshtastic/discussions\n\nLe haghaidh tuilleadh faisnéise féach ar ár leathanach gréasáin - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Níl raidió comhoiriúnach Pangea péireáilte leis an bhfón seo agat fós. Péireáil gléas le do thoil agus socraigh d’ainm úsáideora.\n\nTá an feidhmchlár foinse oscailte seo faoi alfa-thástáil, má aimsíonn tú fadhbanna cuir iad ar ár bhfóram: https://github.com/orgs/pangea/discussions\n\nLe haghaidh tuilleadh faisnéise féach ar ár leathanach gréasáin - www.pangea.org.</string>
     <string name="you">Tú</string>
     <string name="accept">Glac</string>
     <string name="cancel">Cealaigh</string>
@@ -76,7 +60,7 @@
     <string name="new_channel_rcvd">URL Cainéal nua faighte</string>
     <string name="report_bug">Tuairiscigh fabht</string>
     <string name="report_a_bug">Tuairiscigh fabht</string>
-    <string name="report_bug_text">An bhfuil tú cinnte gur mhaith leat fabht a thuairisciú? Tar éis tuairisciú a dhéanamh, cuir sa phost é le do thoil in https://github.com/orgs/meshtastic/discussions ionas gur féidir linn an tuarascáil a mheaitseáil leis an méid a d’aimsigh tú.</string>
+    <string name="report_bug_text">An bhfuil tú cinnte gur mhaith leat fabht a thuairisciú? Tar éis tuairisciú a dhéanamh, cuir sa phost é le do thoil in https://github.com/orgs/pangea/discussions ionas gur féidir linn an tuarascáil a mheaitseáil leis an méid a d’aimsigh tú.</string>
     <string name="report">Tuairiscigh</string>
     <string name="pairing_completed">Péireáil críochnaithe, ag tosú seirbhís</string>
     <string name="pairing_failed_try_again">Péireáil neadaithe, le do thoil roghnaigh arís</string>
@@ -199,7 +183,7 @@
     <string name="encryption_error">Mícomhoiriúnacht na heochrach phoiblí</string>
     <string name="meshtastic_new_nodes_notifications">Fógartha faoi na nodes nua</string>
     <string name="more_details">Tuilleadh sonraí</string>
-    <string name="snr_definition">Ráta Sigineal go Torann, tomhas a úsáidtear i gcomhfhreagras chun an leibhéal de shígnéil inmhianaithe agus torann cúlra a mheas. I Meshtastic agus i gcórais gan sreang eile, ciallaíonn SNR níos airde go bhfuil sígneál níos soiléire ann agus ábalta méadú ar chreideamh agus cáilíocht an tarchur sonraí.</string>
+    <string name="snr_definition">Ráta Sigineal go Torann, tomhas a úsáidtear i gcomhfhreagras chun an leibhéal de shígnéil inmhianaithe agus torann cúlra a mheas. I Pangea agus i gcórais gan sreang eile, ciallaíonn SNR níos airde go bhfuil sígneál níos soiléire ann agus ábalta méadú ar chreideamh agus cáilíocht an tarchur sonraí.</string>
     <string name="rssi_definition">Táscaire Cumhachta Athnuachana Aithint an Aoise, tomhas a úsáidtear chun leibhéal cumhachta atá faighte ag an antsnáithe a mheas. Léiríonn RSSI níos airde gnóthachtáil níos laige atá i gceangal seasmhach agus níos láidre.</string>
     <string name="iaq_definition">(Cáilíocht Aeir Inmheánach) scála ábhartha den luach QAÍ a thomhas ag Bosch BME680. Scála Luach 0–500.</string>
     <string name="node_map">Léarscáil an Node</string>

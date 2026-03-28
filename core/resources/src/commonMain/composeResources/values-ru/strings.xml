@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="meshtastic_app_name">Meshtastic</string>
+    <string name="meshtastic_app_name">Pangea</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
-    <string name="fallback_node_name">Meshtastic</string>
+    <string name="fallback_node_name">Pangea</string>
     <string name="node_filter_placeholder">Фильтр</string>
     <string name="desc_node_filter_clear">очистить фильтр нод</string>
     <string name="node_filter_title">Фильтр по</string>
@@ -168,7 +152,7 @@
     <string name="qr_code">QR-код</string>
     <string name="unknown_username">Неизвестное имя пользователя</string>
     <string name="send">Отправить</string>
-    <string name="warning_not_paired">Вы еще не подключили к телефону устройство, совместимое с Meshtastic радио. Пожалуйста, подключите устройство и задайте имя пользователя.\n\nЭто приложение с открытым исходным кодом находится в альфа-тестировании, если вы обнаружите проблемы, пожалуйста, напишите в чате на нашем сайте.\n\nДля получения дополнительной информации посетите нашу веб-страницу - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Вы еще не подключили к телефону устройство, совместимое с Pangea радио. Пожалуйста, подключите устройство и задайте имя пользователя.\n\nЭто приложение с открытым исходным кодом находится в альфа-тестировании, если вы обнаружите проблемы, пожалуйста, напишите в чате на нашем сайте.\n\nДля получения дополнительной информации посетите нашу веб-страницу - www.pangea.org.</string>
     <string name="you">Вы</string>
     <string name="analytics_okay">Разрешить аналитику и отчеты о сбоях.</string>
     <string name="accept">Принять</string>
@@ -176,10 +160,10 @@
     <string name="discard_changes">Отмена</string>
     <string name="save_changes">Сохранить</string>
     <string name="new_channel_rcvd">URL нового канала получен</string>
-    <string name="permission_missing">Meshtastic требуется разрешение, чтобы найти новые устройства через Bluetooth. Вы можете отключить если они не используются.</string>
+    <string name="permission_missing">Pangea требуется разрешение, чтобы найти новые устройства через Bluetooth. Вы можете отключить если они не используются.</string>
     <string name="report_bug">Сообщить об ошибке</string>
     <string name="report_a_bug">Сообщить об ошибке</string>
-    <string name="report_bug_text">Вы уверены, что хотите сообщить об ошибке? После сообщения, пожалуйста, напишите в https://github.com/orgs/meshtastic/discussions, чтобы мы могли сопоставить отчет с тем, что вы нашли.</string>
+    <string name="report_bug_text">Вы уверены, что хотите сообщить об ошибке? После сообщения, пожалуйста, напишите в https://github.com/orgs/pangea/discussions, чтобы мы могли сопоставить отчет с тем, что вы нашли.</string>
     <string name="report">Отчет</string>
     <string name="pairing_completed">Сопряжение завершено, запуск сервиса</string>
     <string name="pairing_failed_try_again">Сопряжение не удалось, пожалуйста, выберите еще раз</string>
@@ -211,7 +195,7 @@
     <string name="meshtastic_service_notifications">Служебные уведомления</string>
     <string name="acknowledgements">Подтверждения</string>
     <string name="open_source_libraries">Библиотеки с открытым исходным кодом</string>
-    <string name="open_source_description">Meshtastic создан с использованием следующих библиотек с открытым исходным кодом. Нажмите на любую библиотеку, чтобы просмотреть ее лицензию.</string>
+    <string name="open_source_description">Pangea создан с использованием следующих библиотек с открытым исходным кодом. Нажмите на любую библиотеку, чтобы просмотреть ее лицензию.</string>
     <string name="library_count">%1$d библиотек</string>
     <string name="channel_invalid">Этот URL-адрес канала недействителен и не может быть использован</string>
     <string name="contact_invalid">Контакт неверный и не может быть добавлен</string>
@@ -322,7 +306,7 @@
     <string name="bluetooth_disabled">Bluetooth отключен. Пожалуйста, включите его в настройках вашего устройства.</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="firmware_version">Версия прошивки: %1$s</string>
-    <string name="permission_missing_31">Meshtastic требует разрешение на поиск и подключение к устройствам через Bluetooth. Вы можете отключить его, когда он не используется.</string>
+    <string name="permission_missing_31">Pangea требует разрешение на поиск и подключение к устройствам через Bluetooth. Вы можете отключить его, когда он не используется.</string>
     <string name="direct_message">Прямое сообщение</string>
     <string name="nodedb_reset">Очистка списка нод сети</string>
     <string name="delivery_confirmed">Доставка подтверждена</string>
@@ -407,7 +391,7 @@
     <string name="meshtastic_new_nodes_notifications">Уведомления о новых нодах</string>
     <string name="more_details">Подробнее</string>
     <string name="snr">Сигнал/шум</string>
-    <string name="snr_definition">Соотношение сигнал/шум, мера, используемая в коммуникациях для количественной оценки уровня желаемого сигнала по отношению к уровню фонового шума. В Meshtastic и других беспроводных системах более высокий SNR указывает на более четкий сигнал, который может повысить надежность и качество передачи данных.</string>
+    <string name="snr_definition">Соотношение сигнал/шум, мера, используемая в коммуникациях для количественной оценки уровня желаемого сигнала по отношению к уровню фонового шума. В Pangea и других беспроводных системах более высокий SNR указывает на более четкий сигнал, который может повысить надежность и качество передачи данных.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Индикатор уровня принимаемого сигнала, измерение, используемое для определения уровня мощности, принимаемой антенной. Более высокое значение RSSI обычно указывает на более сильное и стабильное соединение.</string>
     <string name="iaq_definition">(Качество воздуха в помещении) Относительная шкала IAQ, измеренная Bosch BME680. Диапазон значений 0–500.</string>
@@ -468,7 +452,7 @@
     <string name="current">Ток</string>
     <string name="voltage">Напряжение</string>
     <string name="are_you_sure">Вы уверены?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Я прочитал <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">документацию о ролях устройств</a> и пост в блоге, а именно <a href="http://meshtastic.org/blog/choosing-the-right-device-role">выбор правильной роли устройства</a>.]]></string>
+    <string name="router_role_confirmation_text">Я прочитал &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;документацию о ролях устройств&lt;/a&gt; и пост в блоге, а именно &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;выбор правильной роли устройства&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Я знаю, что делаю.</string>
     <string name="low_battery_message">Нода %1$s имеет низкий заряд батареи (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Уведомление о низком уровне заряда</string>
@@ -478,7 +462,7 @@
     <string name="udp_enabled">Включено</string>
     <string name="udp_broadcast">Трансляция UDP</string>
     <string name="udp_config">UDP Config</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Последний приём: %2$s<br>Последнее местоположение: %3$s<br>Батарея: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Последний приём: %2$s&lt;br&gt;Последнее местоположение: %3$s&lt;br&gt;Батарея: %4$s</string>
     <string name="toggle_my_position">Переключить мою позицию</string>
     <string name="orient_north">Ориентация на север</string>
     <string name="user">Пользователь</string>
@@ -494,7 +478,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">COM-порт</string>
     <string name="external_notification">Внешние уведомления</string>
-    <string name="store_forward"><![CDATA[Store & Forward]]></string>
+    <string name="store_forward">Store &amp; Forward</string>
     <string name="range_test">Проверка дальности</string>
     <string name="telemetry">Телеметрия</string>
     <string name="canned_message">Шаблонные сообщения</string>
@@ -713,7 +697,7 @@
     <string name="timeout">Время ожидания истекло</string>
     <string name="serial_mode">Режим COM-порта</string>
     <string name="override_console_serial_port">Переопределить COM-порт консоли</string>
-    <string name="store_forward_enabled"><![CDATA[Store & Forward включен]]></string>
+    <string name="store_forward_enabled">Store &amp; Forward включен</string>
     <string name="heartbeat">Heartbeat</string>
     <string name="number_of_records">Количество записей</string>
     <string name="history_return_max">Макс возврат истории</string>
@@ -737,7 +721,7 @@
     <string name="short_name">Короткое имя</string>
     <string name="hardware_model">Модель оборудования</string>
     <string name="licensed_amateur_radio">Лицензия радиолюбителя (HAM)</string>
-    <string name="licensed_amateur_radio_text">Включение данной опции отключает шифрование и несовместимо с основной сетью Meshtastic.</string>
+    <string name="licensed_amateur_radio_text">Включение данной опции отключает шифрование и несовместимо с основной сетью Pangea.</string>
     <string name="dew_point">Точка росы</string>
     <string name="pressure">Давление</string>
     <string name="gas_resistance">Сопротивление газа</string>
@@ -746,10 +730,10 @@
     <string name="wind">Ветер</string>
     <string name="weight">Вес</string>
     <string name="radiation">Радиация</string>
-    <string name="store_forward_config"><![CDATA[Настройки Store & Forward]]></string>
+    <string name="store_forward_config">Настройки Store &amp; Forward</string>
     <string name="indoor_air_quality_iaq">Качество воздуха в помещении (IAQ)</string>
     <string name="url">URL-адрес</string>
-    <string name="backup_restore"><![CDATA[Бэкап & Восстановление]]></string>
+    <string name="backup_restore">Бэкап &amp; Восстановление</string>
     <string name="import_configuration">Импорт настроек</string>
     <string name="export_configuration">Экспорт настроек</string>
     <string name="hardware">Оборудование</string>
@@ -847,7 +831,7 @@
     <string name="no_network_devices">Сетевые устройства не найдены.</string>
     <string name="no_usb_devices">USB-устройства COM-порта не найдены.</string>
     <string name="scroll_to_bottom">Прокрутить вниз</string>
-    <string name="meshtastic">Meshtastic</string>
+    <string name="meshtastic">Pangea</string>
     <string name="security_icon_description">Статус безопасности</string>
     <string name="security_icon_secure">Безопасный</string>
     <string name="security_icon_badge_warning_description">Предупреждающий Знак</string>
@@ -903,7 +887,7 @@
     <string name="installed_firmware_version">Текущая версия:</string>
     <string name="latest_stable_firmware">Последняя стабильная</string>
     <string name="latest_alpha_firmware">Последняя альфа</string>
-    <string name="supported_by_community">Поддерживается Meshtastic Community</string>
+    <string name="supported_by_community">Поддерживается Pangea Community</string>
     <string name="firmware_edition">Версия прошивки</string>
     <string name="recent_network_devices">Недавние сетевые устройства</string>
     <string name="discovered_network_devices">Найденные сетевые устройства</string>
@@ -926,7 +910,7 @@
     <string name="critical_alerts_description">Выберите пакеты, отправленные как критические; они будут игнорировать переключение сообщений и настройки «Не беспокоить» в центре уведомлений ОС.</string>
     <string name="configure_notification_permissions">Настроить права доступа для уведомлений</string>
     <string name="phone_location">Местоположение телефона</string>
-    <string name="phone_location_description">Meshtastic использует местоположение вашего телефона, чтобы включить ряд функций. Вы можете обновить права доступа к вашему местоположению в любое время из настроек.</string>
+    <string name="phone_location_description">Pangea использует местоположение вашего телефона, чтобы включить ряд функций. Вы можете обновить права доступа к вашему местоположению в любое время из настроек.</string>
     <string name="share_location">Поделиться геопозицией</string>
     <string name="share_location_description">........</string>
     <string name="distance_measurements">Измерения расстояния</string>
@@ -944,7 +928,7 @@
         . Пожалуйста, включите это в настройках уведомлений.
     </string>
     <string name="configure_critical_alerts">Настроить критические оповещения</string>
-    <string name="notification_permissions_description">Meshtastic использует уведомления, чтобы держать вас в курсе новых сообщений и других важных событий. Вы можете обновить разрешения уведомлений в любое время из настроек.</string>
+    <string name="notification_permissions_description">Pangea использует уведомления, чтобы держать вас в курсе новых сообщений и других важных событий. Вы можете обновить разрешения уведомлений в любое время из настроек.</string>
     <string name="next">Далее</string>
     <string name="grant_permissions">Предоставить разрешения</string>
     <string name="nodes_queued_for_deletion">%1$d нод в очереди для удаления:</string>
@@ -1165,9 +1149,9 @@
     <string name="bluetooth_permission">Bluetooth</string>
     <string name="configure_bluetooth_permissions">Настроить разрешения Bluetooth</string>
     <string name="connect_to_radio">Подключиться к радио</string>
-    <string name="connect_to_radio_description">Просканируйте и подключитесь к вашей радиостанции Meshtastic.</string>
+    <string name="connect_to_radio_description">Просканируйте и подключитесь к вашей радиостанции Pangea.</string>
     <string name="bluetooth_feature_discovery">Обнаружение</string>
-    <string name="bluetooth_feature_discovery_description">Найдите и определите устройства Meshtastic рядом с вами.</string>
+    <string name="bluetooth_feature_discovery_description">Найдите и определите устройства Pangea рядом с вами.</string>
     <string name="bluetooth_feature_config">Настройки</string>
     <string name="bluetooth_feature_config_description">Беспроводное управление настройками устройства и каналами.</string>
     <string name="permission_granted">Разрешение получено</string>
@@ -1187,7 +1171,7 @@
     <string name="local_stats_heap_value">%1$d / %2$d</string>
     <string name="local_stats_updated_at">%1$s</string>
     <string name="powered">Питание</string>
-    <string name="meshtastic_stats">Статистика Meshtastic</string>
+    <string name="meshtastic_stats">Статистика Pangea</string>
     <string name="refresh">Обновить</string>
     <string name="updated">Обновлено</string>
     <!-- Network Map Layers -->

@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Φίλτρο</string>
@@ -33,7 +17,7 @@
     <string name="qr_code">Κώδικας QR</string>
     <string name="unknown_username">Άγνωστο Όνομα Χρήστη</string>
     <string name="send">Αποστολή</string>
-    <string name="warning_not_paired">Δεν έχετε κάνει ακόμη pair μια συσκευή συμβατή με Meshtastic με το τηλέφωνο. Παρακαλώ κάντε pair μια συσκευή και ορίστε το όνομα χρήστη.\n\nΗ εφαρμογή ανοιχτού κώδικα βρίσκεται σε alpha-testing, αν εντοπίσετε προβλήματα παρακαλώ δημοσιεύστε τα στο forum: https://github.com/orgs/meshtastic/discussions\n\nΠερισσότερες πληροφορίες στην ιστοσελίδα - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Δεν έχετε κάνει ακόμη pair μια συσκευή συμβατή με Pangea με το τηλέφωνο. Παρακαλώ κάντε pair μια συσκευή και ορίστε το όνομα χρήστη.\n\nΗ εφαρμογή ανοιχτού κώδικα βρίσκεται σε alpha-testing, αν εντοπίσετε προβλήματα παρακαλώ δημοσιεύστε τα στο forum: https://github.com/orgs/pangea/discussions\n\nΠερισσότερες πληροφορίες στην ιστοσελίδα - www.pangea.org.</string>
     <string name="you">Εσύ</string>
     <string name="accept">Αποδοχή</string>
     <string name="cancel">Ακύρωση</string>
@@ -41,7 +25,7 @@
     <string name="new_channel_rcvd">Λήψη URL νέου καναλιού</string>
     <string name="report_bug">Αναφορά Σφάλματος</string>
     <string name="report_a_bug">Αναφέρετε ένα σφάλμα</string>
-    <string name="report_bug_text">Είστε σίγουροι ότι θέλετε να αναφέρετε ένα σφαλμα? Μετά την αναφορά δημοσιεύστε στο https://github.com/orgs/meshtastic/discussions ώστε να συνδέσουμε την αναφορά με το συμβάν.</string>
+    <string name="report_bug_text">Είστε σίγουροι ότι θέλετε να αναφέρετε ένα σφαλμα? Μετά την αναφορά δημοσιεύστε στο https://github.com/orgs/pangea/discussions ώστε να συνδέσουμε την αναφορά με το συμβάν.</string>
     <string name="report">Αναφορά</string>
     <string name="pairing_completed">Η διαδικασία pairing ολοκληρώθηκε, εκκίνηση υπηρεσίας</string>
     <string name="pairing_failed_try_again">Η διαδικασία ζευγοποιησης απέτυχε, παρακαλώ επιλέξτε πάλι</string>

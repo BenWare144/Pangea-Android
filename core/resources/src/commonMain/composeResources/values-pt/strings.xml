@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="meshtastic_app_name">Nome do nó de alternativo</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
@@ -106,7 +90,7 @@
     <string name="qr_code">Código QR</string>
     <string name="unknown_username">Nome de utilizador desconhecido</string>
     <string name="send">Enviar</string>
-    <string name="warning_not_paired">Ainda não emparelhou um rádio compatível com Meshtastic com este telefone. Emparelhe um dispositivo e defina seu nome de usuário.\n\nEste aplicativo de código aberto está em teste alfa, se encontrar problemas, por favor reporte através do nosso forum em: https://github.com/orgs/meshtastic/discussions\n\nPara obter mais informações, consulte a nossa página web - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Ainda não emparelhou um rádio compatível com Pangea com este telefone. Emparelhe um dispositivo e defina seu nome de usuário.\n\nEste aplicativo de código aberto está em teste alfa, se encontrar problemas, por favor reporte através do nosso forum em: https://github.com/orgs/pangea/discussions\n\nPara obter mais informações, consulte a nossa página web - www.pangea.org.</string>
     <string name="you">Você</string>
     <string name="accept">Aceitar</string>
     <string name="cancel">Cancelar</string>
@@ -114,7 +98,7 @@
     <string name="new_channel_rcvd">Novo Link Recebido do Canal</string>
     <string name="report_bug">Reportar Bug</string>
     <string name="report_a_bug">Reportar a bug</string>
-    <string name="report_bug_text">Tem certeza de que deseja reportar um bug? Após o relatório, comunique também em https://github.com/orgs/meshtastic/discussions para que possamos comparar o relatório com o que encontrou.</string>
+    <string name="report_bug_text">Tem certeza de que deseja reportar um bug? Após o relatório, comunique também em https://github.com/orgs/pangea/discussions para que possamos comparar o relatório com o que encontrou.</string>
     <string name="report">Reportar</string>
     <string name="pairing_completed">Emparelhamento concluído, a iniciar serviço</string>
     <string name="pairing_failed_try_again">Emparelhamento falhou, por favor escolha novamente</string>
@@ -241,7 +225,7 @@
     <string name="meshtastic_new_nodes_notifications">Notificações de novos nodes</string>
     <string name="more_details">Mais detalhes</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Relação sinal-para-ruído, uma medida utilizada nas comunicações para quantificar o nível de um sinal desejado com o nível de ruído de fundo. Em Meshtastic e outros sistemas sem fio. Quanto mais alta for a relação sinal-ruído, menor é o efeito do ruído de fundo sobre a deteção ou medição do sinal.</string>
+    <string name="snr_definition">Relação sinal-para-ruído, uma medida utilizada nas comunicações para quantificar o nível de um sinal desejado com o nível de ruído de fundo. Em Pangea e outros sistemas sem fio. Quanto mais alta for a relação sinal-ruído, menor é o efeito do ruído de fundo sobre a deteção ou medição do sinal.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indicador de Força de Sinal Recebido, uma medida usada para determinar o nível de energia que está a ser recebido pela antena. Um valor mais elevado de RSSI geralmente indica uma conexão mais forte e mais estável.</string>
     <string name="iaq_definition">(Qualidade do ar interior) valor relativo da escala IAQ conforme medida por Bosch BME680. Entre 0–500.</string>
@@ -282,14 +266,14 @@
     <string name="current">Atual</string>
     <string name="voltage">Voltagem</string>
     <string name="are_you_sure">Confirma?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Li a documentação <a href="https://meshtastic.org/docs/configuration/radio/device/#roles"> Configuração do Dispositivo</a> e o post do blog sobre a <a href="http://meshtastic.org/blog/choosing-the-right-device-role">escolha da função correta do dispositivo</a>.]]></string>
+    <string name="router_role_confirmation_text">Li a documentação &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt; Configuração do Dispositivo&lt;/a&gt; e o post do blog sobre a &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;escolha da função correta do dispositivo&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Eu sei o que estou a fazer.</string>
     <string name="low_battery_message">O node %1$s tem a bateria fraca (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Notificação de bateria fraca</string>
     <string name="low_battery_title">Bateria fraca: %1$s</string>
     <string name="meshtastic_low_battery_temporary_remote_notifications">Notificações de bateria fraca (nodes favoritos)</string>
     <string name="udp_config">Configuração UDP</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Ouvido última vez: %2$s<br>Última posição: %3$s<br>Bateria: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Ouvido última vez: %2$s&lt;br&gt;Última posição: %3$s&lt;br&gt;Bateria: %4$s</string>
     <string name="user">Utilizador</string>
     <string name="channels">Canal</string>
     <string name="device">Dispositivo</string>
@@ -303,7 +287,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Série</string>
     <string name="external_notification">Notificação externa</string>
-    <string name="store_forward"><![CDATA[Guardar & Reencaminhar]]></string>
+    <string name="store_forward">Guardar &amp; Reencaminhar</string>
     <string name="range_test">Teste de Alcance</string>
     <string name="telemetry">Telemetria</string>
     <string name="canned_message">Mensagem Pronta</string>
@@ -463,7 +447,7 @@
     <string name="timeout">Timeout</string>
     <string name="serial_mode">Modo de série</string>
     <string name="override_console_serial_port">Substituir porta série do console</string>
-    <string name="store_forward_enabled"><![CDATA[Guardar & encaminhar ativo]]></string>
+    <string name="store_forward_enabled">Guardar &amp; encaminhar ativo</string>
     <string name="heartbeat">Batimento</string>
     <string name="number_of_records">Número de registos</string>
     <string name="server">Servidor</string>
@@ -477,7 +461,7 @@
     <string name="user_config">Configuração do Utilizador</string>
     <string name="node_id">ID do Node</string>
     <string name="hardware_model">Modelo de hardware</string>
-    <string name="licensed_amateur_radio_text">Ativar esta opção desativa a encriptação e não é compatível com a rede Meshtastic normal.</string>
+    <string name="licensed_amateur_radio_text">Ativar esta opção desativa a encriptação e não é compatível com a rede Pangea normal.</string>
     <string name="dew_point">Ponto de Condensação</string>
     <string name="pressure">Pressão</string>
     <string name="distance">Distância</string>
@@ -485,10 +469,10 @@
     <string name="wind">Vento</string>
     <string name="weight">Peso</string>
     <string name="radiation">Radiação</string>
-    <string name="store_forward_config"><![CDATA[Configuração de Guardar & Encaminhar]]></string>
+    <string name="store_forward_config">Configuração de Guardar &amp; Encaminhar</string>
     <string name="indoor_air_quality_iaq">Qualidade do ar (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Backup & Restauro]]></string>
+    <string name="backup_restore">Backup &amp; Restauro</string>
     <string name="import_configuration">Importar configuração</string>
     <string name="export_configuration">Exportar configuração</string>
     <string name="hardware">Hardware</string>

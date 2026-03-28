@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="meshtastic_app_name">Kärgvõrgustik</string>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
@@ -168,7 +152,7 @@
     <string name="qr_code">QR kood</string>
     <string name="unknown_username">Tundmatu kasutajanimi</string>
     <string name="send">Saada</string>
-    <string name="warning_not_paired">Ei ole veel ühendanud Meshtastic -kokku sobivat raadiot telefoniga. Seo seade selle telefoniga ja määra kasutajanimi.\n\nSee avatud lähtekoodiga programm on alpha-testi staatuses. Kui märkad vigu, saada palun sõnum meie foorumisse: https://github.com/orgs/meshtastic/discussions\n\nLisateave kodulehel - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Ei ole veel ühendanud Pangea -kokku sobivat raadiot telefoniga. Seo seade selle telefoniga ja määra kasutajanimi.\n\nSee avatud lähtekoodiga programm on alpha-testi staatuses. Kui märkad vigu, saada palun sõnum meie foorumisse: https://github.com/orgs/pangea/discussions\n\nLisateave kodulehel - www.pangea.org.</string>
     <string name="you">Sina</string>
     <string name="analytics_okay">Luba analüüsi ja krahhi aruandlus.</string>
     <string name="accept">Nõustu</string>
@@ -176,10 +160,10 @@
     <string name="discard_changes">Tühista</string>
     <string name="save_changes">Salvesta</string>
     <string name="new_channel_rcvd">Uued kanalid vastu võetud</string>
-    <string name="permission_missing">Meshtastic vajab sinihambaga kaudu seadmete leidmiseks asukohalubasid. Saate need keelata, kui neid ei kasutata.</string>
+    <string name="permission_missing">Pangea vajab sinihambaga kaudu seadmete leidmiseks asukohalubasid. Saate need keelata, kui neid ei kasutata.</string>
     <string name="report_bug">Teata veast</string>
     <string name="report_a_bug">Teata veast</string>
-    <string name="report_bug_text">Kas soovid kindlasti veast teatada? Saada hiljem selgitus aadressile https://github.com/orgs/meshtastic/discussions, et saaksime selgitust leituga sobitada.</string>
+    <string name="report_bug_text">Kas soovid kindlasti veast teatada? Saada hiljem selgitus aadressile https://github.com/orgs/pangea/discussions, et saaksime selgitust leituga sobitada.</string>
     <string name="report">Raport</string>
     <string name="pairing_completed">Seade on seotud, taaskäivitan</string>
     <string name="pairing_failed_try_again">Sidumine ebaõnnestus, vali palun uuesti</string>
@@ -211,7 +195,7 @@
     <string name="meshtastic_service_notifications">Teenuse teavitused</string>
     <string name="acknowledgements">Tänusõnad</string>
     <string name="open_source_libraries">Avatud lähtekoodiga teegid</string>
-    <string name="open_source_description">Meshtastic on loodud avatud lähtekoodiga teekidest. Litsentsi vaatamiseks valige teek.</string>
+    <string name="open_source_description">Pangea on loodud avatud lähtekoodiga teekidest. Litsentsi vaatamiseks valige teek.</string>
     <string name="library_count">%1$d teek</string>
     <string name="channel_invalid">Kanali URL on kehtetu ja seda ei saa kasutada</string>
     <string name="contact_invalid">See kontakt on sobimatu ja seda ei saa lisada</string>
@@ -316,7 +300,7 @@
     <string name="bluetooth_disabled">Sinihammas keelatud. Luba see sätetes.</string>
     <string name="open_settings">Ava seaded</string>
     <string name="firmware_version">Püsivara versioon: %1$s</string>
-    <string name="permission_missing_31">Meshtastic vajab seadmete leidmiseks ja nendega sinihamba ​​kaudu ühenduse loomiseks „Lähi-seadmed” luba. Saate selle keelata, kui seda ei kasutata.</string>
+    <string name="permission_missing_31">Pangea vajab seadmete leidmiseks ja nendega sinihamba ​​kaudu ühenduse loomiseks „Lähi-seadmed” luba. Saate selle keelata, kui seda ei kasutata.</string>
     <string name="direct_message">Otsesõnum</string>
     <string name="nodedb_reset">NodeDB lähtestamine</string>
     <string name="delivery_confirmed">Kohale toimetatud</string>
@@ -401,7 +385,7 @@
     <string name="meshtastic_new_nodes_notifications">Uue sõlme teade</string>
     <string name="more_details">Rohkem üksikasju</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signaali ja müra suhe (SNR) on mõõdik, mida kasutatakse soovitud signaali taseme ja taustamüra taseme vahelise suhte määramisel. Meshtastic ja teistes traadita süsteemides näitab kõrgem signaali ja müra suhe selgemat signaali, mis võib parandada andmeedastuse usaldusväärsust ja kvaliteeti.</string>
+    <string name="snr_definition">Signaali ja müra suhe (SNR) on mõõdik, mida kasutatakse soovitud signaali taseme ja taustamüra taseme vahelise suhte määramisel. Pangea ja teistes traadita süsteemides näitab kõrgem signaali ja müra suhe selgemat signaali, mis võib parandada andmeedastuse usaldusväärsust ja kvaliteeti.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Vastuvõetud signaali tugevuse indikaator (RSSI), mõõt mida kasutatakse antenni poolt vastuvõetava võimsustaseme määramiseks. Kõrgem RSSI väärtus näitab üldiselt tugevamat ja stabiilsemat ühendust.</string>
     <string name="iaq_definition">Siseõhu kvaliteet (IAQ) on suhtelise skaala väärtus, näiteks mõõtes Bosch BME680 abil. Väärtuste vahemik 0–500.</string>
@@ -460,7 +444,7 @@
     <string name="current">Pinge</string>
     <string name="voltage">Vool</string>
     <string name="are_you_sure">Oled kindel?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Olen lugenud <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">seadme rollide juhendit </a> ja blogi postitust <a href="http://meshtastic.org/blog/choosing-the-right-device-role">valin õige seadme rolli</a>.]]></string>
+    <string name="router_role_confirmation_text">Olen lugenud &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;seadme rollide juhendit &lt;/a&gt; ja blogi postitust &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;valin õige seadme rolli&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Ma tean mida teen.</string>
     <string name="low_battery_message">Sõlmel %1$s on akupinge madal (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Madala akupinge hoiatus</string>
@@ -470,7 +454,7 @@
     <string name="udp_enabled">Lubatud</string>
     <string name="udp_broadcast">UDP edastus</string>
     <string name="udp_config">UDP sätted</string>
-    <string name="map_node_popup_details"><![CDATA[%1$s<br>Viimati kuuldud: %2$s<br>viimane asukoht: %3$s<br>Akupinge: %4$s]]></string>
+    <string name="map_node_popup_details">%1$s&lt;br&gt;Viimati kuuldud: %2$s&lt;br&gt;viimane asukoht: %3$s&lt;br&gt;Akupinge: %4$s</string>
     <string name="toggle_my_position">Lülita asukoht sisse</string>
     <string name="orient_north">Põhja suund</string>
     <string name="user">Kasutaja</string>
@@ -486,7 +470,7 @@
     <string name="mqtt">MQTT</string>
     <string name="serial">Jadaport</string>
     <string name="external_notification">Välised teated</string>
-    <string name="store_forward"><![CDATA[Salvesta & saada]]></string>
+    <string name="store_forward">Salvesta &amp; saada</string>
     <string name="range_test">Ulatustest</string>
     <string name="telemetry">Telemeetria</string>
     <string name="canned_message">Salvestatud sõnum</string>
@@ -705,7 +689,7 @@
     <string name="timeout">Aegunud</string>
     <string name="serial_mode">Jadapordi režiim</string>
     <string name="override_console_serial_port">Konsooli jadapordi alistamine</string>
-    <string name="store_forward_enabled"><![CDATA[Salvesta & Edasta lubatud]]></string>
+    <string name="store_forward_enabled">Salvesta &amp; Edasta lubatud</string>
     <string name="heartbeat">Südamelöögid</string>
     <string name="number_of_records">Kirjete arv</string>
     <string name="history_return_max">Ajalookirjete maksimaalne arv</string>
@@ -729,7 +713,7 @@
     <string name="short_name">Lühi nimi</string>
     <string name="hardware_model">Seadme mudel</string>
     <string name="licensed_amateur_radio">Litsentseeritud raadioamatöör (Ham)</string>
-    <string name="licensed_amateur_radio_text">Selle valiku lubamine keelab krüpteerimise ja ei ühildu Meshtastic vaikevõrguga.</string>
+    <string name="licensed_amateur_radio_text">Selle valiku lubamine keelab krüpteerimise ja ei ühildu Pangea vaikevõrguga.</string>
     <string name="dew_point">Kastepunkt</string>
     <string name="pressure">Õhurõhk</string>
     <string name="gas_resistance">Gaasi surve</string>
@@ -738,10 +722,10 @@
     <string name="wind">Tuul</string>
     <string name="weight">Kaal</string>
     <string name="radiation">Radiatsioon</string>
-    <string name="store_forward_config"><![CDATA[Salvesta & saada sätted]]></string>
+    <string name="store_forward_config">Salvesta &amp; saada sätted</string>
     <string name="indoor_air_quality_iaq">Siseõhu kvaliteet (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Varunda ja taasta]]></string>
+    <string name="backup_restore">Varunda ja taasta</string>
     <string name="import_configuration">Lae sätted</string>
     <string name="export_configuration">Salvesta sätted</string>
     <string name="hardware">Raudvara</string>
@@ -895,7 +879,7 @@
     <string name="installed_firmware_version">Paigaldatud</string>
     <string name="latest_stable_firmware">Viimane stabiilne</string>
     <string name="latest_alpha_firmware">Viimane alfa</string>
-    <string name="supported_by_community">Toetatud Meshtastic kommuuni poolt</string>
+    <string name="supported_by_community">Toetatud Pangea kommuuni poolt</string>
     <string name="firmware_edition">Püsivara versioon</string>
     <string name="recent_network_devices">Hiljuti nähtud seadmed</string>
     <string name="discovered_network_devices">Avastatud seadmed</string>
@@ -918,14 +902,14 @@
     <string name="critical_alerts_description">Kriitilisena saadetud paketid kuvatakse ka telefoni „Ära sega” reziimis.</string>
     <string name="configure_notification_permissions">Määra märguannete load</string>
     <string name="phone_location">Telefoni asukoht</string>
-    <string name="phone_location_description">Meshtastic kasutab teie telefoni asukohta mitmete funktsioonide lubamiseks. Saate oma asukohalubasid igal ajal seadetes muuta.</string>
+    <string name="phone_location_description">Pangea kasutab teie telefoni asukohta mitmete funktsioonide lubamiseks. Saate oma asukohalubasid igal ajal seadetes muuta.</string>
     <string name="share_location">Jaga asukohta</string>
     <string name="share_location_description">Kasuta asukohana oma telefoni GPS, mitte sõlme riistvaralist GPS.</string>
     <string name="distance_measurements">Kauguse mõõtmised</string>
-    <string name="distance_measurements_description">Kuva telefoni ja teiste Meshtastic sõlmede asukoha vaheline kaugus.</string>
+    <string name="distance_measurements_description">Kuva telefoni ja teiste Pangea sõlmede asukoha vaheline kaugus.</string>
     <string name="distance_filters">Kauguse filter</string>
     <string name="distance_filters_description">Filtreeri sõlmede loendit ja kärgvõrgustiku kaarti kauguse põhjal sinu telefonist.</string>
-    <string name="mesh_map_location">Meshtastic kaardi asukoht</string>
+    <string name="mesh_map_location">Pangea kaardi asukoht</string>
     <string name="mesh_map_location_description">Lubab telefoni asukoha kuvamine sinisena kärgvõrgu kaardil.</string>
     <string name="configure_location_permissions">Muuda asukoha kasutusload</string>
     <string name="skip">Jäta vahele</string>
@@ -936,7 +920,7 @@
         load. Palun luba see teavitusseadetes.
     </string>
     <string name="configure_critical_alerts">Kriitiliste hoiatuste seadistamine</string>
-    <string name="notification_permissions_description">Meshtastic kasutab märguandeid, et hoida teid kursis uute sõnumite ja muude oluliste sündmustega. Saate oma märguannete õigusi igal ajal seadetes muuta.</string>
+    <string name="notification_permissions_description">Pangea kasutab märguandeid, et hoida teid kursis uute sõnumite ja muude oluliste sündmustega. Saate oma märguannete õigusi igal ajal seadetes muuta.</string>
     <string name="next">Järgmine</string>
     <string name="grant_permissions">Anna luba</string>
     <string name="nodes_queued_for_deletion">%1$d eemaldatavat sõlme nimekirjas:</string>
@@ -1002,8 +986,8 @@
     </plurals>
     <string name="firmware_update_usb_bootloader_warning">%1$s on tavaliselt varustatud alglaaduriga, mis ei toeta OTA värskendusi. Enne OTA värskendamist pead võib-olla USB kaudu OTA-toega alglaaduri käivitama.</string>
     <string name="learn_more">Lisateave</string>
-    <string name="firmware_update_rak4631_bootloader_hint">RAK WisBlock RAK4631 puhul kasuta tootja&apos; seerianumbri DFU tööriista (näiteks adafruit-nrfutil dfu koos kaasasoleva alglaaduri jadapordi .zip-failiga). Ainult .uf2-faili kopeerimine ei värskenda alglaadurit.</string>
-    <string name="dont_show_again_for_device">Ära selle &apos; seadme puhul enam kuva</string>
+    <string name="firmware_update_rak4631_bootloader_hint">RAK WisBlock RAK4631 puhul kasuta tootja' seerianumbri DFU tööriista (näiteks adafruit-nrfutil dfu koos kaasasoleva alglaaduri jadapordi .zip-failiga). Ainult .uf2-faili kopeerimine ei värskenda alglaadurit.</string>
+    <string name="dont_show_again_for_device">Ära selle ' seadme puhul enam kuva</string>
     <string name="preserve_favorites">Säilita lemmikud?</string>
     <string name="usb_devices">USB seadmed</string>
     <!-- Firmware Update -->
@@ -1048,7 +1032,7 @@
     <string name="firmware_update_rebooting">Taaskäivitamine DFU reziimi...</string>
     <string name="firmware_update_waiting_for_device">Ootan DFU seadet...</string>
     <string name="firmware_update_copying">Löö patsu! Oota veidi, püsivara laetakse...</string>
-    <string name="firmware_update_save_dfu_file">Palun salvesta .uf2-fail oma seadme&apos; DFU kettale.</string>
+    <string name="firmware_update_save_dfu_file">Palun salvesta .uf2-fail oma seadme' DFU kettale.</string>
     <string name="firmware_update_flashing">Seadme värskendamine, palun oota...</string>
     <string name="firmware_update_method_usb">USB failiedastus</string>
     <string name="firmware_update_method_ble">BLE OTA</string>
@@ -1149,9 +1133,9 @@
     <string name="bluetooth_permission">Sinihammas</string>
     <string name="configure_bluetooth_permissions">Sinihamba ​​õiguste sätted</string>
     <string name="connect_to_radio">Ühenda raadioga</string>
-    <string name="connect_to_radio_description">Otsi ja loo ühendus Meshtastic võrgusõlmega.</string>
+    <string name="connect_to_radio_description">Otsi ja loo ühendus Pangea võrgusõlmega.</string>
     <string name="bluetooth_feature_discovery">Avastamine</string>
-    <string name="bluetooth_feature_discovery_description">Leia ja tuvasta lähedal asuvad Meshtastic seadmed.</string>
+    <string name="bluetooth_feature_discovery_description">Leia ja tuvasta lähedal asuvad Pangea seadmed.</string>
     <string name="bluetooth_feature_config">Sätted</string>
     <string name="bluetooth_feature_config_description">Halda juhtmevabalt seadme sätteid ja kanaleid.</string>
     <string name="permission_granted">Luba antud</string>
@@ -1171,7 +1155,7 @@
     <string name="local_stats_heap_value">%1$d / %2$d</string>
     <string name="local_stats_updated_at">%1$s</string>
     <string name="powered">Toitega</string>
-    <string name="meshtastic_stats">Meshtasticu statistika</string>
+    <string name="meshtastic_stats">Pangeau statistika</string>
     <string name="refresh">Värskenda</string>
     <string name="updated">Uuendatud</string>
     <!-- Network Map Layers -->

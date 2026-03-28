@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filter</string>
@@ -123,7 +107,7 @@
     <string name="qr_code">QR kod</string>
     <string name="unknown_username">Nepoznato korisničko ime</string>
     <string name="send">Pošalji</string>
-    <string name="warning_not_paired">Још нисте упарили Мештастик компатибилан радио са овим телефоном. Молимо вас да упарите уређај и поставите своје корисничко име.\n\nОва апликација отвореног кода је у развоју, ако нађете проблеме, молимо вас да их објавите на нашем форуму: https://github.com/orgs/meshtastic/discussions\n\nЗа више информација посетите нашу веб страницу - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Још нисте упарили Pangea компатибилан радио са овим телефоном. Молимо вас да упарите уређај и поставите своје корисничко име.\n\nОва апликација отвореног кода је у развоју, ако нађете проблеме, молимо вас да их објавите на нашем форуму: https://github.com/orgs/pangea/discussions\n\nЗа више информација посетите нашу веб страницу - www.pangea.org.</string>
     <string name="you">Ti</string>
     <string name="accept">Prihvati</string>
     <string name="cancel">Otkaži</string>
@@ -131,7 +115,7 @@
     <string name="new_channel_rcvd">Primljen novi link kanala</string>
     <string name="report_bug">Prijavi grešku</string>
     <string name="report_a_bug">Prijavi grešku</string>
-    <string name="report_bug_text">\"Da li ste sigurni da želite da prijavite grešku? Nakon prijavljivanja, molimo vas da postavite na https://github.com/orgs/meshtastic/discussions kako bismo mogli da povežemo izveštaj sa onim što ste pronašli.</string>
+    <string name="report_bug_text">\"Da li ste sigurni da želite da prijavite grešku? Nakon prijavljivanja, molimo vas da postavite na https://github.com/orgs/pangea/discussions kako bismo mogli da povežemo izveštaj sa onim što ste pronašli.</string>
     <string name="report">Izveštaj</string>
     <string name="pairing_completed">Uparivanje završeno, pokrećem servis</string>
     <string name="pairing_failed_try_again">Uparivanje neuspešno, molim izaberite ponovo</string>
@@ -260,7 +244,7 @@
     <string name="meshtastic_new_nodes_notifications">Обавештење о новом чвору</string>
     <string name="more_details">Више детаља</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Однос сигнал/шум SNR је мера која се користи у комуникацијама за квантитативно одређивање нивоа жељеног сигнала у односу на ниво позадинског шума. У Мештастик и другим бежичним системима, већи SNR указује на јаснији сигнал који може побољшати поузданост и квалитет преноса података.</string>
+    <string name="snr_definition">Однос сигнал/шум SNR је мера која се користи у комуникацијама за квантитативно одређивање нивоа жељеног сигнала у односу на ниво позадинског шума. У Pangea и другим бежичним системима, већи SNR указује на јаснији сигнал који може побољшати поузданост и квалитет преноса података.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Indikator jačine primljenog signala RSSI, merenje koje se koristi za određivanje nivoa snage koji antena prima. Viša vrednost RSSI generalno ukazuje na jaču i stabilniju vezu.</string>
     <string name="iaq_definition">(Kvalitet vazduha u zatvorenom prostoru) relativna skala vrednosti IAQ merena Bosch BME680. Raspon vrednosti 0–500.</string>
@@ -307,7 +291,7 @@
     <string name="current">Струја</string>
     <string name="voltage">Напон</string>
     <string name="are_you_sure">Да ли сте сигурни?</string>
-    <string name="router_role_confirmation_text"><![CDATA[Прочитао сам <a href="https://meshtastic.org/docs/configuration/radio/device/#roles">Документацију улога уређаја</a> и објаву на блогу <a href="http://meshtastic.org/blog/choosing-the-right-device-role">Одабир праве улоге за уређај</a>.]]></string>
+    <string name="router_role_confirmation_text">Прочитао сам &lt;a href="https://pangea.org/docs/configuration/radio/device/#roles"&gt;Документацију улога уређаја&lt;/a&gt; и објаву на блогу &lt;a href="http://pangea.org/blog/choosing-the-right-device-role"&gt;Одабир праве улоге за уређај&lt;/a&gt;.</string>
     <string name="i_know_what_i_m_doing">Знам шта радим.</string>
     <string name="low_battery_message">Чвор %1$s има низак ниво батерије (%2$d%%)</string>
     <string name="meshtastic_low_battery_notifications">Нотификације о ниском нивоу батерије</string>
@@ -327,7 +311,7 @@
     <string name="security">Сигурност</string>
     <string name="serial">Серијска веза</string>
     <string name="external_notification">Спољна обавештења</string>
-    <string name="store_forward"><![CDATA[Сачувај и проследи]]></string>
+    <string name="store_forward">Сачувај и проследи</string>
     <string name="range_test">Тест домета</string>
     <string name="telemetry">Телеметрија (сензори)</string>
     <string name="ambient_lighting">Амбијентално осветљење</string>
@@ -397,7 +381,7 @@
     <string name="long_name">Дуго име</string>
     <string name="short_name">Кратко име</string>
     <string name="distance">Udaljenost</string>
-    <string name="store_forward_config"><![CDATA[Сачувај и проследи подешавања]]></string>
+    <string name="store_forward_config">Сачувај и проследи подешавања</string>
     <string name="indoor_air_quality_iaq">Квалитет ваздуха у затвореном простору (IAQ)</string>
     <string name="hardware">Хардвер</string>
     <string name="supported">Подржан</string>

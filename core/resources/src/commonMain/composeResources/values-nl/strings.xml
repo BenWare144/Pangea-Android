@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2025 Meshtastic LLC
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <!-- Language tags native names (not available via .getDisplayLanguage) -->
     <string name="node_filter_placeholder">Filter</string>
@@ -77,7 +61,7 @@
     <string name="qr_code">QR-code</string>
     <string name="unknown_username">Onbekende Gebruikersnaam</string>
     <string name="send">Verzend</string>
-    <string name="warning_not_paired">Je hebt nog geen Meshtastic compatibele radio met deze telefoon gekoppeld. Paar alstublieft een apparaat en voer je gebruikersnaam in.\n\nDeze open-source applicatie is in alpha-test, indien je een probleem vaststelt, kan je het posten op onze forum: https://github.com/orgs/meshtastic/discussions\n\nVoor meer informatie bezoek onze web pagina - www.meshtastic.org.</string>
+    <string name="warning_not_paired">Je hebt nog geen Pangea compatibele radio met deze telefoon gekoppeld. Paar alstublieft een apparaat en voer je gebruikersnaam in.\n\nDeze open-source applicatie is in alpha-test, indien je een probleem vaststelt, kan je het posten op onze forum: https://github.com/orgs/pangea/discussions\n\nVoor meer informatie bezoek onze web pagina - www.pangea.org.</string>
     <string name="you">Jij</string>
     <string name="accept">Accepteer</string>
     <string name="cancel">Annuleer</string>
@@ -85,7 +69,7 @@
     <string name="new_channel_rcvd">Nieuw kanaal URL ontvangen</string>
     <string name="report_bug">Rapporteer bug</string>
     <string name="report_a_bug">Rapporteer een bug</string>
-    <string name="report_bug_text">Ben je zeker dat je een bug wil rapporteren? Na het doorsturen, graag een post in https://github.com/orgs/meshtastic/discussions zodat we het rapport kunnen toetsen aan hetgeen je ondervond.</string>
+    <string name="report_bug_text">Ben je zeker dat je een bug wil rapporteren? Na het doorsturen, graag een post in https://github.com/orgs/pangea/discussions zodat we het rapport kunnen toetsen aan hetgeen je ondervond.</string>
     <string name="report">Rapporteer</string>
     <string name="pairing_completed">Koppeling geslaagd, start service</string>
     <string name="pairing_failed_try_again">Koppeling mislukt, selecteer opnieuw</string>
@@ -391,7 +375,7 @@
     <string name="radiation">Straling</string>
     <string name="indoor_air_quality_iaq">Binnenluchtkwaliteit (IAQ)</string>
     <string name="url">URL</string>
-    <string name="backup_restore"><![CDATA[Back-up & Herstellen]]></string>
+    <string name="backup_restore">Back-up &amp; Herstellen</string>
     <string name="import_configuration">Configuratie importeren</string>
     <string name="export_configuration">Configuratie exporteren</string>
     <string name="hardware">Hardware</string>
