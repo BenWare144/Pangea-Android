@@ -1,0 +1,418 @@
+From d78b7c0051a7e4c33c16402fb155e52d79b38eb0 Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sun, 1 Feb 2026 00:06:39 -0800
+Subject: [PATCH 09/16] feat(03-02): gate settings tiers by expert mode
+
+- Add @AppStorage("expertModeEnabled") to Settings struct
+- ALWAYS VISIBLE: User, Channels, Share QR Code, Display, Ambient
+  Lighting, Firmware Updates, About, App Settings, Routes, Route Recorder
+- GREYED OUT: Device, Power, Network, Logs show muted style with
+  "Enable Expert Mode to edit" caption, not tappable
+- HIDDEN: LoRa, Security, Bluetooth, Position, Canned Messages,
+  Detection Sensor, External Notification, MQTT, Range Test, PAX
+  Counter, Ringtone, Serial, Store & Forward, Telemetry
+- Expert mode indicator with wrench icon at top of settings list
+- .onChange clears navigation state when expert mode disabled
+- Module section hidden when no visible items (ambient lighting unsupported)
+- Section headers use simplified names in basic mode
+- Zero changes to .navigationDestination switch block
+---
+ Pangea/Views/Settings/Settings.swift | 222 ++++++++++++++++++---------
+ 1 file changed, 147 insertions(+), 75 deletions(-)
+
+diff --git a/Pangea/Views/Settings/Settings.swift b/Pangea/Views/Settings/Settings.swift
+index 248add10..2e6abd66 100644
+--- a/Pangea/Views/Settings/Settings.swift
++++ b/Pangea/Views/Settings/Settings.swift
+@@ -31,6 +31,8 @@ struct Settings: View {
+ 	@ObservedObject
+ 	var router: Router
+ 
++	@AppStorage("expertModeEnabled") private var expertModeEnabled = false
++
+ 	// MARK: Helper
+ 
+ 	private func isModuleSupported(_ module: ExcludedModules) -> Bool {
+@@ -44,35 +46,39 @@ struct Settings: View {
+ 	// MARK: Views
+ 
+ 	var radioConfigurationSection: some View {
+-		Section("Radio Configuration") {
+-			let node = nodes.first(where: { $0.num == preferredNodeNum })
+-			if let node,
+-				let loRaConfig = node.loRaConfig,
+-				let rc = RegionCodes(rawValue: Int(loRaConfig.regionCode)),
+-				let user = node.user,
+-				!user.isLicensed,
+-				rc.dutyCycle > 0 && rc.dutyCycle < 100 {
+-				Label {
+-					Text("Hourly Duty Cycle")
+-				} icon: {
+-					Image(systemName: "clock.arrow.circlepath")
+-						.symbolRenderingMode(.hierarchical)
+-						.foregroundColor(.red)
++		Section(expertModeEnabled ? "Radio Configuration" : "Radio") {
++			if expertModeEnabled {
++				let node = nodes.first(where: { $0.num == preferredNodeNum })
++				if let node,
++					let loRaConfig = node.loRaConfig,
++					let rc = RegionCodes(rawValue: Int(loRaConfig.regionCode)),
++					let user = node.user,
++					!user.isLicensed,
++					rc.dutyCycle > 0 && rc.dutyCycle < 100 {
++					Label {
++						Text("Hourly Duty Cycle")
++					} icon: {
++						Image(systemName: "clock.arrow.circlepath")
++							.symbolRenderingMode(.hierarchical)
++							.foregroundColor(.red)
++					}
++					Text("Your region has a \(rc.dutyCycle)% hourly duty cycle, your radio will stop sending packets when it reaches the hourly limit.")
++						.foregroundColor(.orange)
++						.font(.caption)
++					Text("Limit all periodic broadcast intervals especially telemetry and position. If you need to increase hops, do it on nodes at the edges, not the ones in the middle. MQTT is not advised when you are duty cycle restricted because the gateway node is then doing all the work.")
++						.font(.caption2)
++						.foregroundColor(.gray)
+ 				}
+-				Text("Your region has a \(rc.dutyCycle)% hourly duty cycle, your radio will stop sending packets when it reaches the hourly limit.")
+-					.foregroundColor(.orange)
+-					.font(.caption)
+-				Text("Limit all periodic broadcast intervals especially telemetry and position. If you need to increase hops, do it on nodes at the edges, not the ones in the middle. MQTT is not advised when you are duty cycle restricted because the gateway node is then doing all the work.")
+-					.font(.caption2)
+-					.foregroundColor(.gray)
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.lora) {
+-				Label {
+-					Text("LoRa")
+-				} icon: {
+-					Image(systemName: "dot.radiowaves.left.and.right")
+-						.rotationEffect(.degrees(-90))
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.lora) {
++					Label {
++						Text("LoRa")
++					} icon: {
++						Image(systemName: "dot.radiowaves.left.and.right")
++							.rotationEffect(.degrees(-90))
++					}
+ 				}
+ 			}
+ 
+@@ -85,11 +91,13 @@ struct Settings: View {
+ 			}
+ 			.disabled(selectedNode > 0 && selectedNode != preferredNodeNum)
+ 
+-			NavigationLink(value: SettingsNavigationState.security) {
+-				Label {
+-					Text("Security")
+-				} icon: {
+-					Image(systemName: "lock.shield")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.security) {
++					Label {
++						Text("Security")
++					} icon: {
++						Image(systemName: "lock.shield")
++					}
+ 				}
+ 			}
+ 
+@@ -105,7 +113,7 @@ struct Settings: View {
+ 	}
+ 
+ 	var deviceConfigurationSection: some View {
+-		Section("Device Configuration") {
++		Section(expertModeEnabled ? "Device Configuration" : "Device") {
+ 			NavigationLink(value: SettingsNavigationState.user) {
+ 				Label {
+ 					Text("User")
+@@ -114,20 +122,32 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.bluetooth) {
+-				Label {
+-					Text("Bluetooth")
+-				} icon: {
+-					Image(systemName: "antenna.radiowaves.left.and.right")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.bluetooth) {
++					Label {
++						Text("Bluetooth")
++					} icon: {
++						Image(systemName: "antenna.radiowaves.left.and.right")
++					}
+ 				}
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.device) {
+-				Label {
+-					Text("Device")
+-				} icon: {
+-					Image(systemName: "flipphone")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.device) {
++					Label {
++						Text("Device")
++					} icon: {
++						Image(systemName: "flipphone")
++					}
++				}
++			} else {
++				VStack(alignment: .leading, spacing: 2) {
++					Label { Text("Device") } icon: { Image(systemName: "flipphone") }
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++						.foregroundStyle(.tertiary)
+ 				}
++				.foregroundStyle(.secondary)
+ 			}
+ 
+ 			NavigationLink(value: SettingsNavigationState.display) {
+@@ -138,28 +158,50 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.network) {
+-				Label {
+-					Text("Network")
+-				} icon: {
+-					Image(systemName: "network")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.network) {
++					Label {
++						Text("Network")
++					} icon: {
++						Image(systemName: "network")
++					}
++				}
++			} else {
++				VStack(alignment: .leading, spacing: 2) {
++					Label { Text("Network") } icon: { Image(systemName: "network") }
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++						.foregroundStyle(.tertiary)
+ 				}
++				.foregroundStyle(.secondary)
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.position) {
+-				Label {
+-					Text("Position")
+-				} icon: {
+-					Image(systemName: "location")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.position) {
++					Label {
++						Text("Position")
++					} icon: {
++						Image(systemName: "location")
++					}
+ 				}
+ 			}
+ 
+-			NavigationLink(value: SettingsNavigationState.power) {
+-				Label {
+-					Text("Power")
+-				} icon: {
+-					Image(systemName: "bolt.fill")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.power) {
++					Label {
++						Text("Power")
++					} icon: {
++						Image(systemName: "bolt.fill")
++					}
++				}
++			} else {
++				VStack(alignment: .leading, spacing: 2) {
++					Label { Text("Power") } icon: { Image(systemName: "bolt.fill") }
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++						.foregroundStyle(.tertiary)
+ 				}
++				.foregroundStyle(.secondary)
+ 			}
+ 		}
+ 	}
+@@ -176,7 +218,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.cannedmsgConfig) {
++			if expertModeEnabled && isModuleSupported(.cannedmsgConfig) {
+ 				NavigationLink(value: SettingsNavigationState.cannedMessages) {
+ 					Label {
+ 						Text("Canned Messages")
+@@ -186,7 +228,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.detectionsensorConfig) {
++			if expertModeEnabled && isModuleSupported(.detectionsensorConfig) {
+ 				NavigationLink(value: SettingsNavigationState.detectionSensor) {
+ 					Label {
+ 						Text("Detection Sensor")
+@@ -196,7 +238,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.extnotifConfig) {
++			if expertModeEnabled && isModuleSupported(.extnotifConfig) {
+ 				NavigationLink(value: SettingsNavigationState.externalNotification) {
+ 					Label {
+ 						Text("External Notification")
+@@ -206,7 +248,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.mqttConfig) {
++			if expertModeEnabled && isModuleSupported(.mqttConfig) {
+ 				NavigationLink(value: SettingsNavigationState.mqtt) {
+ 					Label {
+ 						Text("MQTT")
+@@ -216,7 +258,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.rangetestConfig) {
++			if expertModeEnabled && isModuleSupported(.rangetestConfig) {
+ 				NavigationLink(value: SettingsNavigationState.rangeTest) {
+ 					Label {
+ 						Text("Range Test")
+@@ -226,7 +268,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.paxcounterConfig) {
++			if expertModeEnabled && isModuleSupported(.paxcounterConfig) {
+ 				NavigationLink(value: SettingsNavigationState.paxCounter) {
+ 					Label {
+ 						Text("PAX Counter")
+@@ -236,7 +278,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.extnotifConfig) {
++			if expertModeEnabled && isModuleSupported(.extnotifConfig) {
+ 				NavigationLink(value: SettingsNavigationState.ringtone) {
+ 					Label {
+ 						Text("Ringtone")
+@@ -246,7 +288,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.serialConfig) {
++			if expertModeEnabled && isModuleSupported(.serialConfig) {
+ 				NavigationLink(value: SettingsNavigationState.serial) {
+ 					Label {
+ 						Text("Serial")
+@@ -256,7 +298,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.storeforwardConfig) {
++			if expertModeEnabled && isModuleSupported(.storeforwardConfig) {
+ 				NavigationLink(value: SettingsNavigationState.storeAndForward) {
+ 					Label {
+ 						Text("Store & Forward")
+@@ -266,7 +308,7 @@ struct Settings: View {
+ 				}
+ 			}
+ 
+-			if isModuleSupported(.telemetryConfig) {
++			if expertModeEnabled && isModuleSupported(.telemetryConfig) {
+ 				NavigationLink(value: SettingsNavigationState.telemetry) {
+ 					Label {
+ 						Text("Telemetry")
+@@ -278,7 +320,7 @@ struct Settings: View {
+ 
+ 			// Update this list with the modules that are shown above. If all are not supported
+ 			// Then show a message.
+-			if !isAnySupported([.ambientlightingConfig, .cannedmsgConfig,
++			if expertModeEnabled && !isAnySupported([.ambientlightingConfig, .cannedmsgConfig,
+ 								.detectionsensorConfig, .extnotifConfig,
+ 								.mqttConfig, .rangetestConfig, .paxcounterConfig,
+ 								.audioConfig, .serialConfig, .storeforwardConfig,
+@@ -286,18 +328,28 @@ struct Settings: View {
+ 				Text("This node does not support any configurable modules.")
+ 			}
+ 		} header: {
+-			Text("Module Configuration")
++			Text(expertModeEnabled ? "Module Configuration" : "Modules")
+ 		}
+ 	}
+ 
+ 	var loggingSection: some View {
+ 		Section(header: Text("Logging")) {
+-			NavigationLink(value: SettingsNavigationState.debugLogs) {
+-				Label {
+-					Text("Logs")
+-				} icon: {
+-					Image(systemName: "scroll")
++			if expertModeEnabled {
++				NavigationLink(value: SettingsNavigationState.debugLogs) {
++					Label {
++						Text("Logs")
++					} icon: {
++						Image(systemName: "scroll")
++					}
++				}
++			} else {
++				VStack(alignment: .leading, spacing: 2) {
++					Label { Text("Logs") } icon: { Image(systemName: "scroll") }
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++						.foregroundStyle(.tertiary)
+ 				}
++				.foregroundStyle(.secondary)
+ 			}
+ 		}
+ 	}
+@@ -340,6 +392,19 @@ struct Settings: View {
+ 		) {
+ 			let node = nodes.first(where: { $0.num == preferredNodeNum })
+ 			List {
++				if expertModeEnabled {
++					Section {
++						Label {
++							Text("Expert Mode")
++								.font(.subheadline)
++								.foregroundStyle(.orange)
++						} icon: {
++							Image(systemName: "wrench.and.screwdriver")
++								.foregroundStyle(.orange)
++						}
++					}
++				}
++
+ 				NavigationLink(value: SettingsNavigationState.about) {
+ 					Label {
+ 						Text("About Pangea")
+@@ -452,7 +517,9 @@ struct Settings: View {
+ 					}
+ 					radioConfigurationSection
+ 					deviceConfigurationSection
+-					moduleConfigurationSection
++					if expertModeEnabled || isModuleSupported(.ambientlightingConfig) {
++						moduleConfigurationSection
++					}
+ 					loggingSection
+ #if DEBUG
+ 					developersSection
+@@ -537,6 +604,11 @@ struct Settings: View {
+ 					setSelectedNode(to: UserDefaults.preferredPeripheralNum)
+ 				}
+ 			}
++			.onChange(of: expertModeEnabled) { _, isExpert in
++				if !isExpert {
++					router.navigationState.settings = nil
++				}
++			}
+ 			.onAppear {
+ 				// If the selection hasn't be initialized yet, try to initalize it.
+ 				// If we are not fully connected yet, then setSelectedNode will
+-- 
+2.50.1.windows.1
+

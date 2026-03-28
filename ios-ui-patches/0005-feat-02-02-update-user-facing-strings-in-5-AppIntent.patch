@@ -1,0 +1,287 @@
+From 1a3b7eaa595dae0d48f23556c6ec633354e2aa6e Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sat, 31 Jan 2026 18:32:19 -0800
+Subject: [PATCH 05/16] feat(02-02): update user-facing strings in 5 AppIntent
+ files
+
+- TracerouteIntent: "Meshtastic node" -> "Pangea node"
+- SaveChannelSettingsIntent: "Meshtastic channel" -> "Pangea channel" (description + error)
+- AddContactIntent: "Meshtastic contact" -> "Pangea contact" (description + error)
+- MessageChannelIntent: "meshtastic channel" -> "Pangea channel"
+- MessageNodeIntent: "meshtastic node" -> "Pangea node"
+---
+ Pangea/AppIntents/AddContactIntent.swift      | 44 ++++++++++++++
+ Pangea/AppIntents/MessageChannelIntent.swift  | 52 ++++++++++++++++
+ Pangea/AppIntents/MessageNodeIntent.swift     | 47 +++++++++++++++
+ .../SaveChannelSettingsIntent.swift           | 60 +++++++++++++++++++
+ Pangea/AppIntents/TracerouteIntent.swift      | 27 +++++++++
+ 5 files changed, 230 insertions(+)
+ create mode 100644 Pangea/AppIntents/AddContactIntent.swift
+ create mode 100644 Pangea/AppIntents/MessageChannelIntent.swift
+ create mode 100644 Pangea/AppIntents/MessageNodeIntent.swift
+ create mode 100644 Pangea/AppIntents/SaveChannelSettingsIntent.swift
+ create mode 100644 Pangea/AppIntents/TracerouteIntent.swift
+
+diff --git a/Pangea/AppIntents/AddContactIntent.swift b/Pangea/AppIntents/AddContactIntent.swift
+new file mode 100644
+index 00000000..1f5e6cb4
+--- /dev/null
++++ b/Pangea/AppIntents/AddContactIntent.swift
+@@ -0,0 +1,44 @@
++//
++//  AddContactIntent.swift
++//  Meshtastic
++//
++//  Created by Benjamin Faershtein on 5/13/25.
++//
++
++import AppIntents
++import PangeaProtobufs
++
++struct AddContactIntent: AppIntent {
++	static let title: LocalizedStringResource = "Add Contact"
++	static let description: IntentDescription = "Takes a Pangea contact URL and saves it to the nodes database"
++
++	@Parameter(title: "Contact URL", description: "The URL for the node to add")
++	var contactUrl: URL
++
++	// Define the function that performs the main logic
++	func perform() async throws -> some IntentResult {
++		// Ensure the BLE Manager is connected
++		if !(await AccessoryManager.shared.isConnected) {
++			throw AppIntentErrors.AppIntentError.notConnected
++		}
++
++		if contactUrl.absoluteString.lowercased().contains("pangea.org/v/#") {
++			let components = self.contactUrl.absoluteString.components(separatedBy: "#")
++			// Extract contact information from the URL
++			if let contactData = components.last {
++				let decodedString = contactData.base64urlToBase64()
++				if let _ = Data(base64Encoded: decodedString) {
++					do {
++						try await AccessoryManager.shared.addContactFromURL(base64UrlString: contactData)
++					} catch {
++						throw AppIntentErrors.AppIntentError.message("Failed to add/parse contact data: \(error.localizedDescription)")
++					}
++				}
++			}
++			// Return a success result
++			return .result()
++		} else {
++			throw AppIntentErrors.AppIntentError.message("The URL is not a valid Pangea contact link")
++		}
++	}
++}
+diff --git a/Pangea/AppIntents/MessageChannelIntent.swift b/Pangea/AppIntents/MessageChannelIntent.swift
+new file mode 100644
+index 00000000..91d3e68a
+--- /dev/null
++++ b/Pangea/AppIntents/MessageChannelIntent.swift
+@@ -0,0 +1,52 @@
++//
++//  MessageChannelIntent.swift
++//  Meshtastic
++//
++//  Created by Benjamin Faershtein on 8/9/24.
++//
++
++import Foundation
++import AppIntents
++
++struct MessageChannelIntent: AppIntent {
++	static let title: LocalizedStringResource = "Send a Group Message"
++
++	static let description: IntentDescription = "Send a message to a certain Pangea channel"
++
++	@Parameter(title: "Message")
++	var messageContent: String
++
++	@Parameter(title: "Channel", controlStyle: .stepper, inclusiveRange: (lowerBound: 0, upperBound: 7))
++	var channelNumber: Int
++
++	static var parameterSummary: some ParameterSummary {
++		Summary("Send \(\.$messageContent) to \(\.$channelNumber)")
++	}
++	func perform() async throws -> some IntentResult {
++		if !(await AccessoryManager.shared.isConnected) {
++			throw AppIntentErrors.AppIntentError.notConnected
++		}
++
++		// Check if channel number is between 1 and 7
++		guard (0...7).contains(channelNumber) else {
++			throw $channelNumber.needsValueError("Channel number must be between 0 and 7.")
++		}
++
++		// Convert messageContent to data and check its length
++		guard let messageData = messageContent.data(using: .utf8) else {
++			throw AppIntentErrors.AppIntentError.message("Failed to encode message content")
++		}
++
++		if messageData.count > 200 {
++			throw $messageContent.needsValueError("Message content exceeds 200 bytes.")
++		}
++
++		do {
++			try await AccessoryManager.shared.sendMessage(message: messageContent, toUserNum: 0, channel: Int32(channelNumber), isEmoji: false, replyID: 0)
++		} catch {
++			throw AppIntentErrors.AppIntentError.message("Failed to send message")
++		}
++
++	return .result()
++	}
++}
+diff --git a/Pangea/AppIntents/MessageNodeIntent.swift b/Pangea/AppIntents/MessageNodeIntent.swift
+new file mode 100644
+index 00000000..945df42b
+--- /dev/null
++++ b/Pangea/AppIntents/MessageNodeIntent.swift
+@@ -0,0 +1,47 @@
++//
++//  MessageNodeIntent.swift
++//  Meshtastic
++//
++//  Created by Benjamin Faershtein on 11/9/24.
++//
++
++import Foundation
++import AppIntents
++
++struct MessageNodeIntent: AppIntent {
++	static var title: LocalizedStringResource = "Send a Direct Message"
++
++	static var description: IntentDescription = "Send a message to a certain Pangea node"
++
++	@Parameter(title: "Message")
++	var messageContent: String
++
++	@Parameter(title: "Node Number")
++	var nodeNumber: Int
++
++	static var parameterSummary: some ParameterSummary {
++		Summary("Send \(\.$messageContent) to \(\.$nodeNumber)")
++	}
++	func perform() async throws -> some IntentResult {
++		if await !AccessoryManager.shared.isConnected {
++			throw AppIntentErrors.AppIntentError.notConnected
++		}
++
++		// Convert messageContent to data and check its length
++		guard let messageData = messageContent.data(using: .utf8) else {
++			throw AppIntentErrors.AppIntentError.message("Failed to encode message content")
++		}
++
++		if messageData.count > 200 {
++			throw $messageContent.needsValueError("Message content exceeds 200 bytes.")
++		}
++
++		do {
++			try await AccessoryManager.shared.sendMessage(message: messageContent, toUserNum: Int64(nodeNumber), channel: 0, isEmoji: false, replyID: 0)
++		} catch {
++			throw AppIntentErrors.AppIntentError.message("Failed to send message")
++		}
++
++	return .result()
++	}
++}
+diff --git a/Pangea/AppIntents/SaveChannelSettingsIntent.swift b/Pangea/AppIntents/SaveChannelSettingsIntent.swift
+new file mode 100644
+index 00000000..37138d87
+--- /dev/null
++++ b/Pangea/AppIntents/SaveChannelSettingsIntent.swift
+@@ -0,0 +1,60 @@
++//
++//  SaveChannelSettingsIntent.swift
++//  Meshtastic
++//
++//  Created by Benjamin Faershtein on 10/6/24.
++//
++
++import Foundation
++import AppIntents
++
++// Define the AppIntent for saving channel settings from a URL
++struct SaveChannelSettingsIntent: AppIntent {
++	// Define a title and description for the intent
++	static let title: LocalizedStringResource = "Save Channel Settings"
++	static let description: IntentDescription = "Takes a Pangea channel URL and saves the channel settings."
++
++	// Define the input for the intent (the channel URL)
++	@Parameter(title: "Channel URL", description: "The URL for the channel settings")
++	var channelUrl: URL
++
++	// Define the function that performs the main logic
++	func perform() async throws -> some IntentResult {
++		// Ensure the BLE Manager is connected
++		if !(await AccessoryManager.shared.isConnected) {
++			throw AppIntentErrors.AppIntentError.notConnected
++		}
++
++		// Ensure the URL contains the expected "pangea.org/e/#" structure
++		if channelUrl.absoluteString.lowercased().contains("pangea.org/e/#") {
++			// Split the URL to get the portion after "#"
++			let components = channelUrl.absoluteString.components(separatedBy: "#")
++			// Add channels flag based on the URL query parameter (if present)
++			let addChannels = Bool(channelUrl["add"] ?? "false") ?? false
++			var channelSettings: String?
++			// Extract the Base64 encoded channel settings (after "#")
++			if let lastComponent = components.last {
++				channelSettings = lastComponent.components(separatedBy: "?").first // Ignore any query parameters
++			}
++
++			// If valid channel settings are extracted, attempt to save them
++			if let channelSettings = channelSettings {
++				Task {
++					do {
++						// Call the AcessoryManager to save the channel settings
++						try await AccessoryManager.shared.saveChannelSet(base64UrlString: channelSettings, addChannels: addChannels)
++					} catch {
++						throw AppIntentErrors.AppIntentError.message("Failed to save the channel settings.")
++					}
++				}
++			} else {
++				throw AppIntentErrors.AppIntentError.message("Invalid Channel URL: Unable to extract settings.")
++			}
++
++			// Return a success result
++			return .result()
++		} else {
++			throw AppIntentErrors.AppIntentError.message("The URL is not a valid Pangea channel link.")
++		}
++	}
++}
+diff --git a/Pangea/AppIntents/TracerouteIntent.swift b/Pangea/AppIntents/TracerouteIntent.swift
+new file mode 100644
+index 00000000..d74bcb71
+--- /dev/null
++++ b/Pangea/AppIntents/TracerouteIntent.swift
+@@ -0,0 +1,27 @@
++import Foundation
++import AppIntents
++
++struct TracerouteIntent: AppIntent {
++	static var title: LocalizedStringResource = "Send a Traceroute"
++
++	static var description: IntentDescription = "Send a traceroute request to a certain Pangea node"
++
++	@Parameter(title: "Node Number")
++	var nodeNumber: Int
++
++	static var parameterSummary: some ParameterSummary {
++		Summary("Send traceroute to \(\.$nodeNumber)")
++	}
++
++	func perform() async throws -> some IntentResult {
++		if !BLEManager.shared.isConnected {
++			throw AppIntentErrors.AppIntentError.notConnected
++		}
++
++		if !BLEManager.shared.sendTraceRouteRequest(destNum: Int64(nodeNumber), wantResponse: true) {
++			throw AppIntentErrors.AppIntentError.message("Failed to send traceroute request")
++		}
++
++		return .result()
++	}
++}
+-- 
+2.50.1.windows.1
+

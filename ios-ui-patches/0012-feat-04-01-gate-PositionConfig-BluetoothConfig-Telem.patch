@@ -1,0 +1,1473 @@
+From 2269e1c3d97347abf0d110e4dfd564b443f71027 Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sun, 1 Feb 2026 13:39:32 -0800
+Subject: [PATCH 12/16] feat(04-01): gate PositionConfig, BluetoothConfig,
+ TelemetryConfig, and CannedMessagesConfig fields
+
+- PositionConfig: gate Device GPS, Position Flags, Advanced Position Flags,
+  and Advanced Device GPS sections (Position Packet remains editable)
+- BluetoothConfig: gate Pairing Mode picker and Fixed Pin field
+  (Enabled toggle remains editable)
+- TelemetryConfig: gate all 3 sections (Device Options, Environment Sensor
+  Options, Power Sensor Options)
+- CannedMessagesConfig: gate Control Type, Inputs, and Key Mapping sections
+  (Options and Messages remain editable)
+- Each gated section has disabled+dimmed+footer treatment with
+  "Enable Expert Mode to edit" caption2
+---
+ .../Settings/Config/BluetoothConfig.swift     | 161 +++++
+ .../Config/Module/CannedMessagesConfig.swift  | 384 +++++++++++
+ .../Config/Module/TelemetryConfig.swift       | 273 ++++++++
+ .../Settings/Config/PositionConfig.swift      | 601 ++++++++++++++++++
+ 4 files changed, 1419 insertions(+)
+ create mode 100644 Pangea/Views/Settings/Config/BluetoothConfig.swift
+ create mode 100644 Pangea/Views/Settings/Config/Module/CannedMessagesConfig.swift
+ create mode 100644 Pangea/Views/Settings/Config/Module/TelemetryConfig.swift
+ create mode 100644 Pangea/Views/Settings/Config/PositionConfig.swift
+
+diff --git a/Pangea/Views/Settings/Config/BluetoothConfig.swift b/Pangea/Views/Settings/Config/BluetoothConfig.swift
+new file mode 100644
+index 00000000..ea18ab91
+--- /dev/null
++++ b/Pangea/Views/Settings/Config/BluetoothConfig.swift
+@@ -0,0 +1,161 @@
++//
++//  BluetoothConfig.swift
++//  Meshtastic Apple
++//
++//  Copyright (c) Garth Vander Houwen 8/18/22.
++//
++
++import PangeaProtobufs
++import OSLog
++import SwiftUI
++
++struct BluetoothConfig: View {
++	@AppStorage("expertModeEnabled") private var expertModeEnabled = false
++	@Environment(\.managedObjectContext) var context
++	@EnvironmentObject var accessoryManager: AccessoryManager
++	@Environment(\.dismiss) private var goBack
++	var node: NodeInfoEntity?
++	@State var hasChanges = false
++	@State var enabled = true
++	@State var mode = 0
++	@State var fixedPin = "123456"
++	@State var shortPin = false
++	var pinLength: Int = 6
++	let numberFormatter: NumberFormatter = {
++		let formatter = NumberFormatter()
++		formatter.numberStyle = .none
++		return formatter
++	}()
++	var body: some View {
++		Form {
++			ConfigHeader(title: "Bluetooth", config: \.bluetoothConfig, node: node, onAppear: setBluetoothValues)
++
++			Section(header: Text("Options")) {
++				Toggle(isOn: $enabled) {
++					Label("Enabled", systemImage: "antenna.radiowaves.left.and.right")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				Picker("Pairing Mode", selection: $mode ) {
++					ForEach(BluetoothModes.allCases) { bm in
++						Text(bm.description)
++					}
++				}
++				.pickerStyle(DefaultPickerStyle())
++				.disabled(!expertModeEnabled)
++				.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++				if mode == 1 {
++					HStack {
++						Label("Fixed Pin", systemImage: "wallet.pass")
++						TextField("Fixed Pin", text: $fixedPin)
++							.foregroundColor(.gray)
++							.onChange(of: fixedPin) {
++								// Don't let the first character be 0 because it will get stripped when saving a UInt32
++								if fixedPin.first == "0" {
++									fixedPin = fixedPin.replacing("0", with: "")
++								}
++								// Require that pin is no more than 6 numbers and no less than 6 numbers
++								if fixedPin.utf8.count == pinLength {
++									shortPin = false
++								} else if fixedPin.utf8.count > pinLength {
++									shortPin = false
++									fixedPin = String(fixedPin.prefix(pinLength))
++								} else if fixedPin.utf8.count < pinLength {
++									shortPin = true
++								}
++							}
++							.foregroundColor(.gray)
++					}
++					.keyboardType(.decimalPad)
++					.disabled(!expertModeEnabled)
++					.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++					if shortPin {
++						Text("BLE Pin must be 6 digits long.")
++							.font(.callout)
++							.foregroundColor(.red)
++							.disabled(!expertModeEnabled)
++							.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++					}
++				}
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++						.foregroundStyle(.tertiary)
++				}
++			}
++		}
++		.disabled(!accessoryManager.isConnected || node?.bluetoothConfig == nil)
++		.safeAreaInset(edge: .bottom, alignment: .center) {
++			HStack(spacing: 0) {
++				SaveConfigButton(node: node, hasChanges: $hasChanges) {
++					if let myNodeNum = accessoryManager.activeDeviceNum,
++					   let connectedNode = getNodeInfo(id: myNodeNum, context: context) {
++						var bc = Config.BluetoothConfig()
++						bc.enabled = enabled
++						bc.mode = BluetoothModes(rawValue: mode)?.protoEnumValue() ?? Config.BluetoothConfig.PairingMode.randomPin
++						bc.fixedPin = UInt32(fixedPin) ?? 123456
++						Task {
++							// TODO: ADMINIndex?
++							_ = try await accessoryManager.saveBluetoothConfig(config: bc, fromUser: connectedNode.user!, toUser: node!.user!)
++							Task { @MainActor in
++								// Should show a saved successfully alert once I know that to be true
++								// for now just disable the button after a successful save
++								hasChanges = false
++								goBack()
++							}
++						}
++					}
++				}
++			}
++		}
++		.navigationTitle("Bluetooth Config")
++		.navigationBarItems(
++			trailing: ZStack {
++				ConnectedDevice(deviceConnected: accessoryManager.isConnected, name: accessoryManager.activeConnection?.device.shortName ?? "?")
++
++			}
++		)
++		.onFirstAppear {
++			// Need to request a BluetoothConfig from the remote node before allowing changes
++			if let deviceNum = accessoryManager.activeDeviceNum, let node {
++				if let connectedNode = getNodeInfo(id: deviceNum, context: context) {
++					if node.num != deviceNum {
++						if UserDefaults.enableAdministration {
++							/// 2.5 Administration with session passkey
++							let expiration = node.sessionExpiration ?? Date()
++							if expiration < Date() || node.bluetoothConfig == nil {
++								Task {
++									do {
++										Logger.mesh.info("⚙️ Empty or expired bluetooth config requesting via PKI admin")
++										// TODO: AdminIndex?
++										try await accessoryManager.requestBluetoothConfig(fromUser: connectedNode.user!, toUser: node.user!)
++									} catch {
++										Logger.mesh.info("🚨 Bluetooth config request failed")
++									}
++								}
++
++							}
++						} else {
++							/// Legacy Administration
++							Logger.mesh.info("☠️ Using insecure legacy admin that is no longer supported, please upgrade your firmware.")
++						}
++					}
++				}
++			}
++		}
++		.onChange(of: enabled) { oldEnabled, newEnabled in
++			if oldEnabled != newEnabled && newEnabled != node?.bluetoothConfig?.enabled { hasChanges = true }
++		}
++		.onChange(of: mode) { oldNode, newNode in
++			if oldNode != newNode && newNode != node?.bluetoothConfig?.mode ?? -1 { hasChanges = true }
++		}
++		.onChange(of: fixedPin) { oldFixedPin, newFixedPin in
++			if oldFixedPin != newFixedPin && newFixedPin != String(node?.bluetoothConfig?.fixedPin ?? -1) { hasChanges = true }
++		}
++	}
++	func setBluetoothValues() {
++		self.enabled = node?.bluetoothConfig?.enabled ?? true
++		self.mode = Int(node?.bluetoothConfig?.mode ?? 0)
++		self.fixedPin = String(node?.bluetoothConfig?.fixedPin ?? 123456)
++		self.hasChanges = false
++	}
++}
+diff --git a/Pangea/Views/Settings/Config/Module/CannedMessagesConfig.swift b/Pangea/Views/Settings/Config/Module/CannedMessagesConfig.swift
+new file mode 100644
+index 00000000..874c2c16
+--- /dev/null
++++ b/Pangea/Views/Settings/Config/Module/CannedMessagesConfig.swift
+@@ -0,0 +1,384 @@
++//
++//  CannedMessagesConfig.swift
++//  Meshtastic Apple
++//
++//  Copyright (c) Garth Vander Houwen 6/22/22.
++//
++import PangeaProtobufs
++import OSLog
++import SwiftUI
++
++struct CannedMessagesConfig: View {
++	@AppStorage("expertModeEnabled") private var expertModeEnabled = false
++	@Environment(\.managedObjectContext) var context
++	@EnvironmentObject var accessoryManager: AccessoryManager
++	@Environment(\.dismiss) private var goBack
++	var node: NodeInfoEntity?
++	@State private var isPresentingSaveConfirm: Bool = false
++	@State var hasChanges = false
++	@State var hasMessagesChanges = false
++	@State var configPreset = 0
++	@State var enabled = false
++	/// CannedMessageModule will sends a bell character with the messages.
++	@State var sendBell: Bool = false
++	/// Enable the rotary encoder #1. This is a 'dumb' encoder sending pulses on both A and B pins while rotating.
++	@State var rotary1Enabled = false
++	/// Enable the Up/Down/Select input device. Can be RAK rotary encoder or 3 buttons. Uses the a/b/press definitions from inputbroker.
++	@State var updown1Enabled: Bool = false
++	/// GPIO pin for rotary encoder A port.
++	@State var inputbrokerPinA = 0
++	/// GPIO pin for rotary encoder B port.
++	@State var inputbrokerPinB = 0
++	/// GPIO pin for rotary encoder Press port.
++	@State var inputbrokerPinPress = 0
++	/// Generate input event on CW of this kind.
++	@State var inputbrokerEventCw = 0
++	/// Generate input event on CCW of this kind.
++	@State var inputbrokerEventCcw = 0
++	/// Generate input event on Press of this kind.
++	@State var inputbrokerEventPress = 0
++	@State var messages = ""
++	var body: some View {
++		Form {
++			ConfigHeader(title: "Canned messages", config: \.cannedMessageConfig, node: node, onAppear: setCannedMessagesValues)
++
++			Section(header: Text("Options")) {
++
++				Toggle(isOn: $enabled) {
++
++					Label("Enabled", systemImage: "list.bullet.rectangle.fill")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++				Toggle(isOn: $sendBell) {
++
++					Label("Send Bell", systemImage: "bell")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++				Picker("Configuration Presets", selection: $configPreset ) {
++					ForEach(ConfigPresets.allCases) { cp in
++						Text(cp.description)
++					}
++				}
++				.pickerStyle(DefaultPickerStyle())
++				.padding(.top, 10)
++				.padding(.bottom, 10)
++			}
++			HStack {
++				Label("Messages", systemImage: "message.fill")
++				TextField("Messages separate with |", text: $messages, axis: .vertical)
++					.foregroundColor(.gray)
++					.autocapitalization(.none)
++					.disableAutocorrection(true)
++					.onChange(of: messages) {
++						var totalBytes = messages.utf8.count
++						// Only mess with the value if it is too big
++						while totalBytes > 198 {
++							messages = String(messages.dropLast())
++							totalBytes = messages.utf8.count
++						}
++						if messages != node?.cannedMessageConfig?.messages ?? "" {
++							hasChanges = true
++							hasMessagesChanges = true
++						}
++					}
++					.foregroundColor(.gray)
++			}
++			.keyboardType(.default)
++			Section {
++				Toggle(isOn: $rotary1Enabled) {
++
++					Label("Rotary 1", systemImage: "dial.min")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				.disabled(updown1Enabled)
++				Toggle(isOn: $updown1Enabled) {
++
++					Label("Up Down 1", systemImage: "arrow.up.arrow.down")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				.disabled(rotary1Enabled)
++			} header: {
++				Text("Control Type")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled || configPreset > 0)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++
++			Section {
++				VStack(alignment: .leading) {
++					Picker("Pin A", selection: $inputbrokerPinA) {
++						ForEach(0..<49) {
++							if $0 == 0 {
++								Text("Unset")
++							} else {
++								Text("Pin \($0)")
++							}
++						}
++					}
++					.pickerStyle(DefaultPickerStyle())
++					Text("GPIO pin for rotary encoder A port.")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++				VStack(alignment: .leading) {
++					Picker("Pin B", selection: $inputbrokerPinB) {
++						ForEach(0..<49) {
++							if $0 == 0 {
++								Text("Unset")
++							} else {
++								Text("Pin \($0)")
++							}
++						}
++					}
++					.pickerStyle(DefaultPickerStyle())
++					Text("GPIO pin for rotary encoder B port.")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++				VStack(alignment: .leading) {
++					Picker("Press Pin", selection: $inputbrokerPinPress) {
++						ForEach(0..<49) {
++							if $0 == 0 {
++								Text("Unset")
++							} else {
++								Text("Pin \($0)")
++							}
++						}
++					}
++					.pickerStyle(DefaultPickerStyle())
++					Text("GPIO pin for rotary encoder Press port.")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++			} header: {
++				Text("Inputs")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled || configPreset > 0)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++
++			Section {
++				Picker("Clockwise Rotary Event", selection: $inputbrokerEventCw ) {
++					ForEach(InputEventChars.allCases) { iec in
++						Text(iec.description)
++					}
++				}
++				.pickerStyle(DefaultPickerStyle())
++				.padding(.top, 10)
++				.padding(.bottom, 10)
++				Picker("Counter Clockwise Rotary Event", selection: $inputbrokerEventCcw ) {
++					ForEach(InputEventChars.allCases) { iec in
++						Text(iec.description)
++					}
++				}
++				.pickerStyle(DefaultPickerStyle())
++				.padding(.top, 10)
++				.padding(.bottom, 10)
++				Picker("Encoder Press Event", selection: $inputbrokerEventPress ) {
++					ForEach(InputEventChars.allCases) { iec in
++						Text(iec.description)
++					}
++				}
++				.pickerStyle(DefaultPickerStyle())
++				.padding(.top, 10)
++				.padding(.bottom, 10)
++			} header: {
++				Text("Key Mapping")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled || configPreset > 0)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++		}
++		.scrollDismissesKeyboard(.immediately)
++		.disabled(!accessoryManager.isConnected || node?.cannedMessageConfig == nil)
++		.safeAreaInset(edge: .bottom, alignment: .center) {
++			HStack(spacing: 0) {
++				SaveConfigButton(node: node, hasChanges: $hasChanges) {
++					let connectedNode = getNodeInfo(id: accessoryManager.activeDeviceNum ?? -1, context: context)
++					if hasChanges {
++						if connectedNode != nil {
++							var cmc = ModuleConfig.CannedMessageConfig()
++							cmc.enabled = enabled
++							cmc.sendBell = sendBell
++							cmc.rotary1Enabled = rotary1Enabled
++							cmc.updown1Enabled = updown1Enabled
++							if rotary1Enabled {
++								/// Input event origin accepted by the canned messages
++								/// Can be e.g. "rotEnc1", "upDownEnc1",  "cardkb",  or keyword "_any"
++								cmc.allowInputSource = "rotEnc1"
++							} else if updown1Enabled {
++								cmc.allowInputSource = "upDown1"
++							} else {
++								cmc.allowInputSource = "_any"
++							}
++							cmc.inputbrokerPinA = UInt32(inputbrokerPinA)
++							cmc.inputbrokerPinB = UInt32(inputbrokerPinB)
++							cmc.inputbrokerPinPress = UInt32(inputbrokerPinPress)
++							cmc.inputbrokerEventCw = InputEventChars(rawValue: inputbrokerEventCw)!.protoEnumValue()
++							cmc.inputbrokerEventCcw = InputEventChars(rawValue: inputbrokerEventCcw)!.protoEnumValue()
++							cmc.inputbrokerEventPress = InputEventChars(rawValue: inputbrokerEventPress)!.protoEnumValue()
++							Task {
++								do {
++									_ = try await accessoryManager.saveCannedMessageModuleConfig(config: cmc, fromUser: node!.user!, toUser: node!.user!)
++									Task { @MainActor in
++										// Should show a saved successfully alert once I know that to be true
++										// for now just disable the button after a successful save
++										hasChanges = false
++										goBack()
++									}
++								} catch {
++									Logger.mesh.error("Unable to save canned message module config")
++								}
++							}
++						}
++					}
++					if hasMessagesChanges {
++						Task {
++							do {
++								_ = try await accessoryManager.saveCannedMessageModuleMessages(messages: messages, fromUser: node!.user!, toUser: node!.user!)
++
++								Task { @MainActor in
++									// Should show a saved successfully alert once I know that to be true
++									// for now just disable the button after a successful save
++									hasMessagesChanges = false
++									if !hasChanges {
++										Task {
++											Logger.transport.debug("[CannedMessagesConfig] sending wantConfig for save cannedMessagesConfig")
++										}
++										goBack()
++									}
++								}
++							} catch {
++								Logger.mesh.error("Unable to save canned message module messages")
++							}
++						}
++					}
++				}
++			}
++		}
++		.navigationTitle("Canned Messages Config")
++		.navigationBarItems(
++			trailing: ZStack {
++				ConnectedDevice(
++					deviceConnected: accessoryManager.isConnected,
++					name: accessoryManager.activeConnection?.device.shortName ?? "?"
++				)
++			}
++		)
++		.onFirstAppear {
++			// Need to request a CannedMessagesModuleConfig from the remote node before allowing changes
++			if let deviceNum = accessoryManager.activeDeviceNum, let node {
++				let connectedNode = getNodeInfo(id: deviceNum, context: context)
++				if let connectedNode {
++					if node.num != deviceNum {
++						if UserDefaults.enableAdministration && node.num != connectedNode.num {
++							/// 2.5 Administration with session passkey
++							let expiration = node.sessionExpiration ?? Date()
++							if expiration < Date() || node.cannedMessageConfig == nil {
++								Task {
++									do {
++										Logger.mesh.info("⚙️ Empty or expired canned messages module config requesting via PKI admin")
++										try await accessoryManager.requestCannedMessagesModuleConfig(fromUser: connectedNode.user!, toUser: node.user!)
++									} catch {
++										Logger.mesh.info("🚨 Unable to send canned message module config request")
++									}
++								}
++							}
++						} else {
++							/// Legacy Administration
++							Logger.mesh.info("☠️ Using insecure legacy admin that is no longer supported, please upgrade your firmware.")
++						}
++					}
++				}
++			}
++		}
++		.onChange(of: configPreset) { _, newPreset in
++
++			if newPreset == 1 {
++
++				// RAK Rotary Encoder
++				updown1Enabled = true
++				rotary1Enabled = false
++				inputbrokerPinA = 4
++				inputbrokerPinB = 10
++				inputbrokerPinPress = 9
++				inputbrokerEventCw = InputEventChars.down.rawValue
++				inputbrokerEventCcw = InputEventChars.up.rawValue
++				inputbrokerEventPress = InputEventChars.select.rawValue
++
++			} else if newPreset == 2 {
++
++				// CardKB / RAK Keypad
++				updown1Enabled = false
++				rotary1Enabled = false
++				inputbrokerPinA = 0
++				inputbrokerPinB = 0
++				inputbrokerPinPress	= 0
++				inputbrokerEventCw = InputEventChars.none.rawValue
++				inputbrokerEventCcw = InputEventChars.none.rawValue
++				inputbrokerEventPress = InputEventChars.none.rawValue
++			}
++
++			hasChanges = true
++		}
++		.onChange(of: enabled) { _, newEnabled in
++			if newEnabled != node?.cannedMessageConfig?.enabled { hasChanges = true }
++		}
++		.onChange(of: sendBell) { _, newSendBell in
++			if newSendBell != node?.cannedMessageConfig?.sendBell { hasChanges = true }
++		}
++		.onChange(of: rotary1Enabled) { _, newRotary1Enabled in
++			if newRotary1Enabled != node?.cannedMessageConfig?.rotary1Enabled {	hasChanges = true }
++		}
++		.onChange(of: updown1Enabled) { _, newUpdown1Enabled in
++			if newUpdown1Enabled != node?.cannedMessageConfig?.updown1Enabled {	hasChanges = true }
++		}
++		.onChange(of: inputbrokerPinA) { _, newPinA in
++			if newPinA != node?.cannedMessageConfig?.inputbrokerPinA ?? -1 { hasChanges = true }
++		}
++		.onChange(of: inputbrokerPinB) { _, newPinB in
++			if newPinB != node?.cannedMessageConfig?.inputbrokerPinB ?? -1 { hasChanges = true }
++		}
++		.onChange(of: inputbrokerPinPress) { _, newPinPress in
++			if newPinPress != node?.cannedMessageConfig?.inputbrokerPinPress ?? -1 { hasChanges = true }
++		}
++		.onChange(of: inputbrokerEventCw) { _, newKeyA in
++			if newKeyA != node?.cannedMessageConfig?.inputbrokerEventCw ?? -1 { hasChanges = true }
++		}
++		.onChange(of: inputbrokerEventCcw) { _, newKeyB in
++			if newKeyB != node?.cannedMessageConfig?.inputbrokerEventCcw ?? -1 { hasChanges = true }
++		}
++		.onChange(of: inputbrokerEventPress) { _, newKeyPress in
++			if newKeyPress != node?.cannedMessageConfig?.inputbrokerEventPress ?? -1 { hasChanges = true }
++		}
++	}
++	func setCannedMessagesValues() {
++		self.enabled = node?.cannedMessageConfig?.enabled ?? false
++		self.sendBell = node?.cannedMessageConfig?.sendBell ?? false
++		self.rotary1Enabled = node?.cannedMessageConfig?.rotary1Enabled ?? false
++		self.updown1Enabled = node?.cannedMessageConfig?.updown1Enabled ?? false
++		self.inputbrokerPinA = Int(node?.cannedMessageConfig?.inputbrokerPinA ?? 0)
++		self.inputbrokerPinB = Int(node?.cannedMessageConfig?.inputbrokerPinB ?? 0)
++		self.inputbrokerPinPress = Int(node?.cannedMessageConfig?.inputbrokerPinPress ?? 0)
++		self.inputbrokerEventCw = Int(node?.cannedMessageConfig?.inputbrokerEventCw ?? 0)
++		self.inputbrokerEventCcw = Int(node?.cannedMessageConfig?.inputbrokerEventCcw ?? 0)
++		self.inputbrokerEventPress = Int(node?.cannedMessageConfig?.inputbrokerEventPress ?? 0)
++		self.messages = node?.cannedMessageConfig?.messages ?? ""
++		self.hasChanges = false
++		self.hasMessagesChanges = false
++	}
++}
+diff --git a/Pangea/Views/Settings/Config/Module/TelemetryConfig.swift b/Pangea/Views/Settings/Config/Module/TelemetryConfig.swift
+new file mode 100644
+index 00000000..f25d9170
+--- /dev/null
++++ b/Pangea/Views/Settings/Config/Module/TelemetryConfig.swift
+@@ -0,0 +1,273 @@
++//
++//  TelemetryConfig.swift
++//  Meshtastic Apple
++//
++//  Copyright (c) Garth Vander Houwen 6/13/22.
++//
++import PangeaProtobufs
++import OSLog
++import SwiftUI
++
++struct TelemetryConfig: View {
++
++	@AppStorage("expertModeEnabled") private var expertModeEnabled = false
++	@Environment(\.managedObjectContext) var context
++	@EnvironmentObject var accessoryManager: AccessoryManager
++	@Environment(\.dismiss) private var goBack
++
++	var node: NodeInfoEntity?
++
++	@State private var isPresentingSaveConfirm: Bool = false
++	@State var hasChanges = false
++	@State private var deviceUpdateInterval: UpdateInterval = UpdateInterval(from: 0)
++	@State private var environmentUpdateInterval: UpdateInterval = UpdateInterval(from: 0)
++	@State var environmentMeasurementEnabled = false
++	@State var environmentScreenEnabled = false
++	@State var environmentDisplayFahrenheit = false
++	@State var powerMeasurementEnabled = false
++	@State private var powerUpdateInterval: UpdateInterval = UpdateInterval(from: 0)
++	@State var powerScreenEnabled = false
++	@State var deviceTelemetryEnabled = false
++
++	var body: some View {
++		Form {
++			ConfigHeader(title: "Telemetry", config: \.telemetryConfig, node: node, onAppear: setTelemetryValues)
++
++			Section {
++				if accessoryManager.checkIsVersionSupported(forVersion: "2.7.12") {
++					Toggle(isOn: $deviceTelemetryEnabled) {
++						Label("Broadcast Device Metrics", systemImage: "wifi")
++						Text("Enable broadcasting device metrics to the mesh network. When disabled, metrics are only sent to connected clients.")
++					}
++					.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++					if deviceTelemetryEnabled {
++						UpdateIntervalPicker(
++							config: .broadcastShort,
++							pickerLabel: "Device Metrics",
++							selectedInterval: $deviceUpdateInterval
++						)
++						.listRowSeparator(.hidden)
++						Text("How often device metrics are sent out over the mesh. Default is 30 minutes.")
++							.foregroundColor(.gray)
++							.font(.callout)
++							.listRowSeparator(.visible)
++					}
++				} else {
++					// Legacy behavior for older firmware
++					UpdateIntervalPicker(
++						config: .broadcastShort,
++						pickerLabel: "Device Metrics",
++						selectedInterval: $deviceUpdateInterval
++					)
++					.listRowSeparator(.hidden)
++					Text("How often device metrics are sent out over the mesh. Default is 30 minutes.")
++						.foregroundColor(.gray)
++						.font(.callout)
++						.listRowSeparator(.visible)
++				}
++			} header: {
++				Text("Device Options")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++
++			Section {
++				Text("Supported I2C Connected sensors will be detected automatically, sensors are BMP280, BME280, BME680, MCP9808, INA219, INA260, LPS22 and SHTC3.")
++					.foregroundColor(.gray)
++					.font(.callout)
++
++				Toggle(isOn: $environmentMeasurementEnabled) {
++					Label("Environment Metrics Enabled", systemImage: "chart.xyaxis.line")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++				if environmentMeasurementEnabled {
++					UpdateIntervalPicker(
++						config: .broadcastShort,
++						pickerLabel: "Environment Metrics",
++						selectedInterval: $environmentUpdateInterval
++					)
++					.listRowSeparator(.hidden)
++					Text("How often environment metrics are sent out over the mesh. Default is 30 minutes.")
++						.foregroundColor(.gray)
++						.font(.callout)
++						.listRowSeparator(.visible)
++
++					Toggle(isOn: $environmentScreenEnabled) {
++						Label("Show on device screen", systemImage: "display")
++					}
++					.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++					Toggle(isOn: $environmentDisplayFahrenheit) {
++						Label("Display Fahrenheit", systemImage: "thermometer")
++					}
++					.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				}
++			} header: {
++				Text("Environment Sensor Options")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++
++			Section {
++				Toggle(isOn: $powerMeasurementEnabled) {
++					Label("Enabled", systemImage: "bolt")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++				if powerMeasurementEnabled {
++					UpdateIntervalPicker(
++						config: .broadcastShort,
++						pickerLabel: "Power Metrics",
++						selectedInterval: $powerUpdateInterval
++					)
++					.listRowSeparator(.hidden)
++					Text("How often power metrics are sent out over the mesh. Default is 30 minutes.")
++						.foregroundColor(.gray)
++						.font(.callout)
++						.listRowSeparator(.visible)
++					Toggle(isOn: $powerScreenEnabled) {
++						Label("Power Screen", systemImage: "tv")
++					}
++					.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				}
++			} header: {
++				Text("Power Sensor Options")
++			} footer: {
++				if !expertModeEnabled {
++					Text("Enable Expert Mode to edit")
++						.font(.caption2)
++				}
++			}
++			.disabled(!expertModeEnabled)
++			.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++		}
++		.disabled(!accessoryManager.isConnected || node?.telemetryConfig == nil)
++		.safeAreaInset(edge: .bottom, alignment: .center) {
++			HStack(spacing: 0) {
++				SaveConfigButton(node: node, hasChanges: $hasChanges) {
++					let connectedNode = getNodeInfo(id: accessoryManager.activeDeviceNum ?? -1, context: context)
++					if connectedNode != nil {
++						var tc = ModuleConfig.TelemetryConfig()
++						tc.deviceUpdateInterval = UInt32(deviceUpdateInterval.intValue)
++						tc.environmentUpdateInterval = UInt32(environmentUpdateInterval.intValue)
++						tc.environmentMeasurementEnabled = environmentMeasurementEnabled
++						tc.environmentScreenEnabled = environmentScreenEnabled
++						tc.environmentDisplayFahrenheit = environmentDisplayFahrenheit
++						tc.powerMeasurementEnabled = powerMeasurementEnabled
++						tc.powerUpdateInterval = UInt32(powerUpdateInterval.intValue)
++						tc.powerScreenEnabled = powerScreenEnabled
++						if accessoryManager.checkIsVersionSupported(forVersion: "2.7.12") {
++							tc.deviceTelemetryEnabled = deviceTelemetryEnabled
++						}
++
++						Task {
++							_ = try await accessoryManager.saveTelemetryModuleConfig(config: tc, fromUser: connectedNode!.user!, toUser: node!.user!)
++							Task { @MainActor in
++								// Should show a saved successfully alert once I know that to be true
++								// for now just disable the button after a successful save
++								hasChanges = false
++								goBack()
++							}
++						}
++					}
++				}
++			}
++		}
++		.navigationTitle("Telemetry Config")
++		.navigationBarItems(
++			trailing: ZStack {
++				ConnectedDevice(deviceConnected: accessoryManager.isConnected, name: accessoryManager.activeConnection?.device.shortName ?? "?")
++
++			}
++		)
++		.onFirstAppear {
++			// Need to request a TelemetryModuleConfig from the remote node before allowing changes
++			if let deviceNum = accessoryManager.activeDeviceNum, let node {
++				let connectedNode = getNodeInfo(id: deviceNum, context: context)
++				if let connectedNode {
++					if node.num != deviceNum {
++						if UserDefaults.enableAdministration && node.num != deviceNum {
++							/// 2.5 Administration with session passkey
++							let expiration = node.sessionExpiration ?? Date()
++							if expiration < Date() || node.telemetryConfig == nil {
++								Task {
++									do {
++										Logger.mesh.info("⚙️ Empty or expired telemetry module config requesting via PKI admin")
++										try await accessoryManager.requestTelemetryModuleConfig(fromUser: connectedNode.user!, toUser: node.user!)
++									} catch {
++										Logger.mesh.info("🚨 Telemetry module config request failed: \(error.localizedDescription)")
++									}
++								}
++							}
++						} else {
++							/// Legacy Administration
++							Logger.mesh.info("☠️ Using insecure legacy admin that is no longer supported, please upgrade your firmware.")
++						}
++					}
++				}
++			}
++		}
++		.onChange(of: deviceUpdateInterval.intValue) { _, newDeviceInterval in
++			if newDeviceInterval != node?.telemetryConfig?.deviceUpdateInterval ?? -1 { hasChanges = true }
++		}
++		.onChange(of: environmentUpdateInterval.intValue) { _, newEnvInterval in
++			if newEnvInterval != node?.telemetryConfig?.environmentUpdateInterval ?? -1 { hasChanges = true	}
++		}
++		.onChange(of: environmentMeasurementEnabled) { _, newEnvEnabled in
++			if newEnvEnabled != node?.telemetryConfig?.environmentMeasurementEnabled { hasChanges = true }
++		}
++		.onChange(of: environmentScreenEnabled) { _, newEnvScreenEnabled in
++			if newEnvScreenEnabled != node?.telemetryConfig?.environmentScreenEnabled { hasChanges = true	}
++		}
++		.onChange(of: environmentDisplayFahrenheit) { _, newEnvDisplayF in
++			if newEnvDisplayF != node?.telemetryConfig?.environmentDisplayFahrenheit { hasChanges = true	}
++		}
++		.onChange(of: powerMeasurementEnabled) { _, newPowerMeasurementEnabled in
++			if newPowerMeasurementEnabled != node?.telemetryConfig?.powerMeasurementEnabled { hasChanges = true	}
++		}
++		.onChange(of: powerUpdateInterval.intValue) { _, newPowerUpdateInterval in
++			if newPowerUpdateInterval != node?.telemetryConfig?.powerUpdateInterval ?? -1 { hasChanges = true	}
++		}
++		.onChange(of: powerScreenEnabled) { _, newPowerScreenEnabled in
++			if newPowerScreenEnabled != node?.telemetryConfig?.powerScreenEnabled { hasChanges = true	}
++		}
++		.onChange(of: deviceTelemetryEnabled) { _, newDeviceTelemetryEnabled in
++			if accessoryManager.checkIsVersionSupported(forVersion: "2.7.12") {
++				if newDeviceTelemetryEnabled != node?.telemetryConfig?.deviceTelemetryEnabled { hasChanges = true }
++			}
++		}
++
++	}
++	func setTelemetryValues() {
++		let deviceInterval = Int(node?.telemetryConfig?.deviceUpdateInterval ?? 1800)
++		self.deviceUpdateInterval = UpdateInterval(from: deviceInterval)
++		self.environmentUpdateInterval = UpdateInterval(from: Int(node?.telemetryConfig?.environmentUpdateInterval ?? 1800))
++		self.environmentMeasurementEnabled = node?.telemetryConfig?.environmentMeasurementEnabled ?? false
++		self.environmentScreenEnabled = node?.telemetryConfig?.environmentScreenEnabled ?? false
++		self.environmentDisplayFahrenheit = node?.telemetryConfig?.environmentDisplayFahrenheit ?? false
++		self.powerMeasurementEnabled = node?.telemetryConfig?.powerMeasurementEnabled ?? false
++		self.powerUpdateInterval = UpdateInterval(from: Int(node?.telemetryConfig?.powerUpdateInterval ?? 1800))
++		self.powerScreenEnabled = node?.telemetryConfig?.powerScreenEnabled ?? false
++
++		if accessoryManager.checkIsVersionSupported(forVersion: "2.7.12") {
++			self.deviceTelemetryEnabled = node?.telemetryConfig?.deviceTelemetryEnabled ?? false
++		} else {
++			// Legacy behavior: if deviceUpdateInterval is Int32.max, telemetry is disabled
++			self.deviceTelemetryEnabled = deviceInterval != Int(Int32.max)
++		}
++
++		self.hasChanges = false
++	}
++}
+diff --git a/Pangea/Views/Settings/Config/PositionConfig.swift b/Pangea/Views/Settings/Config/PositionConfig.swift
+new file mode 100644
+index 00000000..ffe5d118
+--- /dev/null
++++ b/Pangea/Views/Settings/Config/PositionConfig.swift
+@@ -0,0 +1,601 @@
++//
++//  PositionConfig.swift
++//  Meshtastic Apple
++//
++//  Copyright (c) Garth Vander Houwen 6/11/22.
++//
++
++import SwiftUI
++import PangeaProtobufs
++import OSLog
++
++struct PositionFlags: OptionSet {
++	let rawValue: Int
++	static let Altitude = PositionFlags(rawValue: 1)
++	static let AltitudeMsl = PositionFlags(rawValue: 2)
++	static let GeoidalSeparation = PositionFlags(rawValue: 4)
++	static let Dop = PositionFlags(rawValue: 8)
++	static let Hvdop = PositionFlags(rawValue: 16)
++	static let Satsinview = PositionFlags(rawValue: 32)
++	static let SeqNo = PositionFlags(rawValue: 64)
++	static let Timestamp = PositionFlags(rawValue: 128)
++	static let Speed = PositionFlags(rawValue: 256)
++	static let Heading = PositionFlags(rawValue: 512)
++}
++
++struct PositionConfig: View {
++
++	@AppStorage("expertModeEnabled") private var expertModeEnabled = false
++	@Environment(\.managedObjectContext) var context
++	@EnvironmentObject var accessoryManager: AccessoryManager
++	@Environment(\.dismiss) private var goBack
++	var node: NodeInfoEntity?
++	@State var hasChanges = false
++	@State var hasFlagChanges = false
++	@State var smartPositionEnabled = true
++	@State var deviceGpsEnabled = true
++	@State var gpsMode = 0
++	@State var rxGpio = 0
++	@State var txGpio = 0
++	@State var gpsEnGpio = 0
++	@State var fixedPosition = false
++	@State var gpsUpdateInterval = 0
++	@State private var positionBroadcastSeconds: UpdateInterval = UpdateInterval(from: 0)
++	@State var broadcastSmartMinimumDistance = 0
++	@State private var broadcastSmartMinimumIntervalSecs: UpdateInterval = UpdateInterval(from: 0)
++	@State var positionFlags = 811
++
++	/// Position Flags
++	/// Altitude value - 1
++	@State var includeAltitude = false
++	/// Altitude value is MSL - 2
++	@State var includeAltitudeMsl = false
++	/// Include geoidal separation - 4
++	@State var includeGeoidalSeparation = false
++	/// Include the DOP value ; PDOP used by default, see below - 8
++	@State var includeDop = false
++	/// If POS_DOP set, send separate HDOP / VDOP values instead of PDOP - 16
++	@State var includeHvdop = false
++	/// Include number of "satellites in view" - 32
++	@State var includeSatsinview = false
++	/// Include a sequence number incremented per packet - 64
++	@State var includeSeqNo = false
++	/// Include positional timestamp (from GPS solution) - 128
++	@State var includeTimestamp = false
++	/// Include positional heading - 256
++	/// Intended for use with vehicle not walking speeds
++	/// walking speeds are likely to be error prone like the compass
++	@State var includeSpeed = false
++	/// Include positional speed - 512
++	/// Intended for use with vehicle not walking speeds
++	/// walking speeds are likely to be error prone like the compass
++	@State var includeHeading = false
++	/// Minimum Version for fixed postion admin messages
++	@State var minimumVersion = "2.3.3"
++	@State private var supportedVersion = true
++	@State private var showingSetFixedAlert = false
++	// @State private var showingRemoveFixedAlert = false
++
++	@ViewBuilder
++	var positionPacketSection: some View {
++		Section(header: Text("Position Packet")) {
++
++			VStack(alignment: .leading) {
++				UpdateIntervalPicker(
++					config: .broadcastMedium,
++					pickerLabel: "Broadcast Interval",
++					selectedInterval: $positionBroadcastSeconds
++				)
++				Text("The maximum interval that can elapse without a node broadcasting a position")
++					.foregroundColor(.gray)
++					.font(.callout)
++			}
++
++			Toggle(isOn: $smartPositionEnabled) {
++				Label("Smart Position", systemImage: "brain")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++
++			if smartPositionEnabled {
++				VStack(alignment: .leading) {
++					UpdateIntervalPicker(
++						config: .smartBroadcastMinimum,
++						pickerLabel: "Minimum Interval",
++						selectedInterval: $broadcastSmartMinimumIntervalSecs
++					)
++					Text("The fastest that position updates will be sent if the minimum distance has been satisfied")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++				VStack(alignment: .leading) {
++					Picker("Minimum Distance", selection: $broadcastSmartMinimumDistance) {
++						ForEach(10..<151) {
++							if $0 == 0 {
++								Text("Unset")
++							} else {
++								if $0.isMultiple(of: 5) {
++									Text("\($0)")
++										.tag($0)
++								}
++							}
++						}
++					}
++					.pickerStyle(DefaultPickerStyle())
++					Text("The minimum distance change in meters to be considered for a smart position broadcast.")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++			}
++		}
++	}
++
++	@ViewBuilder
++	var deviceGPSSection: some View {
++		Section {
++			Picker("", selection: $gpsMode) {
++				ForEach(GpsMode.allCases, id: \.self) { at in
++					Text(at.description)
++						.tag(at.id)
++				}
++			}
++			.pickerStyle(SegmentedPickerStyle())
++			.padding(.top, 5)
++			.padding(.bottom, 5)
++			.disabled(fixedPosition && !(gpsMode == 1))
++			if gpsMode == 1 {
++				Text("Positions will be provided by your device GPS, if you select disabled or not present you can set a fixed position.")
++					.foregroundColor(.gray)
++					.font(.callout)
++				VStack(alignment: .leading) {
++					Picker("Update Interval", selection: $gpsUpdateInterval) {
++						ForEach(GpsUpdateIntervals.allCases) { ui in
++							Text(ui.description)
++						}
++					}
++					Text("How often should we try to get a GPS position.")
++						.foregroundColor(.gray)
++						.font(.callout)
++				}
++			}
++			if (gpsMode != 1 && node?.num ?? 0 == accessoryManager.activeDeviceNum ?? -1) || fixedPosition {
++				VStack(alignment: .leading) {
++					Toggle(isOn: $fixedPosition) {
++						Label("Fixed Position", systemImage: "location.square.fill")
++						if !(node?.positionConfig?.fixedPosition ?? false) {
++							Text("Your current location will be set as the fixed position and broadcast over the mesh on the position interval.")
++						} else {
++
++						}
++					}
++					.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				}
++			}
++		} header: {
++			Text("Device GPS")
++		} footer: {
++			if !expertModeEnabled {
++				Text("Enable Expert Mode to edit")
++					.font(.caption2)
++			}
++		}
++		.disabled(!expertModeEnabled)
++		.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++	}
++
++	@ViewBuilder
++	var positionFlagsSection: some View {
++		Section {
++
++			Text("Optional fields to include when assembling position messages. the more fields are included, the larger the message will be - leading to longer airtime and a higher risk of packet loss")
++				.foregroundColor(.gray)
++				.font(.callout)
++
++			Toggle(isOn: $includeAltitude) {
++				Label("Altitude", systemImage: "arrow.up")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeAltitude) { _, newIncludeAltitude in
++				if newIncludeAltitude != PositionFlags(rawValue: self.positionFlags).contains(.Altitude) { hasChanges = true }
++			}
++
++			Toggle(isOn: $includeSatsinview) {
++				Label("Number of satellites", systemImage: "skew")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeSatsinview) { _, newIncludeSatsinview in
++				if newIncludeSatsinview != PositionFlags(rawValue: self.positionFlags).contains(.Satsinview) { hasChanges = true }
++			}
++
++			Toggle(isOn: $includeSeqNo) { // 64
++				Label("Sequence number", systemImage: "number")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeSeqNo) { _, newIncludeSeqNo in
++				if newIncludeSeqNo != PositionFlags(rawValue: self.positionFlags).contains(.SeqNo) { hasChanges = true }
++			}
++
++			Toggle(isOn: $includeTimestamp) { // 128
++				Label("Timestamp", systemImage: "clock")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeTimestamp) { _, newIncludeTimestamp in
++				if newIncludeTimestamp != PositionFlags(rawValue: self.positionFlags).contains(.Timestamp) { hasChanges = true }
++			}
++
++			Toggle(isOn: $includeHeading) { // 128
++				Label("Vehicle heading", systemImage: "location.circle")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeHeading) { _, newIncludeHeading in
++				if newIncludeHeading != PositionFlags(rawValue: self.positionFlags).contains(.Heading) { hasChanges = true }
++			}
++
++			Toggle(isOn: $includeSpeed) { // 128
++				Label("Vehicle speed", systemImage: "speedometer")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeSpeed) { _, newIncludeSpeed in
++				if newIncludeSpeed != PositionFlags(rawValue: self.positionFlags).contains(.Speed) { hasChanges = true }
++			}
++		} header: {
++			Text("Position Flags")
++		} footer: {
++			if !expertModeEnabled {
++				Text("Enable Expert Mode to edit")
++					.font(.caption2)
++			}
++		}
++		.disabled(!expertModeEnabled)
++		.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++	}
++
++	@ViewBuilder
++	var advancedPositionFlagsSection: some View {
++		Section {
++
++			if includeAltitude {
++				Toggle(isOn: $includeAltitudeMsl) {
++					Label("Altitude is Mean Sea Level", systemImage: "arrow.up.to.line.compact")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				.onChange(of: includeAltitudeMsl) { _, newIncludeAltitudeMsl in
++					if newIncludeAltitudeMsl != PositionFlags(rawValue: self.positionFlags).contains(.AltitudeMsl) { hasChanges = true }
++				}
++
++				Toggle(isOn: $includeGeoidalSeparation) {
++					Label("Altitude Geoidal Separation", systemImage: "globe.americas")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				.onChange(of: includeGeoidalSeparation) { _, newIncludeGeoidalSeparation in
++					if newIncludeGeoidalSeparation != PositionFlags(rawValue: self.positionFlags).contains(.GeoidalSeparation) { hasChanges = true }
++				}
++			}
++
++			Toggle(isOn: $includeDop) {
++				Text("Dilution of precision (DOP) PDOP used by default")
++			}
++			.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++			.onChange(of: includeDop) { _, newIncludeDop in
++				if newIncludeDop != PositionFlags(rawValue: self.positionFlags).contains(.Dop) { hasChanges = true }
++			}
++
++			if includeDop {
++				Toggle(isOn: $includeHvdop) {
++					Text("If DOP is set, use HDOP / VDOP values instead of PDOP")
++				}
++				.toggleStyle(SwitchToggleStyle(tint: .accentColor))
++				.onChange(of: includeHvdop) { _, newIncludeHvdop in
++					if newIncludeHvdop != PositionFlags(rawValue: self.positionFlags).contains(.Hvdop) { hasChanges = true }
++				}
++			}
++		} header: {
++			Text("Advanced Position Flags")
++		} footer: {
++			if !expertModeEnabled {
++				Text("Enable Expert Mode to edit")
++					.font(.caption2)
++			}
++		}
++		.disabled(!expertModeEnabled)
++		.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++	}
++
++	@ViewBuilder
++	var advancedDeviceGPSSection: some View {
++		Section {
++			Picker("GPS Receive GPIO", selection: $rxGpio) {
++				ForEach(0..<49) {
++					if $0 == 0 {
++						Text("Unset")
++					} else {
++						Text("Pin \($0)")
++					}
++				}
++			}
++			.pickerStyle(DefaultPickerStyle())
++			Picker("GPS Transmit GPIO", selection: $txGpio) {
++				ForEach(0..<49) {
++					if $0 == 0 {
++						Text("Unset")
++					} else {
++						Text("Pin \($0)")
++					}
++				}
++			}
++			.pickerStyle(DefaultPickerStyle())
++			Picker("GPS EN GPIO", selection: $gpsEnGpio) {
++				ForEach(0..<49) {
++					if $0 == 0 {
++						Text("Unset")
++					} else {
++						Text("Pin \($0)")
++					}
++				}
++			}
++			.pickerStyle(DefaultPickerStyle())
++			Text("(Re)define PIN_GPS_EN for your board.")
++				.font(.caption)
++		} header: {
++			Text("Advanced Device GPS")
++		} footer: {
++			if !expertModeEnabled {
++				Text("Enable Expert Mode to edit")
++					.font(.caption2)
++			}
++		}
++		.disabled(!expertModeEnabled)
++		.foregroundStyle(expertModeEnabled ? .primary : .secondary)
++	}
++	var saveButton: some View {
++		SaveConfigButton(node: node, hasChanges: $hasChanges) {
++			if fixedPosition && !supportedVersion {
++				Task {
++					try await accessoryManager.sendPosition(channel: 0, destNum: node?.num ?? 0, wantResponse: true)
++				}
++			}
++			if let deviceNum = accessoryManager.activeDeviceNum, let connectedNode = getNodeInfo(id: deviceNum, context: context) {
++				var pc = Config.PositionConfig()
++				pc.positionBroadcastSmartEnabled = smartPositionEnabled
++				pc.gpsEnabled = gpsMode == 1
++				pc.gpsMode = Config.PositionConfig.GpsMode(rawValue: gpsMode) ?? Config.PositionConfig.GpsMode.notPresent
++				pc.fixedPosition = fixedPosition
++				pc.gpsUpdateInterval = UInt32(gpsUpdateInterval)
++				pc.positionBroadcastSecs = UInt32(positionBroadcastSeconds.intValue)
++				pc.broadcastSmartMinimumIntervalSecs = UInt32(broadcastSmartMinimumIntervalSecs.intValue)
++				pc.broadcastSmartMinimumDistance = UInt32(broadcastSmartMinimumDistance)
++				pc.rxGpio = UInt32(rxGpio)
++				pc.txGpio = UInt32(txGpio)
++				pc.gpsEnGpio = UInt32(gpsEnGpio)
++				var pf: PositionFlags = []
++				if includeAltitude { pf.insert(.Altitude) }
++				if includeAltitudeMsl { pf.insert(.AltitudeMsl) }
++				if includeGeoidalSeparation { pf.insert(.GeoidalSeparation) }
++				if includeDop { pf.insert(.Dop) }
++				if includeHvdop { pf.insert(.Hvdop) }
++				if includeSatsinview { pf.insert(.Satsinview) }
++				if includeSeqNo { pf.insert(.SeqNo) }
++				if includeTimestamp { pf.insert(.Timestamp) }
++				if includeSpeed { pf.insert(.Speed) }
++				if includeHeading { pf.insert(.Heading) }
++				pc.positionFlags = UInt32(pf.rawValue)
++				Task {
++					_ = try await accessoryManager.savePositionConfig(config: pc, fromUser: connectedNode.user!, toUser: node!.user!)
++					Task { @MainActor in
++						// Disable the button after a successful save
++						hasChanges = false
++						goBack()
++					}
++				}
++			}
++		}
++	}
++
++	var setFixedAlertTitle: String {
++		if node?.positionConfig?.fixedPosition == true {
++			return "Remove Fixed Position"
++		} else {
++			return "Set Fixed Position"
++		}
++	}
++
++	var body: some View {
++
++		Form {
++			ConfigHeader(title: "Position", config: \.positionConfig, node: node, onAppear: setPositionValues)
++			positionPacketSection
++			deviceGPSSection
++			positionFlagsSection
++			advancedPositionFlagsSection
++			if gpsMode == 1 {
++				advancedDeviceGPSSection
++			}
++		}
++		.disabled(!accessoryManager.isConnected || node?.positionConfig == nil)
++		.alert(setFixedAlertTitle, isPresented: $showingSetFixedAlert) {
++			Button("Cancel", role: .cancel) {
++				fixedPosition = !fixedPosition
++			}
++			if node?.positionConfig?.fixedPosition ?? false {
++				Button("Remove", role: .destructive) {
++					removeFixedPosition()
++				}
++			} else {
++				Button("Set") {
++					setFixedPosition()
++				}
++			}
++		} message: {
++			Text(node?.positionConfig?.fixedPosition ?? false ? "This will disable fixed position and remove the currently set position." : "This will send a current position from your phone and enable fixed position.")
++		}
++		.safeAreaInset(edge: .bottom, alignment: .center) {
++			HStack(spacing: 0) {
++				saveButton
++			}
++		}
++		.navigationTitle("Position Config")
++		.navigationBarItems(
++			trailing: ZStack {
++				ConnectedDevice(deviceConnected: accessoryManager.isConnected, name: accessoryManager.activeConnection?.device.shortName ?? "?")
++			}
++		)
++		.onFirstAppear {
++			supportedVersion = accessoryManager.checkIsVersionSupported(forVersion: minimumVersion)
++			// Need to request a NetworkConfig from the remote node before allowing changes
++			if let deviceNum = accessoryManager.activeDeviceNum, let node {
++				let connectedNode = getNodeInfo(id: deviceNum, context: context)
++				if let connectedNode {
++					if node.num != deviceNum {
++						if UserDefaults.enableAdministration {
++							/// 2.5 Administration with session passkey
++							let expiration = node.sessionExpiration ?? Date()
++							if expiration < Date() || node.positionConfig == nil {
++								Task {
++									do {
++										Logger.mesh.info("⚙️ Empty or expired position config requesting via PKI admin")
++										try await accessoryManager.requestPositionConfig(fromUser: connectedNode.user!, toUser: node.user!)
++									} catch {
++										Logger.mesh.info("🚨 Position config request failed")
++									}
++								}
++							}
++						} else {
++							/// Legacy Administration
++							Logger.mesh.info("☠️ Using insecure legacy admin that is no longer supported, please upgrade your firmware.")
++						}
++					}
++				}
++			}
++		}
++		.onChange(of: fixedPosition) { _, newFixed in
++			if supportedVersion {
++				if let positionConfig = node?.positionConfig {
++					/// Fixed Position is off to start
++					if !positionConfig.fixedPosition && newFixed {
++						showingSetFixedAlert = true
++					} else if positionConfig.fixedPosition && !newFixed {
++						/// Fixed Position is on to start
++						showingSetFixedAlert = true
++					}
++				}
++			}
++		}
++		.onChange(of: gpsMode) { _, newGpsMode in
++			if newGpsMode != node?.positionConfig?.gpsMode ?? 0 { hasChanges = true }
++		}
++		.onChange(of: rxGpio) { _, newRxGpio in
++			if newRxGpio != node?.positionConfig?.rxGpio ?? 0 { hasChanges = true }
++		}
++		.onChange(of: txGpio) { _, newTxGpio in
++			if newTxGpio != node?.positionConfig?.txGpio ?? 0 { hasChanges = true }
++		}
++		.onChange(of: gpsEnGpio) { _, newGpsEnGpio in
++			if newGpsEnGpio != node?.positionConfig?.gpsEnGpio ?? 0 { hasChanges = true }
++		}
++		.onChange(of: smartPositionEnabled) { _, newSmartPositionEnabled in
++			if newSmartPositionEnabled != node?.positionConfig?.smartPositionEnabled { hasChanges = true }
++		}
++		.onChange(of: positionBroadcastSeconds.intValue) { _, newPositionBroadcastSeconds in
++			if newPositionBroadcastSeconds != node?.positionConfig?.positionBroadcastSeconds ?? 0 { hasChanges = true }
++		}
++		.onChange(of: broadcastSmartMinimumIntervalSecs.intValue) { _, newBroadcastSmartMinimumIntervalSecs in
++			if newBroadcastSmartMinimumIntervalSecs != node?.positionConfig?.broadcastSmartMinimumIntervalSecs ?? 0 { hasChanges = true }
++		}
++		.onChange(of: broadcastSmartMinimumDistance) { _, newBroadcastSmartMinimumDistance in
++			if newBroadcastSmartMinimumDistance != node?.positionConfig?.broadcastSmartMinimumDistance ?? 0 { hasChanges = true }
++		}
++		.onChange(of: gpsUpdateInterval) { _, newGpsUpdateInterval in
++			if newGpsUpdateInterval != node?.positionConfig?.gpsUpdateInterval ?? 0 { hasChanges = true }
++		}
++	}
++
++	func handlePositionFlagtChanges() {
++		guard (node?.positionConfig) != nil else { return }
++		let pf = PositionFlags(rawValue: self.positionFlags)
++		hasChanges =
++		pf.contains(.Altitude) ||
++		pf.contains(.AltitudeMsl) ||
++		pf.contains(.Satsinview) ||
++		pf.contains(.SeqNo) ||
++		pf.contains(.Timestamp) ||
++		pf.contains(.Speed) ||
++		pf.contains(.Heading) ||
++		pf.contains(.GeoidalSeparation) ||
++		pf.contains(.Dop) ||
++		pf.contains(.Hvdop)
++	}
++
++	func setPositionValues() {
++		self.smartPositionEnabled = node?.positionConfig?.smartPositionEnabled ?? true
++		self.deviceGpsEnabled = node?.positionConfig?.deviceGpsEnabled ?? false
++		self.gpsMode = Int(node?.positionConfig?.gpsMode ?? 0)
++		if node?.positionConfig?.deviceGpsEnabled ?? false && gpsMode != 1 {
++			self.gpsMode = 1
++		}
++		self.rxGpio = Int(node?.positionConfig?.rxGpio ?? 0)
++		self.txGpio = Int(node?.positionConfig?.txGpio ?? 0)
++		self.gpsEnGpio = Int(node?.positionConfig?.gpsEnGpio ?? 0)
++		self.fixedPosition = node?.positionConfig?.fixedPosition ?? false
++		self.gpsUpdateInterval = Int(node?.positionConfig?.gpsUpdateInterval ?? 30)
++		self.positionBroadcastSeconds = UpdateInterval(from: Int(node?.positionConfig?.positionBroadcastSeconds ?? 3600))
++		self.broadcastSmartMinimumIntervalSecs = UpdateInterval(from: Int(node?.positionConfig?.broadcastSmartMinimumIntervalSecs ?? 30))
++		self.broadcastSmartMinimumDistance = Int(node?.positionConfig?.broadcastSmartMinimumDistance ?? 50)
++		self.positionFlags = Int(node?.positionConfig?.positionFlags ?? 3)
++		let pf = PositionFlags(rawValue: self.positionFlags)
++		self.includeAltitude = pf.contains(.Altitude)
++		self.includeAltitudeMsl = pf.contains(.AltitudeMsl)
++		self.includeGeoidalSeparation = pf.contains(.GeoidalSeparation)
++		self.includeDop = pf.contains(.Dop)
++		self.includeHvdop = pf.contains(.Hvdop)
++		self.includeSatsinview = pf.contains(.Satsinview)
++		self.includeSeqNo = pf.contains(.SeqNo)
++		self.includeTimestamp = pf.contains(.Timestamp)
++		self.includeSpeed = pf.contains(.Speed)
++		self.includeHeading = pf.contains(.Heading)
++		self.hasChanges = false
++	}
++
++	private func setFixedPosition() {
++		guard let nodeNum = accessoryManager.activeDeviceNum,
++			  nodeNum > 0 else { return }
++		Task {
++			do {
++				try await accessoryManager.setFixedPosition(fromUser: node!.user!, channel: 0)
++			} catch {
++				Logger.mesh.error("Set Position Failed")
++			}
++		}
++		node?.positionConfig?.fixedPosition = true
++		do {
++			try context.save()
++			Logger.data.info("💾 Updated Position Config with Fixed Position = true")
++		} catch {
++			context.rollback()
++			let nsError = error as NSError
++			Logger.data.error("Error Saving Position Config Entity \(nsError, privacy: .public)")
++		}
++	}
++
++	private func removeFixedPosition() {
++		guard let nodeNum = accessoryManager.activeDeviceNum,
++			  nodeNum > 0 else { return }
++		Task {
++			do {
++				try await accessoryManager.removeFixedPosition(fromUser: node!.user!, channel: 0)
++			} catch {
++				Logger.mesh.error("Remove Fixed Position Failed")
++			}
++		}
++		let mutablePositions = node?.positions?.mutableCopy() as? NSMutableOrderedSet
++		mutablePositions?.removeAllObjects()
++		node?.positions = mutablePositions
++		node?.positionConfig?.fixedPosition = false
++		do {
++			try context.save()
++			Logger.data.info("💾 Updated Position Config with Fixed Position = false")
++		} catch {
++			context.rollback()
++			let nsError = error as NSError
++			Logger.data.error("Error Saving Position Config Entity \(nsError, privacy: .public)")
++		}
++	}
++}
+-- 
+2.50.1.windows.1
+

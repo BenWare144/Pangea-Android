@@ -1,0 +1,251 @@
+From a43df44260c95c06e76cded5964aab09bc3b55c8 Mon Sep 17 00:00:00 2001
+From: Proto <34947107+ard37880@users.noreply.github.com>
+Date: Sat, 31 Jan 2026 23:58:02 -0800
+Subject: [PATCH 08/16] feat(03-01): guard URL routing for expert mode
+
+- Add hiddenSettings and greyedSettings static sets to Router
+- Block deep links to expert-only settings when expertModeEnabled is false
+- Log warning when navigation is blocked
+- Add explicit Hashable conformance to SettingsNavigationState for Set usage
+- Hidden: lora, security, mqtt, serial, externalNotification, storeAndForward, rangeTest, detectionSensor, paxCounter, ringtone, bluetooth, position, cannedMessages, telemetry
+- Greyed: device, power, network, debugLogs
+---
+ Pangea/Router/NavigationState.swift |  71 ++++++++++++++
+ Pangea/Router/Router.swift          | 147 ++++++++++++++++++++++++++++
+ 2 files changed, 218 insertions(+)
+ create mode 100644 Pangea/Router/NavigationState.swift
+ create mode 100644 Pangea/Router/Router.swift
+
+diff --git a/Pangea/Router/NavigationState.swift b/Pangea/Router/NavigationState.swift
+new file mode 100644
+index 00000000..1d825c03
+--- /dev/null
++++ b/Pangea/Router/NavigationState.swift
+@@ -0,0 +1,71 @@
++import Foundation
++
++// MARK: Messages
++
++enum MessagesNavigationState: Hashable {
++	case channels(
++		channelId: Int32? = nil,
++		messageId: Int64? = nil
++	)
++	case directMessages(
++		userNum: Int64? = nil,
++		messageId: Int64? = nil
++	)
++}
++
++// MARK: Map
++
++enum MapNavigationState: Hashable {
++	case selectedNode(Int64)
++	case waypoint(Int64)
++}
++
++// MARK: Settings
++
++enum SettingsNavigationState: String, Hashable {
++	case about
++	case appSettings
++	case routes
++	case routeRecorder
++	case lora
++	case channels
++	case shareQRCode
++	case user
++	case bluetooth
++	case device
++	case display
++	case network
++	case position
++	case power
++	case ambientLighting
++	case cannedMessages
++	case detectionSensor
++	case externalNotification
++	case mqtt
++	case rangeTest
++	case paxCounter
++	case ringtone
++	case serial
++	case security
++	case storeAndForward
++	case telemetry
++	case debugLogs
++	case appFiles
++	case firmwareUpdates
++}
++
++struct NavigationState: Hashable {
++	enum Tab: String, Hashable {
++		case messages
++		case connect
++		case nodes
++		case map
++		case settings
++	}
++
++	var selectedTab: Tab = .connect
++	var messages: MessagesNavigationState?
++	var nodeListSelectedNodeNum: Int64?
++	var map: MapNavigationState?
++	var settings: SettingsNavigationState?
++}
+diff --git a/Pangea/Router/Router.swift b/Pangea/Router/Router.swift
+new file mode 100644
+index 00000000..2060fc30
+--- /dev/null
++++ b/Pangea/Router/Router.swift
+@@ -0,0 +1,147 @@
++import Combine
++import CoreData
++import OSLog
++import SwiftUI
++
++@MainActor
++class Router: ObservableObject {
++
++	@Published
++	var navigationState: NavigationState
++
++	private var cancellables: Set<AnyCancellable> = []
++
++	init(
++		navigationState: NavigationState = NavigationState(
++			selectedTab: .connect
++		)
++	) {
++		self.navigationState = navigationState
++
++		$navigationState.sink { destination in
++			Logger.services.info("🛣 [App] Routed to \(destination.selectedTab.rawValue, privacy: .public)")
++		}.store(in: &cancellables)
++	}
++
++	func route(url: URL) {
++		guard url.scheme == "pangea" else {
++			Logger.services.error("🛣 [App] Received routing URL \(url, privacy: .public) with invalid scheme. Ignoring route.")
++			return
++		}
++		guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
++			Logger.services.error("🛣 [App] Received routing URL \(url, privacy: .public) with invalid host path. Ignoring route.")
++			return
++		}
++
++		if components.path == "/messages" {
++			routeMessages(components)
++		} else if components.path == "/connect" {
++			navigationState.selectedTab = .connect
++		} else if components.path == "/nodes" {
++			routeNodes(components)
++		} else if components.path == "/map" {
++			routeMap(components)
++		} else if components.path.hasPrefix("/settings") {
++			routeSettings(components)
++		} else {
++			Logger.services.warning("🛣 [App] Failed to route url: \(url, privacy: .public)")
++		}
++	}
++
++	// MARK: Routing Helpers
++
++	private func routeMessages(
++		_ components: URLComponents
++	) {
++		let channelId = components.queryItems?
++			.first(where: { $0.name == "channelId" })?
++			.value
++			.flatMap(Int32.init)
++		let userNum = components.queryItems?
++			.first(where: { $0.name == "userNum" })?
++			.value
++			.flatMap(Int64.init)
++		let messageId = components.queryItems?
++			.first(where: { $0.name == "messageId" })?
++			.value
++			.flatMap(Int64.init)
++
++		let state: MessagesNavigationState? = if let channelId {
++			.channels(channelId: channelId, messageId: messageId)
++		} else if let userNum {
++			.directMessages(userNum: userNum, messageId: messageId)
++		} else {
++			nil
++		}
++		navigationState.selectedTab = .messages
++		navigationState.messages = state
++	}
++
++	private func routeNodes(_ components: URLComponents) {
++		let nodeId = components.queryItems?
++			.first(where: { $0.name == "nodenum" })?
++			.value
++			.flatMap(Int64.init)
++
++		navigationState.selectedTab = .nodes
++		navigationState.nodeListSelectedNodeNum = nodeId
++	}
++	func navigateToNodeDetail(nodeNum: Int64) {
++		Logger.services.info("🛣 [App] Direct route to node detail \(nodeNum, privacy: .public)")
++		navigationState.selectedTab = .nodes
++		navigationState.nodeListSelectedNodeNum = nodeNum
++	}
++
++	private func routeMap(_ components: URLComponents) {
++		let nodeId = components.queryItems?
++			.first(where: { $0.name == "nodenum" })?
++			.value
++			.flatMap(Int64.init)
++		let waypointId = components.queryItems?
++			.first(where: { $0.name == "waypointId" })?
++			.value
++			.flatMap(Int64.init)
++
++		navigationState.selectedTab = .map
++		navigationState.map = if let nodeId {
++			.selectedNode(nodeId)
++		} else if let waypointId {
++			.waypoint(waypointId)
++		} else {
++			nil
++		}
++	}
++
++	/// Settings that are completely hidden when expert mode is off
++	private static let hiddenSettings: Set<SettingsNavigationState> = [
++		.lora, .security, .mqtt, .serial, .externalNotification,
++		.storeAndForward, .rangeTest, .detectionSensor, .paxCounter,
++		.ringtone, .bluetooth, .position, .cannedMessages, .telemetry
++	]
++
++	/// Settings that are greyed out (visible but disabled) when expert mode is off
++	private static let greyedSettings: Set<SettingsNavigationState> = [
++		.device, .power, .network, .debugLogs
++	]
++
++	private func routeSettings(_ components: URLComponents) {
++		let settingFromPath = components.path
++			.split(separator: "/")
++			.dropFirst()
++			.first
++			.flatMap(String.init)
++			.flatMap(SettingsNavigationState.init(rawValue:))
++
++		if let setting = settingFromPath, !UserDefaults.expertModeEnabled {
++			if Self.hiddenSettings.contains(setting) || Self.greyedSettings.contains(setting) {
++				Logger.services.warning("\u{1F6E3} [App] Blocked navigation to \(setting.rawValue, privacy: .public) -- expert mode is off")
++				navigationState.selectedTab = .settings
++				navigationState.settings = nil
++				return
++			}
++		}
++
++		navigationState.selectedTab = .settings
++		navigationState.settings = settingFromPath
++	}
++}
+-- 
+2.50.1.windows.1
+
