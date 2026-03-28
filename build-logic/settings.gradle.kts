@@ -27,10 +27,9 @@ pluginManagement {
             }
         }
     }
-}
-
-plugins {
-    id("com.gradle.develocity") version("4.3.2")
+    plugins {
+        id("com.gradle.develocity") version "4.3.2"
+    }
 }
 
 dependencyResolutionManagement {
@@ -59,7 +58,16 @@ dependencyResolutionManagement {
 }
 
 // Shared Develocity and Build Cache configuration
-apply(from = "../gradle/develocity.settings.gradle")
+val enableDevelocity = providers
+    .gradleProperty("meshtastic.enableDevelocity")
+    .map(String::toBoolean)
+    .orElse(false)
+    .get()
+
+if (enableDevelocity) {
+    pluginManager.apply("com.gradle.develocity")
+    apply(from = "../gradle/develocity.settings.gradle")
+}
 
 rootProject.name = "build-logic"
 include(":convention")

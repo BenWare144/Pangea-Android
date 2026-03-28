@@ -61,6 +61,10 @@ pluginManagement {
         gradlePluginPortal()
         maven { url = uri("https://jitpack.io") }
     }
+    plugins {
+        id("com.gradle.develocity") version "4.3.2"
+        id("com.gradle.common-custom-user-data-gradle-plugin") version "2.4.0"
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -81,12 +85,20 @@ dependencyResolutionManagement {
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver") version "1.0.0"
-    id("com.gradle.develocity") version("4.3.2")
-    id("com.gradle.common-custom-user-data-gradle-plugin") version "2.4.0"
 }
 
 // Shared Develocity and Build Cache configuration
-apply(from = "gradle/develocity.settings.gradle")
+val enableDevelocity = providers
+    .gradleProperty("meshtastic.enableDevelocity")
+    .map(String::toBoolean)
+    .orElse(false)
+    .get()
+
+if (enableDevelocity) {
+    pluginManager.apply("com.gradle.develocity")
+    pluginManager.apply("com.gradle.common-custom-user-data-gradle-plugin")
+    apply(from = "gradle/develocity.settings.gradle")
+}
 
 @Suppress("UnstableApiUsage")
 toolchainManagement {
