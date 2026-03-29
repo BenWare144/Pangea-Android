@@ -30,9 +30,16 @@ class IntroViewModelTest {
     }
 
     @Test
-    fun `getNextKey returns Bluetooth after Welcome`() {
+    fun `getNextKey returns ExpertMode after Welcome`() {
         val viewModel = IntroViewModel()
         val next = viewModel.getNextKey(Welcome, false)
+        assertEquals(ExpertMode, next)
+    }
+
+    @Test
+    fun `getNextKey returns Bluetooth after ExpertMode`() {
+        val viewModel = IntroViewModel()
+        val next = viewModel.getNextKey(ExpertMode, false)
         assertEquals(Bluetooth, next)
     }
 

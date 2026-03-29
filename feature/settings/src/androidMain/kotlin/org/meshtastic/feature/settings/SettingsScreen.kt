@@ -77,6 +77,7 @@ fun SettingsScreen(
     onNavigate: (Route) -> Unit = {},
 ) {
     val excludedModulesUnlocked by settingsViewModel.excludedModulesUnlocked.collectAsStateWithLifecycle()
+    val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val localConfig by settingsViewModel.localConfig.collectAsStateWithLifecycle()
     val ourNode by settingsViewModel.ourNodeInfo.collectAsStateWithLifecycle()
     val isConnected by settingsViewModel.isConnected.collectAsStateWithLifecycle(false)
@@ -178,6 +179,7 @@ fun SettingsScreen(
         ) {
             RadioConfigItemList(
                 state = state,
+                expertModeEnabled = expertModeEnabled,
                 isManaged = localConfig.security?.is_managed ?: false,
                 isOtaCapable = isOtaCapable,
                 onRouteClick = { route ->
@@ -235,6 +237,8 @@ fun SettingsScreen(
 
                 AppInfoSection(
                     appVersionName = settingsViewModel.appVersionName,
+                    expertModeEnabled = expertModeEnabled,
+                    onSetExpertModeEnabled = { settingsViewModel.setExpertModeEnabled(it) },
                     excludedModulesUnlocked = excludedModulesUnlocked,
                     onUnlockExcludedModules = { settingsViewModel.unlockExcludedModules() },
                     onShowAppIntro = { settingsViewModel.showAppIntro() },

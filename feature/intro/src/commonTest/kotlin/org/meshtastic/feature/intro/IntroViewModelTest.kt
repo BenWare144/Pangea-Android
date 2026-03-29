@@ -36,8 +36,14 @@ class IntroViewModelTest {
     }
 
     @Test
-    fun testWelcomeNavigatesNextToBluetooth() {
+    fun testWelcomeNavigatesNextToExpertMode() {
         val next = viewModel.getNextKey(Welcome, allPermissionsGranted = false)
+        assertEquals(ExpertMode, next)
+    }
+
+    @Test
+    fun testExpertModeNavigatesToBluetooth() {
+        val next = viewModel.getNextKey(ExpertMode, allPermissionsGranted = false)
         assertEquals(Bluetooth, next)
     }
 
