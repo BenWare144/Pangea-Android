@@ -84,6 +84,8 @@ enum class ConfigRoute(val title: StringResource, val route: Route, val icon: Im
     ;
 
     companion object {
+        private val expertOnlyRoutes = setOf(LORA, SECURITY, BLUETOOTH, POSITION)
+
         private fun filterExcludedFrom(metadata: DeviceMetadata?): List<ConfigRoute> = entries.filter {
             when {
                 metadata == null -> true // Include all routes if metadata is null
@@ -93,9 +95,18 @@ enum class ConfigRoute(val title: StringResource, val route: Route, val icon: Im
             }
         }
 
-        val radioConfigRoutes = listOf(USER, LORA, CHANNELS, SECURITY)
+        fun radioConfigRoutes(expertModeEnabled: Boolean): List<ConfigRoute> =
+            if (expertModeEnabled) {
+                listOf(USER, LORA, CHANNELS, SECURITY)
+            } else {
+                listOf(USER, CHANNELS)
+            }
 
-        fun deviceConfigRoutes(metadata: DeviceMetadata?): List<ConfigRoute> =
-            filterExcludedFrom(metadata) - radioConfigRoutes
+        fun deviceConfigRoutes(metadata: DeviceMetadata?, expertModeEnabled: Boolean): List<ConfigRoute> =
+            filterExcludedFrom(metadata)
+                .filterNot { it in radioConfigRoutes(expertModeEnabled) }
+                .filterNot { !expertModeEnabled && it in expertOnlyRoutes }
+
+        fun isExpertOnly(route: Route): Boolean = entries.any { it.route == route && it in expertOnlyRoutes }
     }
 }

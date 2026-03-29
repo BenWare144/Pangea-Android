@@ -68,6 +68,7 @@ import org.meshtastic.feature.settings.navigation.ConfigRoute
 @Composable
 fun RadioConfigItemList(
     state: RadioConfigState,
+    expertModeEnabled: Boolean,
     isManaged: Boolean,
     isOtaCapable: Boolean = false,
     onRouteClick: (Enum<*>) -> Unit = {},
@@ -78,7 +79,7 @@ fun RadioConfigItemList(
     val enabled = state.connected && !state.responseState.isWaiting() && !isManaged
 
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        RadioConfigSection(isManaged, enabled, onRouteClick)
+        RadioConfigSection(expertModeEnabled, isManaged, enabled, onRouteClick)
         DeviceConfigSection(isManaged, enabled, onNavigate)
         ModuleSettingsSection(isManaged, enabled, onNavigate)
 
@@ -95,12 +96,17 @@ fun RadioConfigItemList(
 }
 
 @Composable
-private fun RadioConfigSection(isManaged: Boolean, enabled: Boolean, onRouteClick: (Enum<*>) -> Unit) {
+private fun RadioConfigSection(
+    expertModeEnabled: Boolean,
+    isManaged: Boolean,
+    enabled: Boolean,
+    onRouteClick: (Enum<*>) -> Unit,
+) {
     ExpressiveSection(title = stringResource(Res.string.radio_configuration)) {
         if (isManaged) {
             ManagedMessage()
         }
-        ConfigRoute.radioConfigRoutes.forEach {
+        ConfigRoute.radioConfigRoutes(expertModeEnabled).forEach {
             ListItem(text = stringResource(it.title), leadingIcon = it.icon, enabled = enabled) { onRouteClick(it) }
         }
     }

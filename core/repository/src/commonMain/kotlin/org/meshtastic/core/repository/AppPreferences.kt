@@ -80,6 +80,10 @@ interface UiPrefs {
 
     fun setShowQuickChat(show: Boolean)
 
+    val expertModeEnabled: StateFlow<Boolean>
+
+    fun setExpertModeEnabled(enabled: Boolean)
+
     fun shouldProvideNodeLocation(nodeNum: Int): StateFlow<Boolean>
 
     fun setShouldProvideNodeLocation(nodeNum: Int, provide: Boolean)

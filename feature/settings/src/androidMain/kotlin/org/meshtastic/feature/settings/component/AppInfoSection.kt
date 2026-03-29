@@ -48,6 +48,9 @@ import org.meshtastic.core.resources.info
 import org.meshtastic.core.resources.intro_show
 import org.meshtastic.core.resources.modules_already_unlocked
 import org.meshtastic.core.resources.modules_unlocked
+import org.meshtastic.core.resources.expert_mode_disabled
+import org.meshtastic.core.resources.expert_mode_enabled
+import org.meshtastic.core.resources.keep_tapping_for_expert_mode
 import org.meshtastic.core.resources.system_settings
 import org.meshtastic.core.ui.component.ListItem
 import org.meshtastic.core.ui.theme.AppTheme
@@ -58,6 +61,8 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 fun AppInfoSection(
     appVersionName: String,
+    expertModeEnabled: Boolean,
+    onSetExpertModeEnabled: (Boolean) -> Unit,
     excludedModulesUnlocked: Boolean,
     onUnlockExcludedModules: () -> Unit,
     onShowAppIntro: () -> Unit,
@@ -107,6 +112,8 @@ fun AppInfoSection(
         }
 
         AppVersionButton(
+            expertModeEnabled = expertModeEnabled,
+            onSetExpertModeEnabled = onSetExpertModeEnabled,
             excludedModulesUnlocked = excludedModulesUnlocked,
             appVersionName = appVersionName,
             onUnlockExcludedModules = onUnlockExcludedModules,
@@ -114,12 +121,15 @@ fun AppInfoSection(
     }
 }
 
-private const val UNLOCK_CLICK_COUNT = 5 // Number of clicks required to unlock excluded modules.
-private const val UNLOCKED_CLICK_COUNT = 3 // Number of clicks before we toast that modules are already unlocked.
-private const val UNLOCK_TIMEOUT_SECONDS = 1 // Timeout in seconds to reset the click counter.
+private const val EXPERT_MODE_CLICK_COUNT = 7
+private const val UNLOCK_CLICK_COUNT = 5
+private const val UNLOCKED_CLICK_COUNT = 3
+private const val UNLOCK_TIMEOUT_SECONDS = 3
 
 @Composable
 private fun AppVersionButton(
+    expertModeEnabled: Boolean,
+    onSetExpertModeEnabled: (Boolean) -> Unit,
     excludedModulesUnlocked: Boolean,
     appVersionName: String,
     onUnlockExcludedModules: () -> Unit,
@@ -129,7 +139,7 @@ private fun AppVersionButton(
     var clickCount by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(clickCount) {
-        if (clickCount in 1..<UNLOCK_CLICK_COUNT) {
+        if (clickCount in 1..<EXPERT_MODE_CLICK_COUNT) {
             delay(UNLOCK_TIMEOUT_SECONDS.seconds)
             clickCount = 0
         }
@@ -141,9 +151,23 @@ private fun AppVersionButton(
         supportingText = appVersionName,
         trailingIcon = null,
     ) {
-        clickCount = clickCount.inc().coerceIn(0, UNLOCK_CLICK_COUNT)
+        clickCount = clickCount.inc().coerceIn(0, EXPERT_MODE_CLICK_COUNT)
 
         when {
+            clickCount in 4..<EXPERT_MODE_CLICK_COUNT -> {
+                scope.launch { context.showToast(Res.string.keep_tapping_for_expert_mode) }
+            }
+
+            clickCount == EXPERT_MODE_CLICK_COUNT -> {
+                clickCount = 0
+                onSetExpertModeEnabled(!expertModeEnabled)
+                scope.launch {
+                    context.showToast(
+                        if (!expertModeEnabled) Res.string.expert_mode_enabled else Res.string.expert_mode_disabled,
+                    )
+                }
+            }
+
             clickCount == UNLOCKED_CLICK_COUNT && excludedModulesUnlocked -> {
                 clickCount = 0
                 scope.launch { context.showToast(Res.string.modules_already_unlocked) }
@@ -164,6 +188,8 @@ private fun AppInfoSectionPreview() {
     AppTheme {
         AppInfoSection(
             appVersionName = "2.5.0",
+            expertModeEnabled = false,
+            onSetExpertModeEnabled = {},
             excludedModulesUnlocked = false,
             onUnlockExcludedModules = {},
             onShowAppIntro = {},

@@ -56,6 +56,10 @@ internal fun introNavGraph(
 
     entry<Welcome> { WelcomeScreen(onGetStarted = { navigateToNext(Welcome) }) }
 
+    entry<ExpertMode> {
+        ExpertModeScreen(onContinue = { navigateToNext(ExpertMode) })
+    }
+
     entry<Bluetooth> {
         val isGranted = bluetoothPermissionState.allPermissionsGranted
         BluetoothScreen(

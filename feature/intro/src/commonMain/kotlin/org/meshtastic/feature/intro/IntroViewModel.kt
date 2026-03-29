@@ -29,7 +29,8 @@ class IntroViewModel : ViewModel() {
      * Core Connection -> Shared Location -> Notifications -> Done.
      */
     fun getNextKey(currentKey: NavKey, allPermissionsGranted: Boolean): NavKey? = when (currentKey) {
-        is Welcome -> Bluetooth
+        is Welcome -> ExpertMode
+        is ExpertMode -> Bluetooth
         is Bluetooth -> Location
         is Location -> Notifications
         is Notifications -> if (allPermissionsGranted) CriticalAlerts else null

@@ -57,7 +57,10 @@ import org.meshtastic.core.resources.info
 import org.meshtastic.core.resources.modules_already_unlocked
 import org.meshtastic.core.resources.modules_unlocked
 import org.meshtastic.core.resources.preferences_language
+import org.meshtastic.core.resources.expert_mode_disabled
+import org.meshtastic.core.resources.expert_mode_enabled
 import org.meshtastic.core.resources.remotely_administrating
+import org.meshtastic.core.resources.keep_tapping_for_expert_mode
 import org.meshtastic.core.resources.theme
 import org.meshtastic.core.ui.component.DropDownPreference
 import org.meshtastic.core.ui.component.ListItem
@@ -93,6 +96,7 @@ fun DesktopSettingsScreen(
     val localConfig by settingsViewModel.localConfig.collectAsStateWithLifecycle()
     val homoglyphEnabled by radioConfigViewModel.homoglyphEncodingEnabledFlow.collectAsStateWithLifecycle(false)
     val excludedModulesUnlocked by settingsViewModel.excludedModulesUnlocked.collectAsStateWithLifecycle()
+    val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val cacheLimit by settingsViewModel.dbCacheLimit.collectAsStateWithLifecycle()
 
     var showThemePickerDialog by remember { mutableStateOf(false) }
@@ -137,6 +141,7 @@ fun DesktopSettingsScreen(
         ) {
             RadioConfigItemList(
                 state = state,
+                expertModeEnabled = expertModeEnabled,
                 isManaged = localConfig.security?.is_managed ?: false,
                 isOtaCapable = false, // OTA not supported on Desktop yet
                 onRouteClick = { route ->
@@ -207,6 +212,8 @@ fun DesktopSettingsScreen(
 
                 DesktopAppInfoSection(
                     appVersionName = settingsViewModel.appVersionName,
+                    expertModeEnabled = expertModeEnabled,
+                    onSetExpertModeEnabled = { settingsViewModel.setExpertModeEnabled(it) },
                     excludedModulesUnlocked = excludedModulesUnlocked,
                     onUnlockExcludedModules = { settingsViewModel.unlockExcludedModules() },
                     onNavigateToAbout = { onNavigate(SettingsRoutes.About) },
@@ -220,6 +227,8 @@ fun DesktopSettingsScreen(
 @Composable
 private fun DesktopAppInfoSection(
     appVersionName: String,
+    expertModeEnabled: Boolean,
+    onSetExpertModeEnabled: (Boolean) -> Unit,
     excludedModulesUnlocked: Boolean,
     onUnlockExcludedModules: () -> Unit,
     onNavigateToAbout: () -> Unit,
@@ -234,6 +243,8 @@ private fun DesktopAppInfoSection(
         }
 
         DesktopAppVersionButton(
+            expertModeEnabled = expertModeEnabled,
+            onSetExpertModeEnabled = onSetExpertModeEnabled,
             excludedModulesUnlocked = excludedModulesUnlocked,
             appVersionName = appVersionName,
             onUnlockExcludedModules = onUnlockExcludedModules,
@@ -241,12 +252,15 @@ private fun DesktopAppInfoSection(
     }
 }
 
+private const val EXPERT_MODE_CLICK_COUNT = 7
 private const val UNLOCK_CLICK_COUNT = 5
 private const val UNLOCKED_CLICK_COUNT = 3
 private const val UNLOCK_TIMEOUT_SECONDS = 1
 
 @Composable
 private fun DesktopAppVersionButton(
+    expertModeEnabled: Boolean,
+    onSetExpertModeEnabled: (Boolean) -> Unit,
     excludedModulesUnlocked: Boolean,
     appVersionName: String,
     onUnlockExcludedModules: () -> Unit,
@@ -256,7 +270,7 @@ private fun DesktopAppVersionButton(
     var clickCount by remember { mutableStateOf(0) }
 
     LaunchedEffect(clickCount) {
-        if (clickCount in 1..<UNLOCK_CLICK_COUNT) {
+        if (clickCount in 1..<EXPERT_MODE_CLICK_COUNT) {
             delay(UNLOCK_TIMEOUT_SECONDS.seconds)
             clickCount = 0
         }
@@ -268,9 +282,21 @@ private fun DesktopAppVersionButton(
         supportingText = appVersionName,
         trailingIcon = null,
     ) {
-        clickCount = clickCount.inc().coerceIn(0, UNLOCK_CLICK_COUNT)
+        clickCount = clickCount.inc().coerceIn(0, EXPERT_MODE_CLICK_COUNT)
 
         when {
+            clickCount in 4..<EXPERT_MODE_CLICK_COUNT -> {
+                scope.launch { showToast(Res.string.keep_tapping_for_expert_mode) }
+            }
+
+            clickCount == EXPERT_MODE_CLICK_COUNT -> {
+                clickCount = 0
+                onSetExpertModeEnabled(!expertModeEnabled)
+                scope.launch {
+                    showToast(if (!expertModeEnabled) Res.string.expert_mode_enabled else Res.string.expert_mode_disabled)
+                }
+            }
+
             clickCount == UNLOCKED_CLICK_COUNT && excludedModulesUnlocked -> {
                 clickCount = 0
                 scope.launch { showToast(Res.string.modules_already_unlocked) }
