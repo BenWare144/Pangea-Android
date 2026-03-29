@@ -87,6 +87,8 @@ import org.meshtastic.core.resources.connected
 import org.meshtastic.core.resources.connecting
 import org.meshtastic.core.resources.device_sleeping
 import org.meshtastic.core.resources.disconnected
+import org.meshtastic.core.resources.enable_expert_mode_to_open_setting
+import org.meshtastic.core.resources.expert_mode_disabled
 import org.meshtastic.core.resources.firmware_old
 import org.meshtastic.core.resources.firmware_too_old
 import org.meshtastic.core.resources.must_update
