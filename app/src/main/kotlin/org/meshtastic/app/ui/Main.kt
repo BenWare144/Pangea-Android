@@ -66,14 +66,20 @@ import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import org.meshtastic.core.common.util.CommonUri
+import org.meshtastic.core.common.util.MeshtasticUri
 import org.meshtastic.app.BuildConfig
 import org.meshtastic.core.model.ConnectionState
 import org.meshtastic.core.model.DeviceType
 import org.meshtastic.core.model.DeviceVersion
+import org.meshtastic.core.navigation.ConnectionsRoutes
 import org.meshtastic.core.navigation.ContactsRoutes
+import org.meshtastic.core.navigation.MapRoutes
 import org.meshtastic.core.navigation.MeshtasticNavSavedStateConfig
 import org.meshtastic.core.navigation.NodeDetailRoutes
 import org.meshtastic.core.navigation.NodesRoutes
+import org.meshtastic.core.navigation.Route
+import org.meshtastic.core.navigation.SettingsRoutes
 import org.meshtastic.core.navigation.TopLevelDestination
 import org.meshtastic.core.resources.Res
 import org.meshtastic.core.resources.app_too_old
@@ -107,6 +113,9 @@ import org.meshtastic.feature.map.navigation.mapGraph
 import org.meshtastic.feature.messaging.navigation.contactsGraph
 import org.meshtastic.feature.node.navigation.nodesGraph
 import org.meshtastic.feature.settings.navigation.settingsGraph
+import org.meshtastic.feature.settings.navigation.isExpertModeBlockedRoute
+import org.meshtastic.feature.settings.navigation.settingsRouteFromDeepLinkSegment
+import org.meshtastic.feature.settings.SettingsViewModel
 import org.meshtastic.feature.settings.radio.channel.channelsGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -114,12 +123,28 @@ import org.meshtastic.feature.settings.radio.channel.channelsGraph
 @Composable
 fun MainScreen(uIViewModel: UIViewModel = koinViewModel(), scanModel: ScannerViewModel = koinViewModel()) {
     val backStack = rememberNavBackStack(MeshtasticNavSavedStateConfig, NodesRoutes.NodesGraph as NavKey)
-    // LaunchedEffect(uIViewModel) { uIViewModel.navigationDeepLink.collectLatest { uri -> navController.navigate(uri) }
-    // }
+    val settingsViewModel: SettingsViewModel = koinViewModel()
+    val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
     val connectionState by uIViewModel.connectionState.collectAsStateWithLifecycle()
     val requestChannelSet by uIViewModel.requestChannelSet.collectAsStateWithLifecycle()
     val sharedContactRequested by uIViewModel.sharedContactRequested.collectAsStateWithLifecycle()
     val unreadMessageCount by uIViewModel.unreadMessageCount.collectAsStateWithLifecycle()
+
+    LaunchedEffect(uIViewModel, expertModeEnabled) {
+        uIViewModel.navigationDeepLink.collect { deepLink ->
+            val route = deepLink.toAppRoute() ?: return@collect
+            if (!expertModeEnabled && isExpertModeBlockedRoute(route)) {
+                Logger.w { "Blocked settings deep link to $route because Expert Mode is disabled." }
+                backStack.add(SettingsRoutes.SettingsGraph())
+                uIViewModel.showAlert(
+                    titleRes = Res.string.expert_mode_disabled,
+                    messageRes = Res.string.enable_expert_mode_to_open_setting,
+                )
+            } else {
+                backStack.add(route)
+            }
+        }
+    }
 
     SharedDialogs(
         connectionState = connectionState,
@@ -337,6 +362,33 @@ fun MainScreen(uIViewModel: UIViewModel = koinViewModel(), scanModel: ScannerVie
             entryProvider = provider,
             modifier = Modifier.fillMaxSize().recalculateWindowInsets().safeDrawingPadding(),
         )
+    }
+}
+
+private fun MeshtasticUri.toAppRoute(): Route? {
+    val uri = CommonUri.parse(uriString)
+    val first = uri.pathSegments.firstOrNull()?.lowercase() ?: return null
+    return when (first) {
+        "messages" -> {
+            val contactKey = uri.pathSegments.getOrNull(1) ?: return null
+            val message = uri.getQueryParameter("message") ?: ""
+            ContactsRoutes.Messages(contactKey = contactKey, message = message)
+        }
+
+        "share" -> ContactsRoutes.Share(uri.getQueryParameter("message") ?: "")
+        "connections" -> ConnectionsRoutes.ConnectionsGraph
+        "map" -> MapRoutes.Map(uri.getQueryParameter("waypointId")?.toIntOrNull())
+        "node" -> NodesRoutes.NodeDetailGraph(uri.getQueryParameter("destNum")?.toIntOrNull())
+        "settings" -> {
+            val settingSegment = uri.pathSegments.getOrNull(1)
+            if (settingSegment == null) {
+                SettingsRoutes.SettingsGraph(destNum = uri.getQueryParameter("destNum")?.toIntOrNull())
+            } else {
+                settingsRouteFromDeepLinkSegment(settingSegment)
+            }
+        }
+
+        else -> null
     }
 }
 

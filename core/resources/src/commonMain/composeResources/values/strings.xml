@@ -859,6 +859,10 @@
     <string name="export_keys_confirmation">Exports public and private keys to a file. Please store somewhere securely.</string>
     <string name="modules_unlocked">Modules unlocked</string>
     <string name="modules_already_unlocked">Modules already unlocked</string>
+    <string name="expert_mode_enabled">Expert Mode Enabled — full settings unlocked</string>
+    <string name="expert_mode_disabled">Expert Mode Disabled</string>
+    <string name="keep_tapping_for_expert_mode">Keep tapping to toggle Expert Mode</string>
+    <string name="enable_expert_mode_to_open_setting">Enable Expert Mode to open this setting.</string>
     <string name="remote">Remote</string>
     <string name="node_count_template">(%1$d online / %2$d shown / %3$d total)</string>
     <string name="react">React</string>
@@ -939,6 +943,10 @@
 
     <string name="get_started">Get started</string>
     <string name="intro_welcome">Welcome to</string>
+    <string name="expert_mode_intro_title">Expert Mode</string>
+    <string name="expert_mode_intro_description_one">Meshtastic starts with essential settings so setup stays simple.</string>
+    <string name="expert_mode_intro_description_two">Expert Mode unlocks advanced controls for fine-tuning your mesh network.</string>
+    <string name="expert_mode_intro_description_three">You can toggle Expert Mode from Settings → App Version (tap seven times).</string>
     <string name="stay_connected_anywhere">Stay Connected Anywhere</string>
     <string name="communicate_off_the_grid">Communicate off-the-grid with your friends and community without cell service.</string>
     <string name="create_your_own_networks">Create Your Own Networks</string>

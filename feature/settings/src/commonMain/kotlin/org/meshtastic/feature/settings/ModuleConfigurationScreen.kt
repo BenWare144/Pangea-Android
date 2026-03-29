@@ -42,6 +42,7 @@ import org.meshtastic.feature.settings.radio.RadioConfigViewModel
 @Composable
 fun ModuleConfigurationScreen(
     viewModel: RadioConfigViewModel,
+    expertModeEnabled: Boolean,
     excludedModulesUnlocked: Boolean,
     onBack: () -> Unit,
     onNavigate: (Route) -> Unit,
@@ -50,12 +51,13 @@ fun ModuleConfigurationScreen(
     val destNode by viewModel.destNode.collectAsStateWithLifecycle()
 
     val modules =
-        remember(state.metadata, excludedModulesUnlocked) {
-            if (excludedModulesUnlocked) {
-                ModuleRoute.entries
-            } else {
-                ModuleRoute.filterExcludedFrom(state.metadata, state.userConfig.role)
-            }
+        remember(state.metadata, excludedModulesUnlocked, expertModeEnabled, state.userConfig.role) {
+            ModuleRoute.visibleRoutes(
+                metadata = state.metadata,
+                role = state.userConfig.role,
+                expertModeEnabled = expertModeEnabled,
+                excludedModulesUnlocked = excludedModulesUnlocked,
+            )
         }
 
     Scaffold(

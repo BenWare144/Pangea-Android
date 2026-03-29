@@ -39,7 +39,12 @@ import org.meshtastic.feature.settings.navigation.ConfigRoute
 import org.meshtastic.feature.settings.radio.RadioConfigViewModel
 
 @Composable
-fun DeviceConfigurationScreen(viewModel: RadioConfigViewModel, onBack: () -> Unit, onNavigate: (Route) -> Unit) {
+fun DeviceConfigurationScreen(
+    viewModel: RadioConfigViewModel,
+    expertModeEnabled: Boolean,
+    onBack: () -> Unit,
+    onNavigate: (Route) -> Unit,
+) {
     val state by viewModel.radioConfigState.collectAsStateWithLifecycle()
     val destNode by viewModel.destNode.collectAsStateWithLifecycle()
 
@@ -68,7 +73,7 @@ fun DeviceConfigurationScreen(viewModel: RadioConfigViewModel, onBack: () -> Uni
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             ExpressiveSection(title = stringResource(Res.string.device_configuration)) {
-                ConfigRoute.deviceConfigRoutes(state.metadata).forEach {
+                ConfigRoute.deviceConfigRoutes(state.metadata, expertModeEnabled).forEach {
                     ListItem(
                         text = stringResource(it.title),
                         leadingIcon = it.icon,

@@ -21,6 +21,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable data object Welcome : NavKey
 
+@Serializable data object ExpertMode : NavKey
+
 @Serializable data object Bluetooth : NavKey
 
 @Serializable data object Location : NavKey

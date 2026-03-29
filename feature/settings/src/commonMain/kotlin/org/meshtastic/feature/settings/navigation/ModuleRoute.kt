@@ -183,13 +183,38 @@ enum class ModuleRoute(
             }
 
     companion object {
-        fun filterExcludedFrom(metadata: DeviceMetadata?, role: Config.DeviceConfig.Role?): List<ModuleRoute> {
+        private val expertOnlyRoutes =
+            setOf(
+                MQTT,
+                SERIAL,
+                EXT_NOTIFICATION,
+                STORE_FORWARD,
+                RANGE_TEST,
+                TELEMETRY,
+                CANNED_MESSAGE,
+                AUDIO,
+                DETECTION_SENSOR,
+                PAXCOUNTER,
+            )
+
+        fun visibleRoutes(
+            metadata: DeviceMetadata?,
+            role: Config.DeviceConfig.Role?,
+            expertModeEnabled: Boolean,
+            excludedModulesUnlocked: Boolean,
+        ): List<ModuleRoute> {
             val capabilities = Capabilities(metadata?.firmware_version)
-            return entries.filter {
+            return entries.filter { route ->
                 val excludedModules = metadata?.excluded_modules ?: 0
-                val isExcluded = (excludedModules and it.bitfield) != 0
-                !isExcluded && it.isSupported(capabilities) && it.isApplicable(role)
+                val isExcluded = (excludedModules and route.bitfield) != 0
+                val hiddenByExpertMode = !expertModeEnabled && route in expertOnlyRoutes
+                (!isExcluded || excludedModulesUnlocked) &&
+                    !hiddenByExpertMode &&
+                    route.isSupported(capabilities) &&
+                    route.isApplicable(role)
             }
         }
+
+        fun isExpertOnly(route: Route): Boolean = entries.any { it.route == route && it in expertOnlyRoutes }
     }
 }

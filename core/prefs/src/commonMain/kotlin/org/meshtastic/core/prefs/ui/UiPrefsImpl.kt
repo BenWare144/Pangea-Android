@@ -61,6 +61,13 @@ class UiPrefsImpl(
         scope.launch { dataStore.edit { it[KEY_SHOW_QUICK_CHAT_PREF] = show } }
     }
 
+    override val expertModeEnabled: StateFlow<Boolean> =
+        dataStore.data.map { it[KEY_EXPERT_MODE_ENABLED_PREF] ?: false }.stateIn(scope, SharingStarted.Eagerly, false)
+
+    override fun setExpertModeEnabled(enabled: Boolean) {
+        scope.launch { dataStore.edit { it[KEY_EXPERT_MODE_ENABLED_PREF] = enabled } }
+    }
+
     override fun shouldProvideNodeLocation(nodeNum: Int): StateFlow<Boolean> =
         cachedFlow(provideNodeLocationFlows, nodeNum) {
             val key = booleanPreferencesKey(provideLocationKey(nodeNum))
@@ -76,5 +83,6 @@ class UiPrefsImpl(
     companion object {
         val KEY_HAS_SHOWN_NOT_PAIRED_WARNING_PREF = booleanPreferencesKey("has_shown_not_paired_warning")
         val KEY_SHOW_QUICK_CHAT_PREF = booleanPreferencesKey("show-quick-chat")
+        val KEY_EXPERT_MODE_ENABLED_PREF = booleanPreferencesKey("expert-mode-enabled")
     }
 }
