@@ -98,8 +98,11 @@ fun EntryProviderScope<NavKey>.settingsGraph(backStack: NavBackStack<NavKey>) {
     }
 
     entry<SettingsRoutes.DeviceConfiguration> {
+        val settingsViewModel: SettingsViewModel = koinViewModel()
+        val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
         DeviceConfigurationScreen(
             viewModel = getRadioConfigViewModel(backStack),
+            expertModeEnabled = expertModeEnabled,
             onBack = { backStack.removeLastOrNull() },
             onNavigate = { route -> backStack.add(route) },
         )
@@ -108,8 +111,10 @@ fun EntryProviderScope<NavKey>.settingsGraph(backStack: NavBackStack<NavKey>) {
     entry<SettingsRoutes.ModuleConfiguration> {
         val settingsViewModel: SettingsViewModel = koinViewModel()
         val excludedModulesUnlocked by settingsViewModel.excludedModulesUnlocked.collectAsStateWithLifecycle()
+        val expertModeEnabled by settingsViewModel.expertModeEnabled.collectAsStateWithLifecycle()
         ModuleConfigurationScreen(
             viewModel = getRadioConfigViewModel(backStack),
+            expertModeEnabled = expertModeEnabled,
             excludedModulesUnlocked = excludedModulesUnlocked,
             onBack = { backStack.removeLastOrNull() },
             onNavigate = { route -> backStack.add(route) },

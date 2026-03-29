@@ -115,6 +115,8 @@ class SettingsViewModel(
     val appVersionName
         get() = buildConfigProvider.versionName
 
+    val expertModeEnabled: StateFlow<Boolean> = uiPrefs.expertModeEnabled
+
     val isOtaCapable: StateFlow<Boolean> = isOtaCapableUseCase().stateInWhileSubscribed(initialValue = false)
 
     // Device DB cache limit (bounded by DatabaseConstants)
@@ -171,6 +173,10 @@ class SettingsViewModel(
 
     fun unlockExcludedModules() {
         _excludedModulesUnlocked.update { true }
+    }
+
+    fun setExpertModeEnabled(enabled: Boolean) {
+        uiPrefs.setExpertModeEnabled(enabled)
     }
 
     /**
